@@ -1,0 +1,44 @@
+Check orbit-orbit interaction:
+
+Comparing files zno_breit.ff and ZNO_BREIT.F90
+***** zno_breit.ff
+       CALL ADD_ci( A,met,k+1,no1,no2,no3,no4)      ! U[k+1](r,s;r',s')
+       CALL ADD_ci( A,13, k+1,no1,no2,no3,no4)
+       CALL ADD_ci(-A,met,k-1,no1,no2,no3,no4)      ! U[k-1](r,s;r',s')
+       CALL ADD_ci(-A,13, k-1,no1,no2,no3,no4)
+ 
+***** ZNO_BREIT.F90
+       CALL ADD_ci( A,met,k+1,no1,no2,no3,no4)      ! U[k+1](r,s;r',s')
+       CALL ADD_ci( A,met,k+1,no3,no2,no1,no4)
+       CALL ADD_ci(-A,met,k-1,no1,no2,no3,no4)      ! U[k-1](r,s;r',s')
+       CALL ADD_ci(-A,met,k-1,no3,no2,no1,no4)
+ 
+*****
+
+***** zno_breit.ff
+       CALL ADD_ci( A,met,k+1,no2,no1,no4,no3)      ! U[k+1](s,r;s',r')
+       CALL ADD_ci( A,13, k+1,no2,no1,no4,no3)   
+       CALL ADD_ci(-A,met,k-1,no2,no1,no4,no3)      ! U[k-1](s,r;s',r')
+       CALL ADD_ci(-A,13, k-1,no2,no1,no4,no3)   
+ 
+***** ZNO_BREIT.F90
+       CALL ADD_ci( A,met,k+1,no2,no1,no4,no3)      ! U[k+1](s,r;s',r')
+       CALL ADD_ci( A,met,k+1,no4,no1,no2,no3)   
+       CALL ADD_ci(-A,met,k-1,no2,no1,no4,no3)      ! U[k-1](s,r;s',r')
+       CALL ADD_ci(-A,met,k-1,no4,no1,no2,no3)   
+ 
+*****
+
+
+
+Comparing files term_loop.f90 and TERM_LOOP.FF
+***** term_loop.f90
+       Select case (m)
+        Case(3,4); if(joper(7).eq.0) Cycle; Ctrm(1:ntrm)=C*CT_oper(:,7)
+        Case(5);   if(joper(3).eq.0) Cycle; Ctrm(1:ntrm)=C*CT_oper(:,3)
+***** TERM_LOOP.FF
+       Select case (m)
+        Case(3,4,13); if(joper(7).eq.0) Cycle; Ctrm(1:ntrm)=C*CT_oper(:,7)
+        Case(5);   if(joper(3).eq.0) Cycle; Ctrm(1:ntrm)=C*CT_oper(:,3)
+*****
+

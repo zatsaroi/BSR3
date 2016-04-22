@@ -1,0 +1,26 @@
+
+
+ STATE  (WITH  5 CONFIGURATIONS):
+ -------------------------------
+
+
+ THERE ARE  1 ORBITALS AS FOLLOWS:
+
+       3d
+
+ CONFIGURATION  1 ( OCCUPIED ORBITALS= 1 ):  3d( 8)
+                           COUPLING SCHEME:     1S0
+
+ CONFIGURATION  2 ( OCCUPIED ORBITALS= 1 ):  3d( 8)
+                           COUPLING SCHEME:     3P2
+
+ CONFIGURATION  3 ( OCCUPIED ORBITALS= 1 ):  3d( 8)
+                           COUPLING SCHEME:     1D2
+
+ CONFIGURATION  4 ( OCCUPIED ORBITALS= 1 ):  3d( 8)
+                           COUPLING SCHEME:     3F2
+
+ CONFIGURATION  5 ( OCCUPIED ORBITALS= 1 ):  3d( 8)
+                           COUPLING SCHEME:     1G2
+
+ Total time was        0.00 seconds

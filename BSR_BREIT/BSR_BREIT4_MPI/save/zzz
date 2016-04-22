@@ -1,0 +1,51 @@
+Comparing files bsr_breit_mpi.f90 and BSR_BREIT_MPI.FF
+***** bsr_breit_mpi.f90
+      Integer,Parameter :: mc = 1000000
+      Integer,Allocatable,Dimension(:) :: K1,K2,K3,K4
+      Real(8),Allocatable,Dimension(:) :: C
+***** BSR_BREIT_MPI.FF
+      Integer,Parameter :: mc = 1000000
+      Integer,Allocatable,Dimension(:) :: K1,K2,K3
+      Real(8),Allocatable,Dimension(:) :: C
+*****
+
+***** bsr_breit_mpi.f90
+
+      Allocate(C(mc),K1(mc),K2(mc),K3(mc),k4(mc))
+
+***** BSR_BREIT_MPI.FF
+
+      Allocate(C(mc),K1(mc),K2(mc),K3(mc))
+
+*****
+
+***** bsr_breit_mpi.f90
+      i = 1
+    1 read(nu1,end=2) c(i),k1(i),k2(i),k3(i),k4(i)
+      i = i + 1; if(i.le.mc) go to 1
+***** BSR_BREIT_MPI.FF
+      i = 1
+    1 read(nu1,end=2) c(i),k1(i),k2(i),k3(i)
+      i = i + 1; if(i.le.mc) go to 1
+*****
+
+***** bsr_breit_mpi.f90
+      Do i = 1,j
+       write(nu2) c(i),k1(i),k2(i),k3(i),k4(i)
+      End do
+***** BSR_BREIT_MPI.FF
+      Do i = 1,j
+       write(nu2) c(i),k1(i),k2(i),k3(i)
+      End do
+*****
+
+***** bsr_breit_mpi.f90
+
+      Deallocate(C,K1,K2,K3,k4)
+
+***** BSR_BREIT_MPI.FF
+
+      Deallocate(C,K1,K2,K3)
+
+*****
+

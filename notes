@@ -1,0 +1,16 @@
+flags
+
+-mcmodel=medium -Mlarge_arrays  -Mfls
+
+
+are supposed to allow us use > 2Gb,
+both for aggregate data and indivudual arrays.
+
+
+This recompalition also requires recompilation of
+all used libraries.
+
+ 
+
+
+

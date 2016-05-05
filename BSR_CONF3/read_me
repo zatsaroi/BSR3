@@ -1,0 +1,7 @@
+run     bsr_prep3 ?     for short instructions
+
+Problems to be solved:
+
+1. What to do when program fails to determine the leading configuration
+   (not big troubles, overall)
+

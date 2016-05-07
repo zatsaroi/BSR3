@@ -10,10 +10,10 @@ The present version is the deep recomposition of the original version published 
 Numerous new features and extansions are added, see doc folder in this repository and the references:
 
 * Atomic structure calculations using MCHF and BSR
-  >Oleg Zatsarinny and Charlotte Froese Fischer
-  > Computer Physics Communications 180 (2009) 2041–2065
+  >Oleg Zatsarinny and Charlotte Froese Fischer  
+  >Computer Physics Communications 180 (2009) 2041–2065  
 
 * The B-spline R-matrix method for atomic processes: 
   application to atomic structure, electron collisions and photoionization
-  >Oleg Zatsarinny and Klaus Bartschat
-  > J. Phys. B: At. Mol. Opt. Phys. 46 (2013) 112001
+  >Oleg Zatsarinny and Klaus Bartschat  
+  >J. Phys. B: At. Mol. Opt. Phys. 46 (2013) 112001

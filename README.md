@@ -1,12 +1,12 @@
 # BSR3: B-spline atomic R-matrix codes, third version
 
-BSR is a general program to calculate atomic continuum processes using the B-spline R-matrix method, 
-including electron-atom and electron-ion scattering, and radiative processes such as bound-bound transitions, 
-photoionization and polarizabilities. The calculations can be performed in LS-coupling or 
-in an intermediate-coupling scheme by including terms of the Breit-Pauli Hamiltonian. 
+BSR is a general program to calculate atomic continuum processes using the B-spline R-matrix method, including 
+electron-atom and electron-ion scattering, and radiative processes such as bound-bound transitions, photoionization and polarizabilities. The calculations can be performed in LS-coupling or in an intermediate-coupling scheme by including terms of the Breit-Pauli Hamiltonian. 
 
 The present version is the deep recomposition of the original version published in
+
    Computer Physics Communications 174 (2006) 273–356 
+
 Numerous new features and extansions are added, see doc folder in this repository and the references:
 
 * Atomic structure calculations using MCHF and BSR

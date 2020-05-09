@@ -17,3 +17,8 @@ Numerous new features and extansions are added, see doc folder in this repositor
   application to atomic structure, electron collisions and photoionization
   >Oleg Zatsarinny and Klaus Bartschat  
   >J. Phys. B: At. Mol. Opt. Phys. 46 (2013) 112001
+
+# Installation
+
+put DEF_03 (see Libraries_03) in your home directory, make corrections in the file regarding your compiler,
+then compile the libraries first, then all programs in raw, using the Makefiles for each program

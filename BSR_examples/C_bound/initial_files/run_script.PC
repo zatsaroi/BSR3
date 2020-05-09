@@ -1,0 +1,103 @@
+#  test run for bound states and oscillator strengths
+#  calculations in C
+
+#--------------------------------------------------------------
+#  preparation of initial state file in BSR-format
+
+#  suppose that the CI Breit-Pauli calculation was 
+#  made for initial 2s2/2p2 3P state and results are
+#  in the corresponding c-,j- and w-files
+
+#  prepare c-files for each J-value from the CI calculations 
+
+cfile 2s2_2p2_3P.j 1 0 2s2_2p2_3P0.c 0.0
+cfile 2s2_2p2_3P.j 1 2 2s2_2p2_3P1.c 0.0
+cfile 2s2_2p2_3P.j 1 4 2s2_2p2_3P2.c 0.0
+
+#  if the unformatted-file stracture is other,
+#  first get w-file from ASCII frm-file: 
+
+frm_w  2s2_2p2_3P.frm
+
+#  prepare bsw-files from w-files
+
+w_bsw  2s2_2p2_3P.w
+
+#  get bsw-file for each c-file:
+
+copy 2s2_2p2_3P.bsw 2s2_2p2_3P0.bsw
+copy 2s2_2p2_3P.bsw 2s2_2p2_3P1.bsw
+copy 2s2_2p2_3P.bsw 2s2_2p2_3P2.bsw
+#--------------------------------------------------------------
+#
+#  preparation target files in simple one-configuration 
+#  avarage-term approximation with full relaxation
+#
+#  supposed the HF calculations were carried out for
+#  2s2_2p, 2s_2p2  and 2s_2p3 configurations
+#  and we have corresponding w- and c-files
+#  Now we are going to prepare target states in
+#  BSR-format 
+#
+#  if the unformatted-file structure is uncompatable,
+#  get the w-files from the ASCII frm-files for radial functions
+#
+
+frm_w  2s2_2p_AV.frm 
+frm_w  2s_2p2_AV.frm 
+frm_w  2s_2p3_AV.frm 
+
+#  convolute the w-files to the bsw-format
+
+w_bsw 2s2_2p_AV.w
+w_bsw 2s_2p2_AV.w
+w_bsw 2s_2p3_AV.w
+
+# prepare the bsw-file for each state:
+
+copy  2s2_2p_AV.bsw 2s2_2p_2Po.bsw
+copy  2s2_2p_AV.bsw 2p3_2Po.bsw
+
+copy  2s_2p2_AV.bsw 2s_2p2_2S.bsw 
+copy  2s_2p2_AV.bsw 2s_2p2_2P.bsw 
+copy  2s_2p2_AV.bsw 2s_2p2_2D.bsw 
+
+copy  2s_2p3_AV.bsw p0.bsw
+copy  2s_2p3_AV.bsw p1.bsw
+copy  2s_2p3_AV.bsw p2.bsw
+copy  2s_2p3_AV.bsw p3.bsw
+
+#--------------------------------------------------------------
+#  bound-state B-spline calculations for excited odd states:
+
+bsr_prep
+bsr_conf
+
+bsr_breit klsp1=1 klsp2=4 oper=1111000
+bsr_mat klsp1=1 klsp2=4
+bsr_hd klsp1=1 klsp2=4  
+
+bound_tab
+
+#--------------------------------------------------------------
+#  oscillator-strengths calculations:
+
+mult 2s2_2p2_3P1.c cfg.001 E1
+mult 2s2_2p2_3P1.c cfg.002 E1
+mult 2s2_2p2_3P1.c cfg.003 E1
+mult 2s2_2p2_3P1.c cfg.004 E1
+
+bsr_dmat 2s2_2p2_3P0.c cfg.002 c b
+bsr_dmat 2s2_2p2_3P1.c cfg.001 c b
+bsr_dmat 2s2_2p2_3P1.c cfg.002 c b
+bsr_dmat 2s2_2p2_3P1.c cfg.003 c b
+bsr_dmat 2s2_2p2_3P2.c cfg.002 c b
+bsr_dmat 2s2_2p2_3P2.c cfg.003 c b
+bsr_dmat 2s2_2p2_3P2.c cfg.004 c b
+
+#  final results are oscillator strengths  in file zf_res
+
+#  To check if the test runs correctly
+#  compare the f-values with data in
+#  zf_res.test
+

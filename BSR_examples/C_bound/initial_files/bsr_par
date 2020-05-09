@@ -1,0 +1,19 @@
+# bsr_conf
+
+<  2s|  ks>=0
+<  2p|  kp>=0
+
+max_LT = 7
+max_ST = 3
+max_ll = 3
+
+#  bsr_mat:
+
+mrel = 2
+
+#  bsr_hd:
+
+itype = -1
+Emax = -0.1
+msol = 30
+ 

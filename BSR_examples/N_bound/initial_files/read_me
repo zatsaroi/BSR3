@@ -1,0 +1,178 @@
+#  test run for bound states and oscillator strengths
+#  calculations in N
+#  (as preparation to the e - N problem)
+#  This test run is closely connected with the published calculations:
+
+   B-spline R-matrix-with-pseudostates calculations for electron-impact excitation
+   and ionization of nitrogen
+   Yang Wang, Oleg Zatsarinny, and Klaus Bartschat
+   PHYSICAL REVIEW A 89, 062714 (2014)
+
+#  folder N_bound contains the results of calculations, whereas
+#  subfolder "initial_files" contains the data that 
+#  you should prepare to begin the calculations
+
+#  we are working in the frozen-core approximation and represent
+#  the N atomic states through expansion other  N+ ionic states
+
+#  the model includes 9 N+ states: 
+
+   2p2_3P
+   2p2_1D
+   2p2_1S
+   2s_2p3_5S  
+   2s_2p3_3D  
+   2s_2p3_3P  
+   2s_2p3_1D  
+   2s_2p3_3S  
+   2s_2p3_1P  
+
+#  these states are supposed to be obtained in some MCHF calculations
+#  and represented as pair of name.c and name.w files
+
+#  we also supposed that the N-states with equivalent electrons 
+#  may be not enough accurately described in the frozen-core approximation 
+#  and we prepared them in separate MCHF calculations
+
+   2p3_4S   
+   2p3_2D   
+   2p3_2P   
+   2s_2p4_4P
+   2s_2p4_2D
+   2s_2p4_2P
+   2s_2p4_2S
+
+#  These states will be included in frosen-core (CC) expansions as
+#  perturber states with saving their expansions coefficients
+
+#--------------------------------------------------------------     step 1
+#  preparation of ionic states orbitals in BSR-format:
+
+#  we need choose B-spline grid and create knot.dat file;
+#  usually, we just copy knot.dat from some other calculations
+#  and change a few parameters if needed
+
+#  prepare bsw-files from w-files using the utility "w_bsw"
+
+w_bsw 2p2_1D.w
+w_bsw 2p2_1S.w
+w_bsw 2p2_3P.w
+w_bsw 2p3_2D.w
+w_bsw 2p3_2P.w
+w_bsw 2p3_4S.w
+w_bsw 2s_2p3_1D.w
+w_bsw 2s_2p3_1P.w
+w_bsw 2s_2p3_3D.w
+w_bsw 2s_2p3_3P.w
+w_bsw 2s_2p3_3S.w        
+w_bsw 2s_2p3_5S.w
+w_bsw 2s_2p4_2D.w
+w_bsw 2s_2p4_2P.w
+w_bsw 2s_2p4_2S.w
+w_bsw 2s_2p4_4P.w
+
+#  it is a quick procedure; at this stage you may play with
+#  B-spline parameters in knot.dat to choose most appropriate grid
+#  (see also the description of B-spline grid in the BSR libraries documentation) 
+
+#  check the end of w_bsw.log file to see the accuracy 
+#  of the B-spline representation
+
+#  all other calculations should used the same knot.dat file
+#  without changes !!!
+
+#--------------------------------------------------------------     step 2
+
+#  prepare 'target' file which contain list of ionic states
+#  and desirade total terms for N states 
+#  (see target.0 as example of inital target file, this file 
+#   will be furher modified by programs bsr_prep and bsr_conf) 
+
+#  prepare bsr_par file with specific paramters 
+#  this file can be empty if only default parametrs are used
+
+#  run the first preparation programs:
+
+bsr_prep3
+bsr_conf3 
+
+#  at this stage you may chack the size of resultiong expansions
+#  and other details in file target and log-files
+
+#--------------------------------------------------------------     step 3
+#  bound-state B-spline calculations for given terms:
+
+bsr_breit3 klsp1=1 klsp2=14 
+bsr_mat3 klsp1=1 klsp2=14
+bsr_hd3 klsp1=1 klsp2=14  itype=-1  msol=10
+
+bound_tab
+
+#  "bound_tab" file will contain the list of bound states obtained;
+#   you change the parameters in the end of file to change the output,
+#   i.e, binding or excitation energies, specific partial waves, etc.
+
+
+#----------------------------------------------------------------   step 4
+#  extract specific states for following calculations 
+#  for e-Ca problem:
+
+   To do that, we need prepare bound_bsw.inp file, which contains
+   index of solution, index of partial wave, name of the states.
+   (one line for each state)
+
+   It is the similar information as in the bound_tab file, so practically
+   we just need to copy the corresponding lines from the bound_tab file.
+   Here we need to check the names given for the solutions by the bsr_hd
+   program - they can be wrong or confusing. 
+   If you using the bound_bsw.inp file with name, when you just run
+   
+bound_bsw  
+
+   The output will contain the pairs  name.c and name.bsw for each chosen state.
+
+   If there are too many states and checking the name is difficult,
+   there is option to run with some generic names:
+
+bound_bsw  mode=sol
+
+   In this case, the output for each state will contain files:
+       sol_nnn_mmmm.c  and  sol_nnn_mmmm.bsw
+   where nnn - partial wave index, mmmm - index of solution for given term
+
+#----------------------------------------------------------------  step 5
+#  calculation of oscilator strengths:
+
+#  consider as exmaple the oscillation strenths from the ground state, 4s2 1S,
+#  to the excited 1Po states. 
+#  Acording the target file, 1S states are in 1st partial wave, 1Po states are
+#  in 3rd partial wave
+
+mult3  cfg.001 cfg.003 E1
+bsr_dmat3  cfg.001 cfg.003 b b  istate1=1  mstate2=10
+
+#  results are in file "zf_res"
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+ 
+

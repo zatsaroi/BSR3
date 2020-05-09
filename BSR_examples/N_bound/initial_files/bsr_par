@@ -1,0 +1,15 @@
+
+# bsr_conf
+
+< ks | 2s1>=0
+< kp | 2p1>=0
+
+max_ll = 3
+
+#  bsr_hd:
+
+itype = -1
+
+msol = 120     ! restrict the output
+
+ 

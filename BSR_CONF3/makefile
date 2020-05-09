@@ -4,22 +4,33 @@ include ${HOME}/DEFS_03
 # make  PROGRAM with name:
  
 N  = bsr_conf3
+M  = bsr_conf3_mpi
  
 # Libraries to be searched:
  
-L  =  $(ZCONFLS) $(ZCOM) 
+L  =  $(ZCONFLS) $(ZCOM) $(SHELLS)
  
-S  =	mod_bsr_conf.f90         bsr_conf.f90             check_cfg.f90            \
+S  =	mod_bsr_conf.f90         check_cfg.f90                                     \
 	check_pertuber.f90       def_orth_cond.f90        def_phys_targ.f90        \
 	gen_conf.f90             make_coupling.f90        record_orth.f90          \
 	sub_jj.f90               sub_jk.f90               sub_ls.f90               \
-        read_arg.f90             bsr_conf_inf.f90
+	read_arg.f90             bsr_conf_inf.f90        
+
+SN =	bsr_conf.f90                 
+SM = bsr_conf_mpi.f90         br_arg.f90
 	
-O = $(S:.f90=.o)  
+O  = $(S:.f90=.o)  
+ON = $(SN:.f90=.o)  
+OM = $(SM:.f90=.o)  
  
-$(N): $(O)
-	$(FC) -o $(N) $(O) $(link) $(L)
+$(N): $(O) $(ON)
+	$(FC) -o $(N) $(ON) $(O) $(link) $(L)
 	mv $(N) $(BINDIR)
+	rm *.o *.mod 
+
+$(M): $(O) $(OM)
+	$(FC_mpi) -o $(M) $(OM) $(O) $(link) $(L) $(BSR_MPI)
+	mv $(M) $(BINDIR)
 	rm *.o *.mod 
  
 clean:
@@ -32,9 +43,7 @@ x:
 .SUFFIXES: .f90 .mod .o
  
 .f90.o:
-	$(FC) $(comp) $<
+	$(FC) $(comp)  $<
+
  
-.f.o:
-	$(FC) $(comp) $<
- 
-#  -fbounds-check
+#  -fbounds-check  -fbacktrace

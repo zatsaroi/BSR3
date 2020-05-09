@@ -1,0 +1,40 @@
+# insert your compiler and flags:
+include ${HOME}/DEFS_04
+ 
+# make  PROGRAM with name:
+ 
+N  = bsr_recoup4_mpi
+ 
+# Libraries to be searched:
+ 
+L  =  $(ZCONFLS) $(ZCOM) $(SHELLS)
+ 
+S  =	MOD_bsr_recoup.f90      add_block.f90      bsr_recoup_mpi.f90     \
+	matrix_updates.f90      read_arg.f90       record_matrix_mpi.f90  \
+	sub1_mpi.f90            br_arg.f90         br_channel.f90         \
+	br_channels_ion.f90     br_target.f90      br_target_ion.f90      \
+	collect_ACF.f90   
+	
+O = $(S:.f90=.o)  
+ 
+$(N): $(O)
+	$(FC) -o $(N)  $(O) $(link) $(L)
+	mv $(N) $(BINDIR)
+	rm *.o *.mod 
+ 
+clean:
+	rm -f *.o *.mod 
+ 
+x:
+	rm -f $(N)
+ 
+.SUFFIXES:
+.SUFFIXES: .f90 .mod .o
+ 
+.f90.o:
+	$(FC) $(comp) $<
+ 
+.f.o:
+	$(FC) $(comp) $<
+ 
+#  -fbounds-check

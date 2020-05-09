@@ -35,7 +35,7 @@
 !----------------------------------------------------------------------
 ! ... processing the data:
 
-    1 read(nub,end=2) C, ijt,int,idf
+    1 read(nub,end=2) C,ijt,int,idf
 
       it=ijt/ibc;  jt=mod(ijt,ibc)
 
@@ -90,7 +90,7 @@
       CCL=CC; CCV=CC
       if(jmode.eq.2) then
        CCL = CC * DJ(i,j); CCV = CC * DJM(i,j)
-	      if(abs(CCL)+abs(CCV).lt.Eps_C) Cycle
+       if(abs(CCL)+abs(CCV).lt.Eps_C) Cycle
       end if 
       if(int_type.eq.2) CCV = 0.d0
       if(int_type.eq.3) CCL = 0.d0

@@ -170,6 +170,7 @@
       End do; End do
 
       Call R_orth(nuc)
+!      Call Read_orth(nuc)    ???
       Do i=1,nwf; Do j=1,i
        IORT(j,i)=IORT(i,j); IBORT(i,j)=IORT(i,j); IBORT(j,i)=IORT(i,j)
       End do; End do     

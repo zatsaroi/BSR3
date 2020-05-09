@@ -111,7 +111,8 @@
           C = C + zl_core(m,m)*pbs(m,i)*pbs(m,j)
          End do
 
-         if(lbs(i).eq.1) C = C * zcorr           !  ???
+!         if(lbs(i).eq.1) C = C * zcorr           !  ???
+         C = C * zcorr           !  ???
  
          Z_int(i,j) = C;  Z_int(j,i) = C
  

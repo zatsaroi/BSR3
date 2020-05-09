@@ -7,8 +7,8 @@ N  = bsr_pol3
 L  =  $(BS) $(ZCONFLS) $(ZCOM) $(LAPACK)
 
 S  =	mod_pol.f90              bsr_pol.f90              read_bsw.f90            \
-	read_data.f90            r_arg.f90                r_bsrmat.f90            \
-	r_dipmat.f90             solv_mat.f90             r_nortb.f90             \
+	read_data.f90            read_arg.f90             read_bsrmat.f90         \
+	read_dipmat.f90          solv_mat.f90             read_nortb.f90          \
 	inf_bsr_pol.f90
 
  

@@ -311,6 +311,9 @@
       ilen = 0
       Do it=1,ntarg; i=Len_trim(BFT(it)); if(i.gt.ilen) ilen=i; End do
 
+      if(iitar.eq.0) &
+      write(iout,'(/a,1Pe9.1/)') 'Target hamiltonian errors if > eps_tar =',eps
+
       k = 0
       Do i = 1,kch; it=iptar(i); targ1=BFT(it)
        Do j = 1,i;  jt=iptar(j); targ2=BFT(jt)
@@ -322,8 +325,6 @@
         end if
          if(abs(C).lt.eps) Cycle
          if(iitar.ne.0) Cycle
-         if(k.eq.0) &
-         write(iout,'(/a,1Pe9.1/)') 'Target hamiltonian errors if > eps_tar =',eps
          if(i.ne.j) &
           write(iout,'(f14.6,5x,a,a6,5x,a,a6)') &
             C, targ1(1:ilen),ELC(i),targ2(1:ilen),ELC(j)
@@ -332,6 +333,9 @@
        End do
       End do
 
+      if(iitar.lt.2) &
+      write(iout,'(/a,1Pe9.1/)') 'Target overlaps errors if > eps_tar =',eps
+
       k = 0
       Do i = 1,kch; it=iptar(i); targ1=BFT(it)
        Do j = 1,i;  jt=iptar(j); targ2=BFT(jt)
@@ -339,8 +343,6 @@
         c = otarg(ij)
         if(i.eq.j) c = c - 1.d0
         if(abs(C).lt.eps) Cycle
-        if(k.eq.0) &
-        write(iout,'(/a,1Pe9.1/)') 'Target overlaps errors if > eps_tar =',eps
         if(i.ne.j) &
          write(iout,'(f14.6,5x,a,a6,5x,a,a6)') &
            C, targ1(1:ilen),ELC(i),targ2(1:ilen),ELC(j)

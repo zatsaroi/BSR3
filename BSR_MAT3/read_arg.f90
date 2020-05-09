@@ -31,6 +31,8 @@
       Call Read_ipar(nu,'izcorr',izcorr)
       Call Read_rpar(nu,'zcorr' ,zcorr )
       Call Read_ipar(nu,'debug' ,debug )
+      Call Read_ipar(nu,'pri_f' ,pri_f )
+      Call Read_ipar(nu,'pri_ac',pri_ac)
 
       Call Read_rpar(nu,'s_ovl' ,s_ovl )
       Call Read_rpar(nu,'s_pert',s_pert)
@@ -62,6 +64,8 @@
       Call Read_iarg('izcorr',izcorr)
       Call Read_rarg('zcorr' ,zcorr )
       Call Read_iarg('debug' ,debug )
+      Call Read_iarg('pri_f' ,pri_f )
+      Call Read_iarg('pri_ac',pri_ac)
 
       Call Read_rarg('s_ovl' ,s_ovl )
       Call Read_rarg('s_pert',s_pert)
@@ -125,18 +129,6 @@
       if(mrel.gt.0) then
        write(prj,'(a,i4,a)') 'mrel    =',mrel, & 
         ' - relativistic corrections is included'
-       if(mso.gt.0) &
-       write(prj,'(a,i4,a)') 'mso     =',mso, &
-        ' - spin-orbit interaction is included'
-       if(msoo.gt.0) &
-       write(prj,'(a,i4,a)') 'msoo    =',msoo, &
-        ' - spin-other-orbit interaction is included'
-       if(mss.gt.0) &
-       write(prj,'(a,i4,a)') 'mss     =',mss, &
-        ' - spin-spin interaction is included'
-       if(msoo.gt.0) &
-       write(prj,'(a,i4,a)') 'msoo    =',moo, &
-        ' - orbit-orbit interaction is included'
        write(prj,'(a,i4,a)') 'imvc    =',imvc, &
         ' - mode for inclusion of mass-velocity term'
        if(izcorr.eq.0.and.nz.gt.40) izcorr = 1
@@ -153,6 +145,22 @@
        write(prj,'(a,i4,a)') 'mrel    =',mrel, & 
         ' - relativistic corrections is not included'
       end if
+
+       if(mso.gt.0) &
+       write(prj,'(a,i4,a)') 'mso     =',mso, &
+        ' - spin-orbit interaction is included'
+       if(mso.gt.0.and.mrel.eq.0) &
+       write(prj,'(a,i4,a)') 'izcorr  =',izcorr, &
+        ' -  small-r cut-off correction for spin-orbit interaction'
+       if(msoo.gt.0) &
+       write(prj,'(a,i4,a)') 'msoo    =',msoo, &
+        ' - spin-other-orbit interaction is included'
+       if(mss.gt.0) &
+       write(prj,'(a,i4,a)') 'mss     =',mss, &
+        ' - spin-spin interaction is included'
+       if(msoo.gt.0) &
+       write(prj,'(a,i4,a)') 'msoo    =',moo, &
+        ' - orbit-orbit interaction is included'
 
 ! ... other parameters:
 

@@ -25,31 +25,42 @@
 !      c- and bsw- files for the indicated states
 !      bound_bsw.log - running information
 !----------------------------------------------------------------------
+!
+!      target_LS  ->  contains all LS target states
+!
+!----------------------------------------------------------------------
       Use channels; Use target; Use conf_LS; Use orb_LS
       Use spline_param; Use spline_atomic; Use spline_grid
       Use spline_orbitals
+      Use target_ion, only:  ntarg_LS => ntarg, etarg_LS => etarg, &
+                             IL_LS => Ltarg, IS_LS => IStarg, IP_LS => IPtarg
 
       Implicit real(8) (A-H,O-Z)
 
 ! ... files:
 
-      Integer :: inp=5;    Character(20) :: AF_inp = 'bound_bsw.inp'
-      Integer :: pri=6;    Character(20) :: AF_log = 'bound_bsw.log'
+      Integer :: inp=55;   Character(20) :: AF_inp = 'bound_bsw.inp'
+      Integer :: pri=66;   Character(20) :: AF_log = 'bound_bsw.log'
       Integer :: nuw=11;   Character(20) :: AF_w   = 'target.bsw'
       Integer :: nut=12;   Character(20) :: AF_t   = 'target'
       Integer :: nuc=13;   Character(20) :: AF_c   = 'cfg.nnn'
       Integer :: nub=14;   Character(20) :: AF_b   = 'bound.nnn'
+      Integer :: nux=15;   Character(20) :: AF_wt  = 'w.nnn'
+      Integer :: nui=16;   Character(20) :: AF_LS  = 'target_LS'
+      Integer :: nus=17;   Character(20) :: AF_th  = 'thresholds'
+      Integer :: nup=18;   Character(20) :: AF_pert = 'thresholds_pert'
 
-      Character(20) :: AF,BF,CF,   AFb=' ', mode=' '
+      Character(80) :: AF,BF,CF,   AFb=' ', mode=' '
       Character( 3) :: ALSP
       Character(64) :: Lab
       Character(80) :: AS
       Character( 4), external :: ELF4
 
-      Real(8) :: eps_c = 1.d-8
+      Real(8) :: eps_c = 1.d-8, neff, eps_e = 5.d-8
 
       Real(8), allocatable :: A(:), WCC(:), v(:)
-      Integer, allocatable :: ipt(:)
+      Integer, allocatable :: ipt(:), index_kpert(:,:)
+      Integer, external :: Icheck_file
 
 ! ... short instructions:
 
@@ -86,8 +97,28 @@
       Open(nut,file=AF_t)
       Call R_target(nut);
       Call R_channels(nut)
-      Close(nut)
-     
+
+!----------------------------------------------------------------------
+! ... read LS-target if any
+
+      LS_flag = 0
+      if(Icheck_file(AF_LS).gt.0) then
+       Open(nui,file=AF_LS)
+       Call R_target_ion(nui)
+       LS_flag = 1
+      end if 
+      close(nui)
+
+      if(Icheck_file(AF_pert).ne.0) then
+       open(nup,file=AF_pert)
+       Call Read_ipar(nup,'nperts',nperts)
+       Allocate(index_kpert(nlsp,nperts))
+       Do i=1,nlsp
+        read(nup,*) index_kpert(i,:)
+       End do
+      end if
+
+
 !----------------------------------------------------------------------
 ! ... sets up grid points and initializes the values of the spline
 ! ... according to the file "knot.dat" : 
@@ -104,6 +135,7 @@
       Close(nuw)
 
       nbf_targ=nbf
+
 !----------------------------------------------------------------------
 ! ... loop for all input states:
 
@@ -169,7 +201,7 @@
       if(allocated(WCC)) deallocate(WCC); allocate(WCC(ncfg))
      
 !----------------------------------------------------------------------
-! ... read bound.nnn or ubound.nnn:
+! ... read bound.nnn, ubound.nnn, or pol.nnn:
 
       write(AF_b,'(a,i3.3)') 'ubound.',klsp
       iform = Icheck_file(AF_b)
@@ -180,19 +212,30 @@
        write(AF_b,'(a,i3.3)') 'bound.',klsp
        if(len_trim(AFb).ne.0) AF_b = AFb
        iform = Icheck_file(AF_b)
+
        if(iform.ne.0) then
         Open(nub,file=AF_b)
         iform = 20
        else
-        write(*,*) 'Can not find ',trim(AF_b)
-        Stop ' '
+        write(AF_b,'(a,i3.3)') 'pol.',klsp
+        iform = Icheck_file(AF_b)
+        if(iform.ne.0) then
+         Open(nub,file=AF_b)
+         iform = 30
+        else
+         write(*,*) 'Can not find ',trim(AF_b)
+         Stop ' '
+        end if
        end if 
       end if
 
+!---------------------------------------------------------------------
       rewind(nub)
       if(iform.eq.10) &
       read(nub) ii,kch,kcp,nhm,nstate,ILT,IST,iparity_state
       if(iform.eq.20) &
+      read(nub,*) ii,kch,kcp,nhm,nstate,ILT,IST,iparity_state
+      if(iform.eq.30) &
       read(nub,*) ii,kch,kcp,nhm,nstate,ILT,IST,iparity_state
 
       if(ii.ne.ns)           Stop ' ns  --> ?'
@@ -209,12 +252,24 @@
 
       if(iform.eq.10) then
        Do i = 1,is
-        read(nub) ii,Lab; read(nub) ET; read(nub) A
+        read(nub) ii,Lab
+        read(nub) ET,S,neff,ipch(klsp,1:kch)
+        read(nub) A
+       End do 
+      elseif(iform.eq.20) then
+       Do i = 1,is
+        read(nub,*) ii,Lab
+        read(nub,*) ET,S,neff,ipch(klsp,1:kch)
+        read(nub,'(5D15.8)') A
        End do 
       else
        Do i = 1,is
-        read(nub,*) ii,Lab;  read(nub,*) ET;  read(nub,'(5D15.8)') A
+        read(nub,*) ii,Lab
+        read(nub,*) ET
+        read(nub,'(5D15.8)') A
        End do 
+       n=9; Call Read_iarg('n',n)
+       ipch(klsp,1:kch)=n
       end if
 
       Close(nub)
@@ -263,6 +318,25 @@
         end if
 
 !----------------------------------------------------------------------
+! ...   replace the spectroscopic notation:
+
+        ic1 = 0; ic2 = 0
+        Do ich = 1,kch
+         ic1=ic2+1; ic2=ipconf(klsp,ich)
+
+         kk = ipch(klsp,ich) ! k --> kk in spectroscopic notation:
+
+         Call EL4_nlk(ELC(klsp,ich),n,l,k); EBS(nbt+ich)=ELF4(kk,l,k)
+         
+         Do ic = ic1,ic2
+          no = no_ic_LS (ic)
+          ip = ip_state(ic) + no; i=ip_orb(ip)
+          NEF(i) = kk 
+         End do
+        End do
+
+
+!----------------------------------------------------------------------
 !  ...  output c - file for given solution:
 
         AF = trim(BF)//'.c'     
@@ -270,55 +344,77 @@
 
         if(allocated(ipt)) Deallocate(ipt); Allocate(ipt(ncfg))
         Call SORTA(ncfg,WCC,ipt)
-
         if(IST.gt.0) then
-         write(nuc,'(15x,f16.8,5x,a,a)') ET,'conf: ',trim(LAB)
+         write(nuc,'(15x,f16.8,5x,a,a)') &
+                         ET,'conf: ',trim(LAB)  
         else
-         write(nuc,'(15x,f16.8,a,i3,5x,a,a)') ET, '  2J =',ILT,'conf: ',trim(LAB)
+         write(nuc,'(15x,f16.8,a,i3,5x,a,a)') &
+                         ET, '  2J =',ILT,'conf: ',trim(LAB)
         end if        
         write(nuc,'(a)') trim(CLOSED)
 
         Do jc = 1,ncfg; ic=IPT(jc)
          if(abs(WCC(ic)).lt.eps_c) Cycle
          Call Get_cfg_LS(ic)
+
          Call Prj_conf_LS (nuc,WCC(ic))
         End do
         write(nuc,'(a)') '*'
+
+write(*,*) 'ncfg_1=',ncfg
 
 ! ... insersion to cover the case with the same configurations in pertuber:
 
         if(ncp(klsp).gt.0) then
 
-        ncfg=0; lcfg=0; WC = 0.d0
-
-        Call RR_conf_LS(nuc,0)
-
-        Call SORTA(ncfg,WC,ipt)
-
-        rewind(nuc)
-        if(IST.gt.0) then
-         write(nuc,'(15x,f16.8,5x,a,a)') ET,'conf: ',trim(LAB)
-        else
-         write(nuc,'(15x,f16.8,a,i3,5x,a,a)') ET, '  2J =',ILT,'conf: ',trim(LAB)
-        end if        
-        write(nuc,'(a)') trim(CLOSED)
-
-        Do jc = 1,ncfg; ic=IPT(jc)
-         if(abs(WC(ic)).lt.eps_c) Cycle
-         Call Get_cfg_LS(ic)
-         Call Prj_conf_LS (nuc,WC(ic))
-        End do
-        write(nuc,'(a)') '*'
+         ncfg=0; lcfg=0; WC = 0.d0
+   
+         Call RR_conf_LS(nuc,0)
+   
+         Call SORTA(ncfg,WC,ipt)
+   
+         rewind(nuc)
+         if(IST.gt.0) then
+          write(nuc,'(15x,f16.8,5x,a,a)') ET,'conf: ',trim(LAB)
+         else
+          write(nuc,'(15x,f16.8,a,i3,5x,a,a)') ET, '  2J =',ILT,'conf: ',trim(LAB)
+         end if        
+         write(nuc,'(a)') trim(CLOSED)
+   
+         Do jc = 1,ncfg; ic=IPT(jc)
+          if(abs(WC(ic)).lt.eps_c) Cycle
+          Call Get_cfg_LS(ic)
+          Call Prj_conf_LS (nuc,WC(ic))
+         End do
+         write(nuc,'(a)') '*'
 
         end if
 
+write(*,*) 'ncfg_2=',ncfg
+
+! ... additional information for pertubers:
+
+        if(npert(klsp).gt.0.and.nperts.gt.0) then
+
+         write(nuc,*)
+         write(nuc,'(a,i5)') 'npert =',npert(klsp)
+         write(nuc,*)
+
+         SN = 0.d0
+         Do i = 1, npert(klsp)
+           write(nuc,'(i6,f16.8)') index_kpert(klsp,i), A(kch*ns+i) 
+           SN = SN +  A(kch*ns+i)*A(kch*ns+i)
+         End do
+        end if
+        write(nuc,'(a,f16.8)') '*     ', SN 
         Close(nuc)
+
                 
 !----------------------------------------------------------------------
 ! ...  output bsw-file:
         
         Do ich = 1,kch
-         ebs(nbt+ich)=ELC(klsp,ich)
+!         ebs(nbt+ich)=ELC(klsp,ich)
         End do
 
         AF = trim(BF)//'.bsw'     

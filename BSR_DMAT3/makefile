@@ -18,7 +18,7 @@ S  =	mod_param.f90            mod_cmdata.f90           mod_coeffs.f90           
 	get_dm.f90               get_dvl.f90              get_dvr.f90              \
 	idef_type.f90            j_case.f90               ls_case.f90              \
 	merge_cdata.f90          read_arg.f90             read_bsw.f90             \
-	read_sol.f90             r_conf.f90               vdet.f90                 \
+	read_sol.f90             read_conf.f90            vdet.f90                 \
 	ifind_pert.f90           inf_bsr_dmat.f90         
 
 O = $(S:.f90=.o)
@@ -26,7 +26,7 @@ O = $(S:.f90=.o)
 $(N): $(O)
 	$(FC) -o $(N) $(O) $(link) $(L)
 	mv $(N) $(BINDIR)
-#	rm *.o *.mod 
+	rm *.o *.mod 
  
 clean:
 	rm -f *.o *.mod 

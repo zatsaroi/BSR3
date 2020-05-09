@@ -74,27 +74,27 @@
 
       Implicit real(8) (A-H,O-Z)
  
-      Character(60) :: AFORM = '(f14.8,f14.7,f12.2,2f15.5,f12.6,f8.3)'
+      Character(60) :: AFORM = '(f14.8,f14.7,f12.2,2f15.5,f12.6,f8.3,i5)'
 
       t1 = rrtc()
 !----------------------------------------------------------------------
 ! ... define input parameters
 
       Call Check_file(AF_inp)
-      Open(inp, file=AF_inp, status='OLD');   Call Read_arg(inp)
+      Open(inp, file=AF_inp, status='OLD');      Call Read_arg(inp)
 
 ! ... input files:
 
       write(ALSP,'(i3.3)') klsp  
 
-      i=INDEX(AF_h,'.'); AF = AF_h(1:i)//ALSP; Call Check_file(AF)
+      i=INDEX(AF_h,'.'); AF = AF_h(1:i)//ALSP;   Call Check_file(AF)
       Open(nuh, file=AF, form='UNFORMATTED', status='OLD')
 
-      i=INDEX(AF_d,'.'); AF = AF_d(1:i)//ALSP; Call Check_file(AF)
+      i=INDEX(AF_d,'.'); AF = AF_d(1:i)//ALSP;   Call Check_file(AF)
       Open(nud, file=AF, form='UNFORMATTED', status='OLD')
 
       if(nwt.gt.0) then  
-       i=INDEX(AF_w,'.'); AF = AF_w(1:i)//ALSP; Call Check_file(AF)
+       i=INDEX(AF_w,'.'); AF = AF_w(1:i)//ALSP;  Call Check_file(AF)
        Open(nuw, file=AF, form='UNFORMATTED', status='OLD')
       end if
 
@@ -103,10 +103,9 @@
       Open(pri, file=AF_log)
 
       i=INDEX(AF_out,'.'); AF = AF_out(1:i)//ALSP; AF_out=AF
-      Open(ics, file=AF, position='APPEND')
 
-      i=INDEX(AF_ph,'.'); AF = AF_ph(1:i)//ALSP; AF_ph=AF
-      Open(iph, file=AF,  position='APPEND')
+      i=INDEX(AF_ph ,'.'); AF = AF_ph (1:i)//ALSP; AF_ph =AF
+
 !----------------------------------------------------------------------
 ! ... read d.nnn:
 
@@ -125,11 +124,11 @@
 ! ... read pseudo-states energies:
 
       Call Read_bound
+
 !----------------------------------------------------------------------
 ! ... convert factors from Hartree to cm-1 and eV:
       
-      Z = 0.d0
-      Call Conv_au (Z,AWT,au_cm,au_eV,pri)
+      Z = 0.d0;  Call Conv_au (Z,AWT,au_cm,au_eV,pri)
 
       EION1 = (E1-EI)
       EION2 = (E1-EI)*2.d0
@@ -166,16 +165,69 @@
       GI = ILI + ILI + 1           !  2L+1 
       if(ISI.eq.0) GI = ILI+1      !  2J+1
 
+!-----------------------------------------------------------------------
+! ... define energies:
+
+      me = 0
+      Do istep = 1,nrange
+       if(Elow(istep).le.0.d0) Cycle
+       if(Ehigh(istep).lt.Elow(istep)) Cycle
+       EKK = Elow(istep)-Estep(istep)
+      Do 
+       EKK = EKK + Estep(istep)
+       if(EKK.gt.Ehigh(istep)) Exit
+       me = me + 1
+      End do    ! over electron energies
+      End do    ! over energy intervals
+      write(pri,*) 'number of input energies = ',me
+      if(me.eq.0) Stop 'nothing to do, based on input energies'
+
+      OPEN(iph,file=AF_ph)
+      ke = 0
+      rewind(iph)
+    1 read(iph,'(a)',end=2) AS 
+      if(len_trim(AS).eq.0) go to 1
+      read(AS,*,err=1) EKK
+      ke = ke + 1                                                                             
+      go to 1
+    2 Continue
+      write(pri,*) 'number of energies in photo.nnn file = ',ke
+
+      Allocate(eee(ke))
+      ke = 0
+      rewind(iph)
+    3 read(iph,'(a)',end=4) AS 
+      if(len_trim(AS).eq.0) go to 1
+      read(AS,*,err=3) EKK
+      ke = ke + 1                                                         
+      eee(ke) = EKK
+      go to 3
+    4 Close(iph)
+
+      Allocate(ee(me))
+      ne = 0
+      Do istep = 1,nrange
+       if(Elow(istep).le.0.d0) Cycle
+       if(Ehigh(istep).lt.Elow(istep)) Cycle
+       EKK = Elow(istep)-Estep(istep)
+      Do 
+       EKK = EKK + Estep(istep)
+       if(EKK.gt.Ehigh(istep)) Exit
+       if(minval(abs(eee - EKK)).le.5.d-8)  Cycle
+       ne = ne + 1;  ee(ne) = EKK
+      End do    ! over electron energies
+      End do    ! over energy intervals
+
+      write(pri,*) 'number of new energies to calculate = ',ne
+
+      if(ne.eq.0) Stop 'nothing to do, ne = 0'
+
 !======================================================================
 !                Main loop other energies:
 !======================================================================
-      Do istep = 1,nrange
-   
-       if(Elow(istep).le.0.d0) Cycle
-       if(Ehigh(istep).lt.Elow(istep)) Cycle
 
-      Do EKK = Elow(istep),Ehigh(istep)+0.5*Estep(istep),Estep(istep)
- 
+      Do ie = 1,ne
+       ekk = ee(ie)
        ekv = (ekk + eion) * au_eV / 2.d0
 
 ! ... check the proximity to thresshold       
@@ -187,6 +239,7 @@
         if(s.ge.0.d0.and.s.lt.dab) dab = s
         if(s.le.0.d0.and.abs(s).lt.dbl) dbl=abs(s)
        End do
+
        if(dab.le.athreshold) Cycle
        if(dbl.le.bthreshold) Cycle
 
@@ -223,7 +276,7 @@
 
 ! ... photoionization data:
  
-       Ephot = EION + EKK;   Call PHOT_SEC (EKK,Ephot,GI,nopen)
+       Ephot = EION + EKK;   Call PHOT_SEC (EKK,Ephot,GI,nopen,method)
 
 ! ... weights:
 
@@ -231,6 +284,7 @@
 
 ! ... --> partial sections:
 
+       OPEN(ics,file=AF_out,position='APPEND')
        write(ics,'(2d15.8,4i5)') EKK,EKV,nopen,nwt,ikm
        write(ics,'(5d15.8)') SLP,SL(1:nopen)
        write(ics,'(5d15.8)') SVP,SV(1:nopen)
@@ -248,20 +302,21 @@
        if(ikm.gt.0) &
         write(ics,'(6d13.6)') ((KMAT(i,j),i=1,j),j=1,nopen)
        Close(ics)
-       OPEN(ics,file=AF_out,position='APPEND')
 
 ! ...  --> photo.out:
  
-       write(iph,AFORM) EKK,EKV,CC,slp,svp,us,dav
-       Close(iph)
        OPEN(iph,file=AF_ph,position='APPEND')
+       write(iph,'(f14.8,f14.7,f12.2,2f15.5,f12.6,f8.3,i5)') &
+            EKK,EKV,CC,slp,svp,us,dav,method
+       Close(iph)
 
-       write(pri,AFORM) EKK,EKV,CC,slp,svp,us,dav
+       write(pri,AFORM) EKK,EKV,CC,slp,svp,us,dav,method
 
       End do    ! over electron energies
-      End do    ! over energy intervals
 
 !----------------------------------------------------------------------
+
+      OPEN(iph,file=AF_ph)
       Call Sort_photo(iph,AFORM)
 
       t2 = rrtc()

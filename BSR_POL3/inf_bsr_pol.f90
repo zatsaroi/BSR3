@@ -3,14 +3,14 @@
 !======================================================================
 !     provide screen information about bsr_mat program
 !----------------------------------------------------------------------
-      Character(80) :: A
+      Character(80) :: A = ' '
 
       iarg = IARGC()
       if(iarg.eq.0) Return
       Call GETARG(1,A)      
       if(A.ne.'?') Return
 
-      write(*,*) &
+      write(*,'(a)') &
 '                                                                            ',&
 'BSR_POL - calculation of polarized psedo-states:                            ',&
 '                                                                            ',&
@@ -23,8 +23,8 @@
 'dv.nnn         -  dipole (multipole) vector for given polarizedpseudo-state ',&
 '                  (dv.nnn is preparing by running bsr_dmat with ctype2=q)   ',&
 'bound.nnn      -  bound states for orth.constraits if any                   ',&
-'pert_nnn.bsw   -  perturb w.f., if any                                      ',&
 'target.bsw     -  target w.f. in B-spline basis                             ',&
+'pert_nnn.bsw   -  perturb w.f., if any                                      ',&
 '                                                                            ',&
 'OUTPUT FILES:                                                               ',&
 '                                                                            ',&
@@ -40,7 +40,7 @@
 'ilzero =1  -  initial zeros in B-spline expansion                           ',&
 'ibzero =1  -  final (border) zeros in B-spline expansion                    ',&
 '                                                                            ',&
-'Example:      bsr_pol klsp=4  nortb=2 iortb=2,3                             ',&
+'Example:      bsr_pol  klsp=4  nortb=2 iortb=2,3                            ',&
 '                                                                            '
       Stop ' '                                                              
                                                                             

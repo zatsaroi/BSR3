@@ -27,13 +27,13 @@
       if(iarg.gt.0) Call GET_COMMAND_ARGUMENT(1,AF)
 
       if(iarg.le.0.or.AF.eq.'?') then
-        write(*,'(/a)') 'bsw_tab converts name.bsw  to name.tab'
-        write(*,'(/a)') 'bsw - unformatted  BSR file for radial functions'
-        write(*,'(/a)') 'tab - column representation of orbitals, ready for plotting'
-        write(*,'(/a)') 
-        write(*,'(/a)') 'Call as:  bsw_tab  name.bsw '
-        write(*,'(/a)') 
-        write(*,'(/a)') 'orbitals for output will be asking'
+        write(*,'(a)') 'bsw_tab converts name.bsw  to name.tab'
+        write(*,'(a)') 'bsw - unformatted  BSR file for radial functions'
+        write(*,'(a)') 'tab - column representation of orbitals, ready for plotting'
+        write(*,'(a)') 
+        write(*,'(a)') 'Call as:  bsw_tab  name.bsw '
+        write(*,'(a)') 
+        write(*,'(a)') 'orbitals for output will be asking'
         Stop ' '
       end if        
 

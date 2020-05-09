@@ -5,7 +5,7 @@
 !     in module CONFIGS by adding the orbital 'ie' 
 !     so to obtain total term IS,IL
 !--------------------------------------------------------------------
-      Use bsr_conf; Use conf_LS; Use orb_LS
+      Use bsr_conf; Use conf_LS; Use orb_LS; Use target
 
       Call make_coupling
 
@@ -23,7 +23,8 @@
        ii=i; Exit
       End do
 
-      if(ii.gt.0) then  ! ... case of the orbital trap on the existing shell   
+      if(ii.gt.0) then  ! ... case of the orbital trap on the existing shell   v\
+!      if(ii.gt.0.and.coupling.eq.'LS') then  ! ... case of the orbital trap on the existing shell   
 
        if(iq(ii).le.4*ln(ii)+1) then
         iq(ii)=iq(ii)+1
@@ -41,7 +42,7 @@
         ip = (ie-in)/iabs(ie-in)
         i1 = min(in,ie)
         i2 = max(in,ie)
-        if(IORT(i1,i2).eq.0) IORT(i1,i2) = 1
+        if(IORT(i1,i2).eq.0) IORT(i1,i2) = 1      ! ??? overdue
         if(IORT(i1,i2)*ip.lt.0) then; ii=i; Exit; end if
 
          if(ie.gt.in) Cycle

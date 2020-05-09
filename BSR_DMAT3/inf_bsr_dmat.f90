@@ -4,14 +4,15 @@
 !     provide screen information about bsr_dmat program
 !----------------------------------------------------------------------
       Implicit none
-      Character :: A
-      Integer :: iarg, IARGC
+      Character :: A = ' '
       Integer :: nu = 99;  Character(80) :: AF = 'bsr_dmat_inf'
 
-      iarg = IARGC();      if(iarg.eq.0) Return
-      Call GETARG(1,A);    if(A.ne.'?') Return
+      Call GET_COMMAND_ARGUMENT(1,A)
+
+      if(A.ne.'?') Return
 
       open(nu,file=AF)
+
       write(nu,'(a)') &
 'BSR_DMAT provides different multipole-transition matrixes or          ',&
 'oscillator strengths and transition matrix elements                   ',&
@@ -60,6 +61,7 @@
 '              (used in the strong-field calculations)                 ',& 
 '                                                                      '
       write(nu,'(a)') &
+
 'INPUT FILES:                                                          ',&
 '                                                                      ',&
 'mult_bnk  - data bank of ang.coefficients for multipole operator      ',&
@@ -109,7 +111,7 @@
 'RESTRICTIONS:  in b->j or j->b calculations, j-file may contain       ',&
 '               data only for one value of J.                          ',&
 '                                                                      ',&
-'For automatic calculations between many states, see also utils        ',&
+'For automatic calculations between many states, see also utilites     ',&
 '                                                                      ',&
 '          zf_cc_bsr   and   zf_bb_bsr                                 ',&
 '                                                                      '
@@ -132,7 +134,7 @@
 'for more detailed description of optional input arguments,             ',&
 'see file "bsr_dmat_inf", created after this call                       ',&
 '                                                                       ',&
-'For automatic calculations between many states, see also utils         ',&
+'For automatic calculations between many states, see also utilites      ',&
 '                                                                       ',&
 '          zf_cc_bsr   and   zf_bb_bsr                                  ',&
 '                                                                       '

@@ -1,5 +1,5 @@
 !=======================================================================
-!     merging the set of w-files with choice of orbitals and 
+!     merging the set of bsw-files with choice of orbitals and 
 !     with optional changing the spectroscopic notation
 ! 
 !        1.bsw + 2.bsww + 3.bsw + ... --> res.bsw 

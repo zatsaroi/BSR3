@@ -68,11 +68,13 @@
 
 ! ... R_matrix poles:
  
-      write(nuh) (eval(i),i=khm,1,-1)
+      if(ihout.eq.0) write(nuh) (eval(i),i=khm,1,-1)
+      if(ihout.ne.0) write(nuh) (eval(i),i=1,khm)
 
 ! ... surface amplitudes:
 
-      write(nuh) ((WMAT(i,j),i=1,nchan),j=khm,1,-1)
+      if(ihout.eq.0) write(nuh) ((WMAT(i,j),i=1,nchan),j=khm,1,-1)
+      if(ihout.ne.0) write(nuh) ((WMAT(i,j),i=1,nchan),j=1,khm)
 
       Close(nuh)
 
@@ -163,11 +165,13 @@
 
 ! ... R_matrix poles:
  
-      write(nuh) (eval(i),i=khm,1,-1)
+      if(ihout.eq.0) write(nuh) (eval(i),i=khm,1,-1)
+      if(ihout.ne.0) write(nuh) (eval(i),i=1,khm)
 
 ! ... surface amplitudes:
 
-      write(nuh) ((WMAT(npch(i),j),i=1,nchan),j=khm,1,-1)
+      if(ihout.eq.0) write(nuh) ((WMAT(npch(i),j),i=1,nchan),j=khm,1,-1)
+      if(ihout.ne.0) write(nuh) ((WMAT(npch(i),j),i=1,nchan),j=1,khm)
 
       Close(nuh)
 

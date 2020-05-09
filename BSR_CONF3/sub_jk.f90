@@ -10,7 +10,7 @@
       Integer :: kk,k_min,k_max
       Integer :: n,l,k, ll, lch_min,lch_max
       Integer :: IS, IL, ISTmin,ISTmax, ILTmin,ILTmax
-      Integer :: ic,ic1,ic2, i,it,jt
+      Integer :: ic,ic1,ic2, i,it,jt, ip
       Real(8) :: C,CC,CT
 
       Character(4), external :: ELF4
@@ -37,20 +37,24 @@
          if(max_ll.gt.0.and.l.gt.max_ll) Cycle
          if(min_ll.gt.0.and.l.lt.min_ll) Cycle
 
-         if(max_it.gt.0.and.it.gt.max_it) Cycle
          if(Icheck_del(ilsp,l,it,kk).eq.1) Cycle
 
          if(nch.eq.mch) Call Allocate_channel(mch+jmch)
+
          nch = nch + 1; lch(nch) = l; iptar(nch)= it; ll = 2*l+1
-         n = ICHAR('k')-ICHAR('1')+1
+
+         n = ICHAR('k')  ! -ICHAR('1')+1
          k = NEW_INDEX(l,ksmax,nwf,LEF,KEF)
-         ipch(nch) = Ifind_nlk(n,l,k,2)
-         ELC(nch)=ELF4(n,l,k);  CC = 0.d0
-         jkch(nch)=kk
+         ip = Ifind_nlk(n,l,k,2)
+         CC = 0.d0
+         ipch(nch) = ip
+         jkch(nch) = kk
+         elc(nch)  = ELF(ip)
 
 ! ...  define partial configurations ...
 
          ic1=ic_targ(it-1)+1; ic2=ic_targ(it)
+
          CT = 0.d0
          Do ic = ic1,ic2
           Call Get_cfg_LS(ic)
@@ -79,8 +83,8 @@
          End do   ! over target configuration (ic)
          ipconf(nch)=ncfg-ncfg_targ
 !         if(abs(CT-1.d0).gt.c_norm) &
-         write(pri,'(i5,2x,a4,3x,2a20,3x,a,f8.5,a)') &
-          nch,ELC(nch),AFT(it),BFT(it),'norm =',CT,' - check the normalization'
+!         write(pri,'(i5,2x,a4,3x,2a20,3x,a,f8.5,a)') &
+!          nch,ELC(nch),AFT(it),BFT(it),'norm =',CT,' - check the normalization'
         End do     ! over small l
 
        End do     ! over KK

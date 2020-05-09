@@ -27,6 +27,7 @@
 
       Deallocate(C1); Allocate(C1(kdm1))
       Deallocate(C2); Allocate(C2(kdm2))
+
 !----------------------------------------------------------------------
 ! ... loop over initial set:
 
@@ -48,7 +49,7 @@
 
 ! ... angular orthogonality:
 
-      de = abs(E2 - E1); if(de.lt.2.d-8) Cycle
+      de = abs(E2 - E1); if(de.lt.2.d-8.and.kpol.gt.0) Cycle
 
 ! ... line strengths:
 
@@ -63,7 +64,7 @@
       if(kpol.eq.0) then     ! overlap case
        write(nur,'(/i4,f14.8,2x,a)') KLT1,E1,Label1
        write(nur,'( i4,f14.8,2x,a)') KLT2,E2,Label2
-       write(nur,'(a,2E12.5,f10.2)')  'S = ',SL,SL*SL,SL*SL*100
+       write(nur,'(a,2E12.5,f10.2,a)')  'S = ',SL,SL*SL,SL*SL*100,' %'
        Cycle
       end if      
 
@@ -117,6 +118,10 @@
        write(nur,'(9x,1PD12.5,8x,D12.5,9x,D12.5,8x,d16.8,0P2f10.5)') &
                    SV,FV,WV, dmatV, alfV,alfaV 
       end if      
+
+! ... additional output of matrix elements between solutions:
+
+      if(dd.eq.'y')  write(nudd,'(2i8,2d16.8)') j1,j2,dmatL,dmatV
 
       End do; End do   !  over solutions
 

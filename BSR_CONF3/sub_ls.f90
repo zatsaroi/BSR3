@@ -55,12 +55,11 @@
          if(max_ll.gt.0.and.l.gt.max_ll) Cycle
          if(min_ll.gt.0.and.l.lt.min_ll) Cycle
 
-         n = ICHAR('k')-ICHAR('1')+1
+         n = ICHAR('k')  !-ICHAR('1')+1
          k = NEW_INDEX(l,ksmax,nwf,LEF,KEF)
          ip = Ifind_nlk(n,l,k,2)
          jk = (ILT-1)*50 + IST
 
-         if(max_it.gt.0.and.it.gt.max_it) Cycle
          if(Icheck_del(ilsp,l,it,jk).eq.1) Cycle
 
          if(nch.eq.mch) Call Allocate_channel(mch+jmch)
@@ -76,6 +75,7 @@
 
          ic1=ic_targ(it-1)+1; ic2=ic_targ(it)
          CT = 0.d0
+
          Do ic=ic1,ic2
           Call Get_cfg_LS(ic)
           no=no+1; nn(no) = n; ln(no) = l; iq(no) = 1; kn(no) = k
@@ -85,9 +85,9 @@
           WC(ncfg)=WC(ic); CT = CT + WC(ic)**2
          End do  ! over target configuration
          ipconf(nch)=ncfg-ncfg_targ
-         if(abs(CT-1.d0).gt.c_norm) &
-         write(pri,'(i5,2x,a4,3x,2a20,3x,a,f8.5,a)') &
-          nch,ELC(nch),AFT(it),BFT(it),'norm =',CT,' - check the normalization'
+!         if(abs(CT-1.d0).gt.c_norm.and.ip_phys_conf(it).ne.0) &
+!         write(pri,'(i5,2x,a4,3x,2a20,3x,a,f8.5,a)') &
+!         nch,ELC(nch),AFT(it),BFT(it),'norm =',CT,' - check the normalization'
         End do   ! over channels (small l)
         End do   ! over ILT (large l)
        End do    ! over IST (total spin)

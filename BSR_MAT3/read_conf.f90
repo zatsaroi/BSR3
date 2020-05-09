@@ -12,7 +12,7 @@
 
       Implicit none
       Integer, intent(in) :: nuc,nub
-      Integer :: i,k, nsymc0, nsymt0, it,jt,ij
+      Integer :: i,k, nsymc0, nsymt0, it,jt
 
 ! ... clear the data from previous calculations:
 

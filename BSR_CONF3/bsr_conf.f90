@@ -52,6 +52,14 @@
 !
 !                  W < c_comp
 !
+!     The orthogonal conditions are recorded in lower part of IORT(:,:) array
+!
+!     IORT(:,:) = -1  - imposed orthogonal conditions
+!     IORT(:,:) =  0  - derived orthogonal conditions
+!     IORT(:,:) =  1  - the same orbital
+!     IORT(:,:) =  2  - non-orthogonal orbitals
+!
+!     The upper part of IORT array is used for AFTER conditions
 !======================================================================
 ! ... positions of configurations in the conf_LS list:
 !
@@ -106,6 +114,7 @@
 !---- end of partial waves loop   
 !...  finish by recording overall information in file target    
 !----------------------------------------------------------------------
+
       Use bsr_conf
       Use target; Use channel; Use conf_LS;; Use orb_LS
       Use phys_orb_LS
@@ -138,7 +147,7 @@
 
       Call Def_phys_targ
 
-! ... target configurations:
+! ... target configurations:               
 
       Do it=1,ntarg
        AF = trim(AFT(it))//'.c'
@@ -238,7 +247,12 @@
 ! ... output cfg.nnn:
 
       write(AF,'(a,i3.3)') 'cfg.',ilsp
-      Open (nuc,file=AF); rewind(nuc)
+      Open (nuc,file=AF)
+
+      Call Pre_iort(nup,0)                   
+      if(kort.gt.0) Call R_orth(nuc)     ! ...
+
+      rewind(nuc)
       write(nuc,'(12x,a3,f16.8)') Tpar,Etarg(1)
       write(nuc,'(a60)') CLOSED 
       Do ic=ncfg_targ+1,ncfg; Call Pri_conf(nuc,ic,WC(ic)); End do
@@ -246,10 +260,7 @@
 
 ! ... output the imposed orth. conditions
 
-      Call Pre_iort(nup,0)                   
-      if(kort.gt.0) Call R_orth(nuc)
-
-      if(max_ll_targ.gt.min_ll_ch) &
+      if(max_ll_targ.ge.min_ll_ch) &
        write(nuc,'(/a/)') 'Imposed orth. conditions:'
 
       Do ich=1,nch; i=ipch(ich)
@@ -285,7 +296,7 @@
 
       ncfg=ncfg_targ; lcfg=lcfg_targ; nwf=nwf_pert 
 
-      ic_targ=jc_targ
+      ic_targ=jc_targ      !  phys. conf. pointer
 
 ! ... define scattering channels with phys.target states:
 
@@ -300,10 +311,6 @@
       if(nch.ne.nch_save) Stop 'nch <> nch_save'
 
       ncfg_sct=ncfg; lcfg_sct=lcfg; nwf_sct=nwf
-
-      Do ic=ncfg_targ+1,ncfg; Call Pri_conf(nuc,ic,WC(ic)); End do
-      write(nuc,'(a)') '*'
-
 
 ! ... add pertuber physical configurations: 
 
@@ -333,6 +340,10 @@
         '  -  max.number of orbitals'
       write(nut,'(72(''-''))')
 
+!      if(debug.eq.0) Call System('rm targ_*')
+!      if(debug.eq.0) Call System('rm pert_comp.*')
+
      End  ! program BSR_CONF
+
 
 

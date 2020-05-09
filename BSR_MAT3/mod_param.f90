@@ -50,7 +50,7 @@
 
 ! ... near-threshold correction for spin-orbit interaction:
 
-      Integer :: izcorr = 0    ! cut-off for small r
+      Integer :: izcorr = 1    ! cut-off for small r
       Real(8) :: zcorr = 1.d0  ! correction for l=1
 
 ! ... dimension limits:
@@ -85,6 +85,8 @@
 ! ... debug level:
 
       Integer :: debug = 0
+      Integer :: pri_f = 0
+      Integer :: pri_ac= 0
 
       End Module bsr_mat
 

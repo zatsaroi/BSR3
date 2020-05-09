@@ -13,7 +13,9 @@
       Integer, External :: Icheck_file      
 
       Call R_channel(nut,klsp)
+
       if(ncp.gt.0) ippert = ippert + ipconf(nch)
+
 !----------------------------------------------------------------------
 ! ... open log file and print main parameters:
 
@@ -27,65 +29,52 @@
       write(pri,'(a,i3)') 'calculations for partial wave:  klsp =',klsp
 	  
       write(pri,*)
-	     if(itype.eq.-1) &
-       write(pri,'(a)') 'itype =   -1  -  bound-state calculations'
+      if(itype.eq.-1) &
+      write(pri,'(a)') 'itype =   -1  -  bound-state calculations'
       if(itype.eq. 0) &
-       write(pri,'(a)') 'itype =    0  -  scattering calculations'
+      write(pri,'(a)') 'itype =    0  -  scattering calculations'
       if(itype.gt. 0) &
-       write(pri,'(a)') 'itype =    1  -  photoionization calculations'
+      write(pri,'(a)') 'itype =    1  -  photoionization calculations'
 
       kch = nch; kcp = npert; nhm = kch*ns + kcp
 
       write(pri,*)
-      write(pri,'(a,i5,a)') 'kch   =',kch,'  -  number of channels'
-      write(pri,'(a,i5,a)') 'kcp   =',kcp,'  -  number of pertubers'
+      write(pri,'(a,i5,a)') 'nch   =',kch,'  -  number of channels'
+      write(pri,'(a,i5,a)') 'npert =',kcp,'  -  number of pertubers'
       write(pri,'(a,i5,a)') 'nhm   =',nhm,'  -  full size of matrix'
 
   
       write(pri,*)
       if(iexp.eq.0) &
-      write(pri,'(a)') 'iexp  =    0  -  theoretical target energies'
+      write(pri,'(a)') 'iexp  =    0  -  theoretical target energies are used'
       if(iexp.ne.0) &
-      write(pri,'(a)') 'iexp  =    1  -  exp.target energies'
+      write(pri,'(a)') 'iexp  =    1  -  exp.target energies are read from file thrsholds'
 
-      if(iexp.gt.0) then
+      if(iexp.gt.0.and.debug.gt.0) then
       if(iiexp.eq.0) &
-      write(pri,'(a)') 'iiexp  =    0  -  order is not changed'
+      write(pri,'(a)') 'iiexp =    0  -  order is not changed'
       if(iiexp.ne.0) &
-      write(pri,'(a)') 'iiexp  =    1  -  order is changed'
-
-       write(pri,'(/a/)') 'target  ip_exp  Etarg   E_exp    Etarg-E_exp'
-
+      write(pri,'(a)') 'iiexp =    1  -  order is changed'
+       write(pri,'(/a/)') 'index  new oder  Etarg   E_exp    Etarg-E_exp (eV)'
        Do j=1,ntarg; i=ip_exp(j)
         write(pri,'(2i6,2f16.8,f10.5)') &
         j, i, Etarg(j), E_exp(j), (E_exp(j)-Etarg(j))*27.2112   
        End do
       end if
 
+  
       write(pri,*)
       write(pri,'(a,i5,a)') 'jmvc  =',jmvc, &
-       '  -  number of channel orbitals for inclusion of' 
+       '  -  number of channel solutions for inclusion of' 
       write(pri,'(17x,a)') 'mass-velocity corrections' 
              
       write(pri,*)
-      write(pri,'(a)') 'Restrictions on interaction matrix:'
-      write(pri,*)
-      write(pri,'(a,f10.5)') 'Emin  =',Emin
-      write(pri,'(a,f10.5)') 'Emax  =',Emax
-      write(pri,'(a,f10.5)') 'Egap  =',Egap
-      write(pri,*)
-      write(pri,'(a)') 'All one-channel solutions with &
-         &E<Emin, E>Emax or abs(E)<Egap will be deleted.' 
+      write(pri,'(a,1PE10.2,a)') 'Edmax =',Emax,  &
+       '  - if /=0, all one-channel solutions with E > Edmax will be ignored' 
+!      write(pri,'(a,f10.5)') 'Egap  =',Egap
 
-      if(itype.eq.-1) then
-       write(pri,*)
-       write(pri,'(a)') 'Restrictions for output of bound states:'
-       write(pri,*)
-       write(pri,'(a,i5,a)') 'msol   =',msol,  '  - max. number of solutions' 
-       write(pri,'(a,i5,a)') 'it_max =',it_max,'  - max. target threshold'
-       write(pri,*)
-       write(pri,'(a)') 'Zero value of any parameter means no restrictions.'
-      end if
+      if(itype.eq.-1.and.msol.gt.0) &
+      write(pri,'(/a,i5,a)') 'msol  =',msol,  '  - max. number of bound solutions for output' 
 
 !----------------------------------------------------------------------
 ! ... check the file with interaction matrix:
@@ -121,24 +110,28 @@
 
       if(itype.ge.0) then
 
-      ! read max. mutipole order and asymptotic coef.s:
-
-      read(nui) lamax
-      if(allocated(CF)) Deallocate(CF)
-      Allocate (CF(kch,kch,lamax+1))
-      read(nui) CF
-      read(nui) RA     !  RM radius:
+       ! read max. mutipole order and asymptotic coef.s:
+      
+       read(nui) lamax
+       if(allocated(CF)) Deallocate(CF)
+       Allocate (CF(kch,kch,lamax+1))
+       read(nui) CF
+       read(nui) RA     !  RM radius:
 
        if(itype.ge.0)  then
         if(iiexp.eq.0) Call H_out
         if(iiexp.ne.0) Call H_out1
        end if
 
+       if(itrm.gt.0) Call trm_out
+
       end if
 !----------------------------------------------------------------------
 ! ... output of bound states in bound.nnn:
 
-      if(itype.ne.0) Call B_out 
+      if(itype.lt.0) Call B_out 
+
+      if(iwt.le.0) Close(nuw,status='DELETE')
 
       End Subroutine SUB1_HD
 

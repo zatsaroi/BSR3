@@ -81,7 +81,7 @@
       write(iout) Atom, Term, EL3, mx, Z,EI,ZI,AZ, w(1:mx)
 
       S = BVMV (ns,ks, sb,'s',v,v)
-      write(*,*) 'norma = ',S
+      write(*,'(3a10,f16.8)') el4,el3,'norma = ',S
 
       go to 1               
     2 Continue

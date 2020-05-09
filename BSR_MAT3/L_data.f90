@@ -38,6 +38,8 @@
 
       hl_core(:,:) = hl_full(:,:,l) 
 
+!write(pri,*) 'L_data: jtype =',jtype,ncdata
+
       Select Case(jtype)
 
 !----------------------------------------------------------------------
@@ -91,7 +93,7 @@
         End do
 
 !----------------------------------------------------------------------
-!                                                            L ( . i ):
+!                                                       !  L ( . i ):
       Case(2,3,4,5)                                   
 
        Do j=1,ncdata; i=IPT(j); C=cdata(i)  
@@ -100,11 +102,16 @@
 
          v=L_vec(:,k2(i)); ich=k3(i); io=k4(i) 
 
+!write(pri,*) 'L(.i) ', ebs(k2(i))
+
          if(io.gt.0) then                               !  L(.i) <.|j>
           j1=io/ibo; j2=mod(io,ibo); jch=iech(j1)
           Call GET_V(j1,j2,w)
           w=C*w
           Call UPDATE_HW(ich,jch,ns,v,w)
+
+!write(pri,*) '<> ', ebs(j1), ebs(j2), ich,jch 
+
          elseif(io.lt.0) then                           !  L(.i)  ic 
           ic=-io
           Call UPDATE_HV(ich,ic,ns,v,C)
@@ -123,6 +130,7 @@
         if(abs(C).lt.Eps_C) Cycle
 
         ich=k1(i)/ibi; jch=mod(k1(i),ibi)
+
         if(ich.eq.jch.or.iitar.gt.1) then
           xx = C*hl_core
           Call UPDATE_HX(ich,jch,ns,ks,xx,'x')

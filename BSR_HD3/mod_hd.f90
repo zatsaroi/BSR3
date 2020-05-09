@@ -20,17 +20,16 @@
       Integer :: nuc = 15; Character(ma) :: AF_cfg  = 'cfg.nnn'
       Integer :: nue = 16; Character(ma) :: AF_exp  = 'thresholds'
       Integer :: nur = 17; Character(ma) :: AF_rsol = 'rsol.nnn'
+      Integer :: nud = 18; Character(ma) :: AF_del  = 'Edel'
+      Integer :: nux = 19; Character(ma) :: AF_hx   = 'hx.nnn'
 
 ! ... arguments:
 
       Integer :: itype  = 0        ! type of calculations
-      Integer :: IT_max = 0        ! max. threshold
-      Integer :: msol = 0          ! max.number of solutions
+      Integer :: msol = 100        ! max.number of solutions
       Integer :: ksol = 0
       Real(8) :: Emax = 0.d0       ! max energy
-      Real(8) :: Emin = 0.d0       ! max energy
       Real(8) :: Edmax = 0.d0      ! max. energy for diagonalization
-      Real(8) :: Edmin = 0.d0      ! min. energy for diagonalization
       Real(8) :: Egap = 0.001      ! 
       Integer :: ilzero = 1        ! more restrictions
       Integer :: ibzero = 1        ! more restrictions
@@ -85,13 +84,24 @@
 
 ! ... additonal output: 
 
-      Integer :: iwt = -1    ! print channel weights
-      Real(8) :: cwt = -0.01 ! cut of for weights' printing
+      Integer :: iwt  =  0     ! print channel weights
+      Real(8) :: cwt  =  0.0   ! cut of for weights' printing
 
       Real(8) :: eps_o = 0.5   ! tolerance for overlaps
-      Real(8) :: eps_d = 1.d-5 ! tolerance for diag.elemets
 
-      Integer :: debug = 0   ! print debug information
+      Integer :: iub = -1      ! output bound.nnn or/and ubound.nnn
+
+      Integer :: debug = 0     ! print debug information
+
+      Integer :: iedel = 0
+      Real(8), allocatable :: Edel(:)
+
+! ... TRM  output:
+
+      Integer :: nx = 17
+      Real(8) :: hx = 0.08
+      Integer :: itrm = -1   
+      Integer :: ihout = 0   
 
       End Module bsr_hd
 

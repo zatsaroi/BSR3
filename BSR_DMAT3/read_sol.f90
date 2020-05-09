@@ -38,6 +38,7 @@
        Call R_expn(nu,nc,C)
        Call Idef_LabelC(nu,0,0,Label)        
        rewind(nu); read(nu,'(a)') AS; read(AS,'(15x,f16.8)') E
+       Call Read_rpar(nu,'E_exp',E)
        jot=0
        i=INDEX(AS,'=')
        if(i.gt.0) then; read(AS(i+1:),*) jot; jot=jot+1; end if

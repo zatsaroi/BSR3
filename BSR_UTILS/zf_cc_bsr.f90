@@ -1,6 +1,6 @@
 !======================================================================
-!     zf_cc_bsr - utility for the f-value calculations 
-!                 between set of c-files
+!     zf_cc_bsr - utility for the f-value calculations between
+!                 states described by [name.c and name.bsw] pairs
 !======================================================================
 !
 !     INPUT:    zf_cc_bsr.inp
@@ -16,10 +16,11 @@
 !
 !     atype = E1           or  E2, M1, ...
 !     nfiles = ...
-!     list of c-files with energies and exp.coefficients with one J
+!     list of c-files with energies and exp.coefficients for one J
 !
 !---------------------------------------------------------------------
       Implicit real(8) (A-H,O-Z)
+
       Integer :: inp=5; Character(20) :: AF_inp = 'zf_cc_bsr.inp'
       Integer :: nuc=1
       Character(1) :: blank = ' '

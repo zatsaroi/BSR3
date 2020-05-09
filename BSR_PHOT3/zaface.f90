@@ -31,7 +31,7 @@
  
 ! ... here the parameters from ASYPCK:
 
-      PARAMETER (mchf=200, MLMX = 5, MXMFG=540)
+      PARAMETER (mchf=600, MLMX = 5, MXMFG=540)
  
       DIMENSION LCH(nch),CF(nch,nch,km),ECH(nch), &
                 F(nch,nch), G(nch,nch), FP(nch,nch), GP(nch,nch)
@@ -63,7 +63,7 @@
 ! ... NBUG  = DEBUG PARAMETER (=0 FOR NO L/P OUTPUT FROM ASYPCK)
  
       NBUG = IBUG    !  =0,1,2
- 
+
 ! ... EROR  = ACCURACY PARAMETER FOR ASYMPTOTIC SOLUTIONS
  
       EROR = AC         !  from 0.01 to 0.0001
@@ -108,7 +108,7 @@
  
       DO K = 1,LAMMX
         kphase= (-1)**k                                     !  ???
-        BLAM(1:NCH,1:NCH,K) = CF(1:NCH,1:NCH,K)  !* kphase  !  ???
+        BLAM(1:NCH,1:NCH,K) = CF(1:NCH,1:NCH,K)  ! * kphase  !  ???
       END DO
  
 ! ... orbital momentums and channel energies:
@@ -136,7 +136,8 @@
 
 ! ... CALL ASYMPTOTIC PACKAGE:
  
-        CALL ASYPCK(IAUTO,FA,FAD)
+        CALL ASYPCK(IAUTO,FA,FAD,info)
+        if(info.ne.0) Return
  
 ! ... RENORMALISE OPEN CHANNEL SOLUTIONS:
  

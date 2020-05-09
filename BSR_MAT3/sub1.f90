@@ -18,7 +18,7 @@
 
       Implicit none
       Real(8) :: C,t3,t4
-      Integer :: i,j,k,l,ich,ij, i1,i2
+      Integer :: i,j,k,l,ich,jch, ij, i1,i2
       Character(100) :: line
       Real(8), external :: RRTC
 
@@ -135,6 +135,7 @@
       write(pri,'(/a,f10.2,a)') 'L-integrals:  ',(t4-t3)/60,' min '
       write(*,'(a,f10.2,a)') 'L-integrals:  ',(t4-t3)/60,' min '
 
+
 !----------------------------------------------------------------------
 !                                                          Z-integrals:
       if(mso.gt.0) then    
@@ -235,7 +236,7 @@
        write(pri,'(i5,2F15.6)') i,ACF(i,i,0)-2*nelc
       End do
       
-      if(debug.gt.0) then
+      if(pri_ac.gt.0) then
       write(pri,'(/a/)') 'Asymptotic coefficients: i,j, ACF(i,j,k)'
       Do k=0,mk
        if(SUM(acf(:,:,k)).eq.0) Cycle
@@ -257,7 +258,7 @@
 
       write(nui) mk;  write(nui) ACF;  write(nui) t(ns+1),ns
 
-      Call f_values
+      if(pri_f.ne.0) Call f_values
 
       if(iitar.ne.0) Call Target_new
 

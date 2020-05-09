@@ -1,5 +1,5 @@
 !=======================================================================
-      Subroutine PHOT_SEC (EK,Ephot,GI,nopen) 
+      Subroutine PHOT_SEC (EK,Ephot,GI,nopen,met) 
 !=======================================================================
 !     CALCULATES PHOTOIONIZATION CROSS SECTIONS AT GIVEN ENERGY
 !     (for given initial state and final partial wave)
@@ -31,11 +31,18 @@
 !
 !     F = S + C*K;    F- = -iF / (1 - iK); 
 !
-!     F-  -->  -i / sqrt(PI*K)  [ sin  + cos * K ] / (1+K^2) * (1+iK)  
+!     where S,C - so-called sin(cos) solutions and their derivatives
+!                 [F,G, FP,GP arrays in module bsr_phot after ASYPCK]
 !
-!     Really, we need  R^-1 x F:   
+!     F-  -->  -i / sqrt(PI*k)  [ sin  + cos * K ] / (1+K^2) * (1+iK)  
+!
+!     Really, we need  R^-1 x F-:   
 !     from  F = aRF' - bRF  ->   R^-1 x F = a F' - b F
+!
+!     the K- and R-matrixes are given in module bsr_phot (KMAT, RMAT)
 !-----------------------------------------------------------------------
+! ... choose the method: 
+
       delta_p = 1.d8
       Do i=1,khm; delta_p=min(delta_p,abs(EK-eps(i))); End do
       delta_r = 1.d8
@@ -43,7 +50,7 @@
       met = 0
       if(delta_p.lt.0.01.and.delta_p.lt.delta_r)  met = 1
 
-! ... define F and F' functions, and then R^-1 x F:
+! ... define F and F' functions from S and C, and then R^-1 x F:
 
       FF(1:nch,1:nopen) = MATMUL(G(1:nch,1:nch),KMAT(1:nch,1:nopen))
       FF(1:nch,1:nopen) = F(1:nch,1:nopen) + FF(1:nch,1:nopen)
@@ -54,7 +61,7 @@
       FF(1:nch,1:nopen) = ra*FFP(1:nch,1:nopen) - rb*FF(1:nch,1:nopen) 
       end if
        
-! ... define  1 / (1+K^2),  where K - open-open part
+! ... define  AA = 1/(1+K^2),  where K - open-open part
 
       AA(1:nopen,1:nopen) = MATMUL(KMAT(1:nopen,1:nopen),KMAT(1:nopen,1:nopen))
       Do i = 1,nopen
@@ -71,12 +78,13 @@
       P = ACOS(-one)
       P = one / sqrt(P)
       FF(1:nch,1:nopen) = P * BB(1:nch,1:nopen)
+
 !-----------------------------------------------------------------------
 !     dipole matrix elements for given solution can be obtained from the
 !     dipole matrix elements between initial state and R-matrix basis 
 !     states (array DK) by weighting them with expansion coefficients 
 !
-!         A(k) = (1/2a) (E(k) - E) SUM(i) [ w(i,k) (R^-1) F(i) ]
+!         A(k) = (1/2a) (E(k) - E)  SUM(i) [ w(i,k) (R^-1) F(i) ]
 !
 !     for given solution j.
 !
@@ -95,7 +103,6 @@
       DLr = zero; DLr = zero; DVr = zero; DVi = zero;
 
       RI = one/RA
- 
       Do K = 1,NHM
         CK = RI / (VALUE(K)-EK)
         CL = CK * DKL(k)
@@ -113,7 +120,7 @@
 ! ... correction (should signs be important for angular stuff?):
 
 !      Do i=1,nopen
-!       s1 = DLr(i); s2=DLi(i); DLr(i)=-s2; DLi(i)=-s1      
+!       s1 = DLr(i); s2=DLi(i); DLr(i)=-s2; DLi(i)=-s1                   
 !       s1 = DVr(i); s2=DVi(i); DVr(i)=-s2; DVi(i)=-s1      
 !      End do
 !-----------------------------------------------------------------------

@@ -27,7 +27,6 @@
 'min_ll  [-1]    - restiction on min. small l                              ', &
 'max_LT  [-1]    - restiction on total L as (2L+1)                         ', &
 'max_ST  [-1]    - restiction on total S as (2S+1)                         ', &
-'max_it  [-1]    - restiction on number of target states                   ', &
 'kort    [-1]    - if > 0, the orthogonal conditions from cfg-files        ', &
 '                  are also in play                                        '
       Stop 

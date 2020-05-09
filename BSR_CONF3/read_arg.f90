@@ -3,8 +3,8 @@
 !======================================================================
 ! ... read parameters for given case
 !----------------------------------------------------------------------
-      USE bsr_conf
-      USE target, only: coupling
+      Use bsr_conf
+      Use target, only: coupling
       Implicit none
 
       Open(pri,file=AF_log)
@@ -22,12 +22,17 @@
       Call Read_iarg(    'max_LT',max_LT)
       Call Read_ipar(nup,'max_ST',max_ST)
       Call Read_iarg(    'max_ST',max_ST)
-      Call Read_ipar(nup,'max_it',max_it)
-      Call Read_iarg(    'max_it',max_it)
       Call Read_ipar(nup,'debug' ,debug )
       Call Read_iarg(    'debug' ,debug )
+
       Call Read_ipar(nup,'iread_targ',iread_targ)
       Call Read_iarg(    'iread_targ',iread_targ)
+
+      Call Read_ipar(nup,'i_cfp',i_cfp)
+      Call Read_iarg(    'i_cfp',i_cfp)
+
+      Call Read_ipar(nup,'i_recup',i_recup)
+      Call Read_iarg(    'i_recup',i_recup)
 
       write(pri,'(a/  )')       'BSR_CONF parameters:'
       write(pri,'(a,a/)')       'coupling = ',COUPLING
@@ -41,8 +46,6 @@
          ' - restiction on total L as (2L+1)'
       write(pri,'(a,i5,a/)')    'max_ST   = ',max_ST, &
          ' - restiction on total S as (2S+1)'
-      write(pri,'(a,i5,a/)')    'max_it   = ',max_it, &
-         ' - restiction on number of target states '
       write(pri,'(a,i5,a/)')    'kort     = ',kort, &
          ' - if > 0, the orth.conditions from cfg-files are in play'
       write(pri,'(72(''-''))')

@@ -17,6 +17,8 @@
 
       Real(8), allocatable :: DL(:,:),DV(:,:)
 
+      Real(8), allocatable :: AC(:,:),BLC(:,:),BVC(:,:)
+
       End Module dmatrix
 
 
@@ -45,6 +47,10 @@
       Allocate( DL(kdm1,kdm2), DV(kdm1,kdm2) )
       
       DL = 0.d0; DV = 0.d0
+
+      Allocate( BLC(kch1,kch2), BVC(kch1,kch2), AC(kch1,kch2) )
+      
+      BLC = 0.d0; BVc = 0.d0; AC = 0.d0
 
       End Subroutine allocate_matrix
 

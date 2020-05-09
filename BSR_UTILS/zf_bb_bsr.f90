@@ -1,8 +1,7 @@
 !======================================================================
-!  zf_bb_bsr - utility for the f-value calculations between states in
-!  bound.nnn files
+!     zf_bb_bsr - utility for the f-value calculations between states 
+!                 in bound.nnn files
 !======================================================================
-!
 !     INPUT:    zf_bb.inp
 !
 !     OUTPUT:   zf_res from BSR_DMAT program
@@ -66,18 +65,19 @@
       Do i=1,nlsp
        ilsp(i)=i; mstate(i)=isol
       End do
-      klsp = nlsp
 
+      klsp = 0; msol = 0
       if(Icheck_file(AF_inp).ne.0) then
        open(inp,file=AF_inp)
        Call Read_apar(inp,'atype',atype)
        Call Read_apar(inp,'gf',gf)
-       Call Read_ipar(inp,'klsp',klsp)
        Call Read_ipar(inp,'msol',msol)
-       if(klsp.ne.nlsp.or.msol.eq.0) then 
+       Call Read_ipar(inp,'klsp',klsp)
+       if(klsp.ne.0.and.msol.eq.0) then 
         Do i=1,klsp;  read(inp,*) ilsp(i),mstate(i); End do
        end if
       end if
+      if(klsp.eq.0) klsp = nlsp
 
       Call Read_aarg('atype',atype)
       Call Read_aarg('gf',gf)
@@ -87,8 +87,8 @@
       Read(atype,'(1x,i1)') kpol
 
       write(*,*) 'klsp=',klsp
-      Do i=1,klsp
-        write(*,*) ilsp(i),mstate(i)
+      Do i=1,klsp; j=ilsp(i)
+        write(*,*) j,mstate(i), lpar(j),ispar(j),ipar(j) 
       End do
 
       write(*,*) atype,kpol
@@ -96,8 +96,7 @@
 !----------------------------------------------------------------------
 
       Do ii=1,klsp; i=ilsp(ii); write(BI,'(a,i3.3)') 'cfg.' ,i 
-      Do jj=i,klsp; j=ilsp(jj); write(BJ,'(a,i3.3)') 'cfg.' ,j 
-
+      Do jj=ii,klsp; j=ilsp(jj); write(BJ,'(a,i3.3)') 'cfg.' ,j 
        if(atype(1:1).eq.'E'.and.mod(kpol,2).eq.1.and. &
           ipar(i).eq.ipar(j)) Cycle
        if(atype(1:1).eq.'E'.and.mod(kpol,2).eq.0.and. &
@@ -109,19 +108,24 @@
 
        if(ispar(i).ne.ispar(j)) Cycle
 
-       kk=kpol; if(ispar(I).eq.0) kk=kpol+kpol
+       kk=kpol; if(ispar(i).eq.0) kk=kpol+kpol
 
        if(ITRA(lpar(i),kk,lpar(j)).eq.0) Cycle
 
        if(lpar(i)+lpar(j).lt.kk) Cycle      
 
-       write(AS,'(10(a,1x))') 'mult3',trim(BI),trim(BJ),atype,' >> zf_bb.out'
+       write(AS,'(10(a,1x))') 'mult4',trim(BI),trim(BJ),atype,' >> zf_bb.out'
+
+       write(*,*) trim(AS)
 
        Call System(AS)
 
        write(AS,'(a,a,1x,a,a,a,a,a,i3.3,a,i3.3,a)')         &
-         'bsr_dmat3 ',trim(BI),trim(BJ),' b b ','gf=',gf, &
+         'bsr_dmat4 ',trim(BI),trim(BJ),' b b ','gf=',gf, &
          ' mstate1=',mstate(ii),' mstate2=',mstate(jj),' >> zf_bb.out'
+
+       write(*,*) trim(AS)
+
        Call System(AS)
 
       End do; End do 

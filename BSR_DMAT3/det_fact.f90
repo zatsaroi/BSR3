@@ -39,6 +39,7 @@
        Do i=1,kn
         k=NPD(i+ip); NP1(i)=IPN1(k/idet); NP2(i)=IPN2(mod(k,idet))
        End do
+
        Call Check_det(kn,NP1,NP2,iext)
        IDPNT(j)=nndet
        if(j.gt.1) then; if(IDPNT(j).eq.IDPNT(j-1)) nndet=0; end if

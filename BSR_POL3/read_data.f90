@@ -21,7 +21,7 @@
 
 ! ... read arguments:
 
-      Call R_arg
+      Call Read_arg
 
 ! ... log-file:
 

@@ -13,7 +13,7 @@
       Integer :: inb1 = 11 ! 1-st set of expansions
       Integer :: inb2 = 12 ! 2-nd set of expansions
 
-      Integer, parameter :: ma = 40
+      Integer, parameter :: ma = 80
 
       Integer :: nub = 3;  Character(ma) :: AF_bnk = 'mult_bnk'
       Integer :: nud = 4;  Character(ma) :: AF_d   = 'd.nnn'
@@ -22,9 +22,10 @@
       Integer :: nut = 8;  Character(ma) :: AF_tar = 'target'
       Integer :: nuo = 9;  Character(ma) :: AF_rsol= 'rsol.nnn'
       Integer :: nuv = 10; Character(ma) :: AF_v   = 'dv.nnn'
+      Integer :: nudd= 11; Character(ma) :: AF_dd  = 'dd.nnn_nnn'
       Integer :: nur = 13; Character(ma) :: AF_res = 'zf_res'
 
-      Character(ma) :: name1,name2,AF
+      Character(ma) :: name1,name2,AF,case_label=' '
 
 ! ... transition type:
 
@@ -59,9 +60,9 @@
 ! ... tolerences for expansion coefficients, oneelctron overlaps,
 ! ... and tota; determinant factors:
 
-      Real(8), parameter :: Eps_c = 1.d-10      
-      Real(8), parameter :: Eps_ovl = 1.d-10      
-      Real(8), parameter :: Eps_ndet = 1.0D-10
+      Real(8), parameter :: Eps_c = 1.d-8      
+      Real(8), parameter :: Eps_ovl = 1.d-7      
+      Real(8), parameter :: Eps_ndet = 1.0D-8
 
 ! ... atomic constants:
 
@@ -82,6 +83,8 @@
 ! ... output gf or f-values:
 
       Character(1) :: GF = 'g'
+
+      Character(1) :: dd = 'n'
 
 ! ... output gf or f-values:
 

@@ -27,15 +27,14 @@
 !     Above, nnn indicates index of the partial wave
 !
 !=====================================================================
-      Use bsr_pol, only: pri
+      Use bsr_pol
       
       Implicit none
       Real(8) :: t1,t2
-      Real(8), external :: RRTC
 
       Call inf_bsr_pol
 
-      t1=RRTC()
+      Call CPU_time(t1)
 
 ! ... read data:
 
@@ -43,11 +42,11 @@
       
 ! ... read interaction matrix:
 
-      Call R_bsrmat
+      Call Read_bsrmat
 
 ! ... read transition matrix:
 
-      Call R_dipmat
+      Call Read_dipmat
 
 ! ... additional orthogonality
 
@@ -57,7 +56,7 @@
 
       Call Solv_mat
 
-      t2=RRTC()
+      Call CPU_time(t2)
       write(pri,'(/a, F10.2, a )' ) 'time =',(t2-t1)/60, ' min.'
       write(*  ,'(/a, F10.2, a )' ) 'time =',(t2-t1)/60, ' min.'
 

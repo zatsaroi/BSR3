@@ -59,7 +59,7 @@
       End do
 
 ! ... one-electron overlaps 
-
+   
       obs = 0.d0
       Do i=1,nbf; if(iech(i).ne.0) Cycle
        Do j=i,nbf; if(iech(j).ne.0) Cycle

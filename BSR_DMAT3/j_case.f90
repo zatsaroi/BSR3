@@ -59,7 +59,7 @@
           DJM_fact(ILterm1(i),ILterm2(j),ISterm1(i),ISterm2(j),JOT1,JOT2,kpol)
         End do; End do
        else
-	      DJM = DJ
+        DJM = DJ
        end if
        met1=jot1; met2=jot2
 
@@ -160,6 +160,10 @@
        write(nur,'(9x,1PD12.5,8x,D12.5,9x,D12.5,8x,d16.8,0P2f10.5)') &
                    SV,FV,WV, dmatV, alfV,alfaV 
       end if      
+
+! ... additional output of matrix elements between solutions:
+
+      if(dd.eq.'y')  write(nudd,'(2i8,2d16.8)') j1,j2,dmatL,dmatV
 
       End do; End do   !  over solutions
 

@@ -102,7 +102,7 @@
 !     bsr_dmat cfg.001 cfg.002 b b istate1=2 istate2=5  
 !     bsr_dmat 1.c cfg.002 c p  
 !     bsr_dmat 1.c cfg.002 c q  
-!     bsr_dmat cfg.001.c cfg.002 b d  
+!     bsr_dmat cfg.001 cfg.002 b d  
 !-----------------------------------------------------------------------
 !     RESTRICTION:  in b->j or j->b calculations, j-file may contain
 !                   data only for one value of J.
@@ -115,16 +115,20 @@
       Implicit none
       Real(8) :: t1,t2,AWT
       Integer :: i,j,n,l,k
-      Real(8), external :: RRTC,DJ_fact,DJM_fact
+      Real(8), external :: DJ_fact,DJM_fact
       Integer, external :: Jfind_bsorb
 
-      t1 = RRTC()
+      Call CPU_time(t1)
 
       Call inf_bsr_dmat
 !----------------------------------------------------------------------
 ! ... read arguments from command line and open basic files:
 
       Call Read_arg
+
+      if(len_trim(case_label).gt.0) AF_bnk=trim(AF_bnk)//'_'//trim(case_label)
+      if(len_trim(case_label).gt.0) AF_res=trim(AF_res)//'_'//trim(case_label)
+      if(len_trim(case_label).gt.0) AF_log=trim(AF_log)//'_'//trim(case_label)
 
       Call Check_file(name1);  Open(in1,file=name1) 
       if(name1.eq.name2) then
@@ -146,7 +150,7 @@
 
 ! ... check mult_bnk: 
 
-      Call R_conf(in1,in2,nub)
+      Call Read_conf(in1,in2,nub)
 
 ! ... define terms:
 
@@ -154,10 +158,12 @@
       Call Shift_term1
       Call Def_term(in1,ILT1,IST1,IPT1)
       jot1 = 0; if(IST1.eq.0) jot1=ILT1 + 1
+      if(ctype1.eq.'j') jot1=3
       Call R_term(in2)
       Call Shift_term2
       Call Def_term(in2,ILT2,IST2,IPT2)
       jot2 = 0; if(IST2.eq.0) jot2=ILT2 + 1
+      if(ctype2.eq.'j') jot2=3
       Allocate( DJ(nterm1,nterm2), DJM(nterm1,nterm2) )
 
 !----------------------------------------------------------------------
@@ -194,7 +200,7 @@
 !----------------------------------------------------------------------
 ! ... sets up grid points and initializes the values of the spline: 
     
-      CALL define_grid(z);  CALL define_spline
+      CALL read_grid(z);  CALL define_spline
 
 !----------------------------------------------------------------------
 ! ... read B-spline expantions for bound orbitals:
@@ -259,7 +265,7 @@
 
        Do i = 1,nch(ilsp2)
         Call EL4_nlk(ELC(ilsp2,i),n,l,k);  k = k + kset2
-	      	j = Jfind_bsorb(n,l,k); iech(j) = i
+        j = Jfind_bsorb(n,l,k); iech(j) = i
        End do
 
       end if
@@ -295,7 +301,7 @@
 !----------------------------------------------------------------------
 ! ... Rydberg constants:
 
-      AWT=0.d0; Call Conv_au (Z,AWT,au_cm,au_eV,pri)
+      AWT=0.d0; Call Conv_au (Z,AWT,au_cm,au_eV,0)
 
 !----------------------------------------------------------------------
 ! ... generate the LSJ-factors in case of fine-structure calculations:
@@ -315,10 +321,10 @@
        if(ktype.eq.'M') then
         Do i=1,nterm1; Do j=1,nterm2
          DJM(i,j)= &
-		       DJM_fact(ILterm1(i),ILterm2(j),ISterm1(i),ISterm2(j),JOT1,JOT2,kpol)
+         DJM_fact(ILterm1(i),ILterm2(j),ISterm1(i),ISterm2(j),JOT1,JOT2,kpol)
         End do; End do
        else
-	       DJM = DJ
+        DJM = DJ
        end if
 
       end if
@@ -370,8 +376,7 @@
        Case default;            Call DD_out
       End Select
 
-      t2 = RRTC()
+      Call CPU_time(t2)
       write(pri,'(/a,f10.2,a)') 'BSR_DMAT:',(t2-t1)/60,' min '
-      write(*  ,'( a,f10.2,a)') 'BSR_DMAT:',(t2-t1)/60,' min '
 
       End ! program BSR_DMAT3

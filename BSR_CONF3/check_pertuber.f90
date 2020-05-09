@@ -61,6 +61,7 @@
       End do
 
       if(j.eq.0) then
+go to 2
        write(pri,'(/a,i5)') &
         'Cannot find physical configuration for pertuber',ip
        Stop 'Check the pertuber'
@@ -89,7 +90,7 @@
       if(ncfg-ncfg_sct.ne.npert) then
        write(pri,'(/a,i5)') &
         'Check the double pertubers for given partial wave'
-        Stop 'Check the double pertubers'
+!        Stop 'Check the double pertubers'
       end if       
 
       write(pri,'(/a,T40,i8)') 'Number of perturber configurations:', ncp

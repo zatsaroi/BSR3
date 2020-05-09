@@ -14,7 +14,7 @@
       Integer, external :: Idef_st
  
       if(ktype.ne.'E') Stop 'dv_out: non-electric-transition case ? '
-      if(kpol.ne.1)    Stop 'dv_out: kpol <> 1 --> non-dipole case ? '
+!      if(kpol.ne.1)    Stop 'dv_out: kpol <> 1 --> non-dipole case ? '
       if(jmode.eq.1)   Stop 'dv_out: jmode = 1' 
       
       i = INDEX(AF_v,'.'); AF = AF_v(1:i)//ALS2
@@ -69,7 +69,7 @@
 
       write(nud) kpol,ktype
       write(nud) E1,jot1,IPT1,Label1
-      write(nud) kdm2,kch2,kcp2                  
+      write(nud) kdm2,kch2,kcp2              ! ??? npert2              
       write(nud) CL
       write(nud) CV
 

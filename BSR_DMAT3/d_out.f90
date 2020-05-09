@@ -37,7 +37,7 @@
 
       elseif(ctype1.eq.'c') then
 	   
-	      inb1=in1; nstate1=1
+       inb1=in1; nstate1=1
 
       else
 

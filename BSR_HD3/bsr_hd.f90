@@ -1,5 +1,5 @@
 !======================================================================
-!     PROGRAM       B S R _ H D                      version 3        
+!     PROGRAM       B S R _ H D                               version 3        
 !
 !               C O P Y R I G H T -- 2011
 !
@@ -51,16 +51,16 @@
       
       Implicit none
       Real(8) :: t1,t2
-      Real(8), external :: RRTC
 
       Call bsr_hd_inf
+
 !---------------------------------------------------------------------
 ! ... set up B-splines:
  
       CALL define_grid(z); Call define_spline   
       Call Conv_au (Z,0.d0,au_cm,au_eV,0)
 
-! ... read channel information:
+! ... read target information:
 
       Open(nut,file=AF_tar,status='OLD')
       Call R_target (nut)
@@ -68,7 +68,7 @@
 ! ... read arguments:
 
       Open(nup,file=AF_par,status='OLD')
-      Call R_arg(nup)
+      Call Read_arg(nup)
       Close(nup)
 
 !----------------------------------------------------------------------
@@ -78,11 +78,11 @@
 
        write(*,'(/a,i3,a,i3)') 'BSR_HD: calculations for partial wave: ',klsp
 
-       t1=RRTC();  Call SUB1_HD;  t2=RRTC()
+       Call CPU_time(t1);   Call SUB1_HD;   Call CPU_time(t2)
 
-       write(*,'(/a, F10.2, a )' ) 'time =',(t2-t1)/60, ' min.'
+       write(  *,'(/a,F10.2, a )' ) 'time =',(t2-t1)/60, ' min.'
+       write(pri,'(/a,F10.2, a )' ) 'time =',(t2-t1)/60, ' min.'
 
-       write(pri,'(/a, F10.2, a )' ) 'time =',(t2-t1)/60, ' min.'
        close(pri)
 
       End do

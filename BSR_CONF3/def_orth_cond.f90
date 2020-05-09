@@ -16,14 +16,18 @@
 
       if(mcfg.gt.ncfg_pert) WC(ncfg_pert+1:mcfg)=0.d0
 
-      Do ich = 1,nch;  it=iptar(ich)
+      Do ich = 1,nch;  it=iptar(ich);  it_comp = it
+
         ii = ipch(ich); ii_comp=ii       ! position of channel orbital
 
         ic1=1; if(ich.gt.1) ic1=ipconf(ich-1)+1; ic2=ipconf(ich)
         ic1=ic1+ncfg_targ; ic2=ic2+ncfg_targ
 
         Do ic = ic1,ic2
-         Do io=1,nphys_sub; ie=jp_sub(io); ie_comp=ie
+
+         Do io=1,nphys_sub; ie=jp_sub(io); ie_comp=ie   ! comp.orbital        
+                            jt_comp = jp_tar(io)
+
           i = max(ii,ie); j=min(ii,ie); 
 
           if(IORT(i,j).le.0) Cycle
@@ -48,10 +52,12 @@
       End do  ! ich, over channels
 
       ncfg_comp = ncfg;  lcfg_comp=lcfg
-      write(pri,'(/a,T40,i8)') &
+      if(debug.gt.0) &   
+        write(pri,'(/a,T40,i8)') &
        'Number of compensation configurations:', ncfg_comp-ncfg_pert
 
       if(ncfg_comp-ncfg_pert.le.0) Return
+      if(debug.eq.0) Return
 
       write(AF,'(a,i3.3,a)') 'pert_comp.',ilsp
       Open(nuc,file=AF)

@@ -8,7 +8,6 @@
       Implicit none
       Integer, intent(in) :: nu
       Integer :: i,i1,i2
-      Character(80) :: AS
 
       rewind(nu); Elow=0.d0; Ehigh=0.d0; Estep=0.d0 
     1 read(nu,'(a)',end=2) AS

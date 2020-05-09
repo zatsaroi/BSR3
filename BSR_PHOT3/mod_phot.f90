@@ -8,12 +8,13 @@
 ! ... files:
 
       Integer, parameter :: ma = 40
-      Integer :: pri = 66; Character(ma) :: AF_log  = 'bsr_phot.log'
+      Integer :: pri =  6; Character(ma) :: AF_log  = 'bsr_phot.log'
       Integer :: inp =  7; Character(ma) :: AF_inp  = 'bsr_phot.inp'
       Integer :: nud = 11; Character(ma) :: AF_d    = 'd.nnn'
       Integer :: nuh = 12; Character(ma) :: AF_h    = 'h.nnn'
       Integer :: nuw = 13; Character(ma) :: AF_w    = 'w.nnn'
       Integer :: nub = 14; Character(ma) :: AF_b    = 'bound.nnn'
+                           Character(ma) :: AF_db   = 'dbound.nnn'
       Integer :: ics = 16; Character(ma) :: AF_out  = 'bsr_phot.nnn'
       Integer :: iph = 17; Character(ma) :: AF_ph   = 'photo.nnn'
 
@@ -100,8 +101,9 @@
 
 ! ... work arrays:
 
+      Character(200) :: AS
       Real(8), allocatable :: AA(:,:),BB(:,:),FF(:,:),FFF(:,:),FFP(:,:) 
-      Real(8), allocatable :: v(:), eps(:) 
+      Real(8), allocatable :: v(:), eps(:), ee(:), eee(:) 
 
       End Module bsr_phot
 

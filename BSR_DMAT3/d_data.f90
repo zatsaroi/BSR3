@@ -25,6 +25,7 @@
       Use spline_param,    only: ns,ks
       Use spline_orbitals, only: iech,qbs
       Use bsr_dmat,        only: ibo,bbbs,pri
+      Use dmatrix,         only: AC, BLC,BVC
       Use cmdata
 
       Implicit none
@@ -37,6 +38,7 @@
       Case(1)                            !  d( . .)  ic, jc                             
 
        Do j=1,ncdata;  i=IPT(j)
+
         Call Update_DB(k1(i),k2(i),CLDATA(i),CVDATA(i))
        End do
 
@@ -84,6 +86,9 @@
         if(jch.eq.0) Stop 'D_data: itype=6, but jch=0'
         Call Get_dm(i1,i2,cldata(i),cvdata(i),xl,xv)
         Call UPDATE_DX(ich,jch,ns,ks,xl,xv)
+
+        AC(ich,jch) = AC(ich,jch) + cldata(i)
+
        End do
 
       Case(7)                              !  d( i .) < . | j >     
@@ -135,6 +140,8 @@
         if(jch.eq.0) Stop 'D_data: itype=10, but jch=0'
         xl = cldata(i) * bbbs; xv = cvdata(i) * bbbs
         Call UPDATE_DX(ich,jch,ns,ks,xl,xv)
+        BLC(ich,jch) = BLC(ich,jch) + cldata(i)
+        BVC(ich,jch) = BVC(ich,jch) + cvdata(i)
        End do
 
       Case Default

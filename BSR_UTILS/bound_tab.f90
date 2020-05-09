@@ -21,15 +21,25 @@
       Call inf_bound_tab
 !--------------------------------------------------------------------
 !                                                 input/output files:      
+      nu = 11;   Open(nu,file='target')
+
+      klsp1=1; klsp2=1; klsp3=1;  Call Read_ipar(nu,'nlsp',klsp2)
+
+      nz = 0;  Call Read_ipar(nu,'nz',nz);   Z = nz
+
+      Call Read_ipar(nu,'ntarg',ntarg); read(nu,*)
+      read(nu,'(a)',err=1) AS;  E0=0.d0; read(AS(46:),*,err=1) E0
+   1  Close(nu)
+
       nu = 11; Open(nu,file='bound_tab')
 
-      Z  =0.d0;  Call Read_rpar(nu,'Z',Z)
+                 Call Read_rpar(nu,'Z',Z)
       AWT=0.d0;  Call Read_rpar(nu,'AWT',AWT)
-      E0 =0.d0;  Call Read_rpar(nu,'E0',E0)
+                 Call Read_rpar(nu,'E0',E0)
       EM =0.d0;  Call Read_rpar(nu,'EM',EM)
-      klsp1=1;   Call Read_ipar(nu,'klsp1',klsp1)
-      klsp2=1;   Call Read_ipar(nu,'klsp2',klsp2)
-      klsp3=1;   Call Read_ipar(nu,'klsp3',klsp3)
+                 Call Read_ipar(nu,'klsp1',klsp1)
+                 Call Read_ipar(nu,'klsp2',klsp2)
+                 Call Read_ipar(nu,'klsp3',klsp3)
       mstate=0;  Call Read_ipar(nu,'mstate',mstate)
 
       Call Read_rarg('Z',Z)
@@ -116,6 +126,14 @@
        label1 = Label(i)
 
        js = mod(jst(i),10000); is=jst(i)/10000
+
+
+!if(len_trim(label1).gt.2) Cycle
+!if(E(i).gt.-676.464 .and. Label1(1:2).ne.'4s') Cycle
+!if(E(i).gt.-676.59058592 .and. Label1(4:4).ne.'k') then
+!  read(Label1(4:4),*) n
+!  if(n.gt.5) Cycle
+!end if
        
        write(nu,'(2i5,3x,a,3i3,f14.6,F14.5,f16.1,F16.8)') & 
         ilsp(is),js,label1(1:imax),ISS(is),ILS(is),IPS(is), &
@@ -152,12 +170,9 @@
 !----------------------------------------------------------------------
        
       Implicit real(8) (a-h,o-z)
-
       Character(80) :: A
 
-      iarg = IARGC()
-      if(iarg.eq.0) Return
-      Call GETARG(1,A)      
+      Call get_command_argument(1,A)  
       if(A.ne.'?') Return
 
       write(*,'(a)') &
@@ -181,7 +196,7 @@
 '                bound_tab  klsp=5                                                 ',&
 '                bound_tab  Z=14  mstate=20  klsp1=1  klsp2=12  E0=...             ',&
 '                                                                                  '
-      Stop                                                                     
+      Stop ' '                                                                    
                                                                                    
       End Subroutine inf_bound_tab                                                 
 

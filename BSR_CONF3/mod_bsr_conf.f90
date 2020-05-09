@@ -5,6 +5,9 @@
 !----------------------------------------------------------------------
       Implicit none
 
+
+      Integer :: myid = 0, ierr = 0, nprocs = 1
+
 ! ... files:
 
       Integer, parameter :: ma=80
@@ -18,17 +21,14 @@
        
 ! ... default values for parameters:    
 
-      Real(8) :: c_comp = 1.010  ! tolerance for compensation configurations          
-      Real(8) :: c_conf = 0.333  ! tolerance for physical configurations        
-      Real(8) :: c_pert = 0.500  ! tolerance for physical configurations in perturber        
-      Real(8) :: c_norm = 0.100  ! tolerance for target states normalization        
-      Real(8) :: c_orth = 0.250  ! compensations < c_orth are ignored        
+      Real(8) :: c_comp = 1.100  ! tolerance for compensation configurations          
+      Real(8) :: c_conf = 0.200  ! tolerance for physical configurations        
+      Real(8) :: c_phys = 0.750  ! sum of weights
 
-      Integer :: max_it = -1     ! upper limit for number of target states
       Integer :: max_ll = -1     ! upper limit for small "l"
       Integer :: min_ll = -1     ! lower limit for small "l"
       Integer :: max_LT = -1     ! upper limit for big "L" (2L+1 - value) 
-      Integer :: max_ST = -1     ! upper limit for total spin (2S+1 - value)
+      Integer :: max_ST = -1     ! upper limit for total spin (2S+1 - value)                                                           
       Integer :: kort   = -1     ! if kort > 0, program will read additional
                                  ! orth. conditions from cfg.nnn file
 
@@ -41,8 +41,10 @@
 
       Real(8) :: wc_comp = 0.d0
       Integer :: ic_comp = 0
-      Integer :: ie_comp = 0
-      Integer :: ii_comp = 0
+      Integer :: ii_comp = 0        ! channel obital under consideration
+      Integer :: ie_comp = 0        ! substitution orbital 
+      Integer :: it_comp = 0        ! channel target state 
+      Integer :: jt_comp = 0        ! substitution orb. target state 
       Integer :: insert  = 0
       Integer :: debug   = 0
       Integer :: igen_conf = 0
@@ -63,6 +65,9 @@
       Integer :: IL_trap,IS_trap    ! trap_term
       Real(8) :: S_cfp 
       Real(8) :: S_recup 
+
+      Integer :: I_cfp    = 1
+      Integer :: I_recup  = 1
 
 ! ... additional arrays:
 

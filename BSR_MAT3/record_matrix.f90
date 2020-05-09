@@ -26,6 +26,7 @@
        write(nu) ich,jch
        write(nu) hcc(:,:,ib)
        idiag = 0
+
       End do; End do
 
 ! ... pertubers:

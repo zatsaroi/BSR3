@@ -3,8 +3,8 @@
 !======================================================================
 ! ... record orthogonal conditions for sct. orbitals:
 !----------------------------------------------------------------------
-      USE bsr_conf
-      USE target; USE channel; USE conf_LS;; USE orb_LS; USE phys_orb_LS
+      Use bsr_conf
+      Use target; USE channel; USE conf_LS;; USE orb_LS; USE phys_orb_LS
 
       Implicit none
       Integer :: ich,io, i,j, ii,jj, it,irec
@@ -22,11 +22,22 @@
         if(LEF(ii).ne.LEF(jj)) Cycle
         i = max(ii,jj); j = min(ii,jj)
         if(IORT(i,j).eq.0) then
-         write(nuc,'(a1,a4,a1,a4,a3,3x,a12,5x,a)') &
+        write(nuc,'(a1,a4,a1,a4,a3,3x,a12,5x,a)') &
+              '<',ELF(ii),'|',ELF(jj),'>=0',trim(AFT(it)),trim(BFT(it))
+         irec = io
+        end if
+       End do
+
+       Do io = 1,irec-1; jj = jp_sub(io)
+        if(LEF(ii).ne.LEF(jj)) Cycle
+        i = max(ii,jj); j = min(ii,jj)
+        if(IORT(i,j).gt.0) then
+        write(nuc,'(a1,a4,a1,a4,a3,3x,a12,5x,a)') &
               '<',ELF(ii),'|',ELF(jj),'>=0',trim(AFT(it)),trim(BFT(it))
          irec = 1
         end if
        End do
+
        if(irec.gt.0) write(nuc,*)
       End do
 

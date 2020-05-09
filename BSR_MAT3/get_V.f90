@@ -15,7 +15,6 @@
 
       if(IBORT(ii,jj).eq.0) Stop 'get_V: <kl|nl> = 0 ?'
       v(:) = qbs(:,jj)
-      
       Do i=1,nbf
        if(i.eq.jj) Cycle
        if(iech(i).ne.0) Cycle

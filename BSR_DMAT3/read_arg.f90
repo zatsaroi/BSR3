@@ -7,14 +7,13 @@
 
       Implicit none
       Integer :: iarg,i1,i2
-      Integer :: IARGC
 
-      iarg = IARGC()
-      AF = '?'; if(iarg.gt.0) Call GETARG(1,AF)       
+      iarg = command_argument_count()
+      Call GET_COMMAND_ARGUMENT(1,AF)
       
       if(iarg.lt.4.or.AF.eq.'?') then
        write(*,*)
-       write(*,*) 'BSR_DMAT: number of arguments should be => 4:'
+       write(*,*) 'BSR_DMAT: number of arguments should be = or > 4:'
        write(*,*)
        write(*,*) '1 - file name for initial-state c-file'
        write(*,*) '2 - file name for final-state c-file'
@@ -30,11 +29,11 @@
        Stop 'stop BSR_DMAT'
       end if
 
-      Call GETARG(1,name1)       
-      Call GETARG(2,name2) 
+      Call GET_COMMAND_ARGUMENT(1,name1)
+      Call GET_COMMAND_ARGUMENT(2,name2)
 
-      Call GETARG(3,ctype1)
-      Call GETARG(4,ctype2)
+      Call GET_COMMAND_ARGUMENT(3,ctype1)
+      Call GET_COMMAND_ARGUMENT(4,ctype2)
 
       jout=0; if(ctype2.eq.'p') jout=1
       if(ctype2.eq.'q') then; jout=2; ctype2='p'; end if       
@@ -54,6 +53,7 @@
 ! ... read parameters from arguments if any
 
       Call Read_aarg('gf',GF)
+      Call Read_aarg('dd',dd)
 
       Call Read_iarg('mstate1' ,mstate1)
       Call Read_iarg('mstate2' ,mstate2)
@@ -63,6 +63,8 @@
       Call Read_iarg('ialfa'   ,ialfa  )
 
       Call Read_iarg('debug'   ,debug  )
+
+      Call Read_aarg('label'   ,case_label)
 
       End Subroutine Read_arg
 

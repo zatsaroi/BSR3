@@ -66,7 +66,6 @@
 !----------------------------------------------------------------------
 ! ... read arguments if any:
 
-
       Call GETARG(1,AF) 
       if(iarg.ge.2) then; Call GETARG(2,BF); read(BF,*) Eps_end; end if
       if(iarg.ge.3) then; Call GETARG(3,BF); read(BF,*) klagr; end if
@@ -135,14 +134,18 @@
       Character(3) :: EL3
       Real(8) :: R(NOD), R2(NOD), P(NOD) 
 
-      RO = RHO
-      Do I=1,NOD
-       R(I)=DEXP(RO)/Z;  R2(I)=DSQRT(R(I)); RO=RO+HR
-      End do 
 
 !----------------------------------------------------------------------
     1 read(nuw,end=2) Atom,Term,EL3,m,ZZ,EI,ZI,AZ,P(1:m)
-      if(zz.ne.z) Stop 'z in function  <>  z-knot'
+!      if(zz.ne.z) Stop 'z in function  <>  z-knot'
+
+      if(m.eq.0) go to 2 
+
+      RO = RHO
+      Do I=1,NOD
+       R(I)=DEXP(RO)/ZZ;  R2(I)=DSQRT(R(I)); RO=RO+HR
+      End do 
+
       P(m+1:NOD) = 0.d0; P(:) = P(:) * R2(:) 
       Call EL3_nlk(EL3,n,l,k)      
 
@@ -164,17 +167,18 @@
 
 ! ... check the normalization and max.deviation from original orbital:
 
-      PN=sqrt(QUADR(i,i,0)); pbs(:,i)=pbs(:,i)/PN
+      PN=sqrt(QUADR(i,i,0)); if(n.lt.10)  pbs(:,i)=pbs(:,i)/PN
  
       ydm = 0.d0
       Do j=1,m
+       if(r(j).gt.t(ns)) Exit
        yb = bvalu2(t,pbs(1,i),ns,ks,r(j),0)
        yd = abs(yb-P(j)); if(yd.gt.ydm) ydm = yd
       End do
 
+      if(n.gt.9) PB=0.0
       write(pri,'(a4,2(a,F10.6))') ebs(i), &
             '   mdif =',ydm,'   border =',PB
-
       go to 1
     2 Close(nuw)
 

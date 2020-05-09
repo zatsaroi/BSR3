@@ -1,8 +1,9 @@
 !======================================================================
       Subroutine Check_cfg
 !======================================================================
-! ... for given compensation configuration (ic) record all relevant 
-! ... information, see add_comp below
+! ... for given compensation configuration (ic),  
+! ... define the corresponding possible total weight
+! ... if weight > c_comp, generate the corresponding orthogonal constraint
 !----------------------------------------------------------------------
       Use bsr_conf 
       USE conf_LS
@@ -23,34 +24,39 @@
       Case(0)
        if(debug.gt.1) &
           write(pri,'(a,i3,5x,a,f10.5)') 'insert=',insert,'CC=',CC
+
       Case(1:) 
        Call make_coupling_insert(insert)
        Call RECUP(nmom,ncup,J1_coupling,J2_coupling)
        S = ZRECUP(nmom,momentS)*ZRECUP(nmom,momentL) 
-       if(S.eq.0) Return
+       if(S.eq.0.d0) Return
        CC = CC*S*S
        if(debug.gt.1) write(pri,'(a,i3,2(3x,a,f8.5))') &
                      'insert=',insert,'recup=',S,'CC=',CC
+
       Case(:-1)
        Call make_coupling_trap
        Call RECUP(nmom,ncup,J1_coupling,J2_coupling)
        S = ZRECUP(nmom,momentS)*ZRECUP(nmom,momentL) 
-       if(S.eq.0) Return
+       if(S.eq.0.d0) Return
 
- S_cfp = 1.d0          !  ???
- S = 1.d0              !  ???
+       if(I_cfp.eq.1) S_cfp = 1.d0              !  ???
+       if(I_recup.eq.1)   S = 1.d0              !  ???
 
        CC = CC * S*S * S_cfp*S_cfp   
        if(debug.gt.1) write(pri,'(a,i3,3(3x,a,f8.5))') &
              'insert=',insert,'recup=',S,'cfp=',s_cfp,'CC=',CC
-      End Select
+      End Select          
 
       igen_conf = 1
       jc=Jfind_cfg_LS(); ic = iabs(jc)
 
+
       if(jc.lt.0) then
        CC = CC + WC(ic)
-       if(CC.gt.c_comp) then 
+       if(CC.gt.c_comp) then            ! ???
+
+!       if(CC.gt.c_comp.and.jt_comp.le.it_comp) then            ! ???   bad dea
 
         IORT(max(ii_comp,ie_comp),min(ii_comp,ie_comp))=0
         if(debug.gt.1) write(pri,'(32x,a)') 'IORT -> 0'

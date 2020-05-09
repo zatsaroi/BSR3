@@ -13,7 +13,7 @@
       Implicit none
       Real(8) :: AK(ntarg,ntarg), RDME(ntarg,ntarg)      
       Integer :: IP(ntarg,ntarg)      
-      Real(8), external :: CLEBCH, Z_6jj, Reduce_factor
+      Real(8), external :: Z_6jj, Reduce_factor
       Real(8) :: S,SS, g1,g2, de, a,f
       Integer :: i,j, i1,i2,nt 
 
@@ -26,7 +26,7 @@
        if(abs(SS).lt.eps_acf) Cycle
        S = S / SS
        de=Etarg(i2)-Etarg(i1)
-       RDME(i1,i2) = RDME(i1,i2) + S
+       RDME(i1,i2) = RDME(i1,i2) + S    !   why add ???
 
        if(istarg(i1).ne.0) then
         S = S*S*istarg(i1)

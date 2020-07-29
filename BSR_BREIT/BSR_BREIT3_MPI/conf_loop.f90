@@ -17,9 +17,8 @@
       Integer, External :: IDEF_cme, DEF_ij
 
       Real(8) :: t1,t2,t3 
-      Real(8), External :: RRTC
 
-      t1=RRTC()
+      Call CPU_time(t1)
 
 !----------------------------------------------------------------------
 !                                          cycle 1 over configurations:
@@ -46,7 +45,7 @@
 
 !----------------------------------------------------------------------
 !                                          cycle 2 over configurations:
-      t3=RRTC()
+      Call CPU_time(t3)
 
       rewind(nud)
       Do jjs=1,iis
@@ -113,7 +112,7 @@
 
       End do    ! over jc
 
-      t2=RRTC()                
+      Call CPU_time(t2)                
 
       write(*,'(a,4i8,2f10.2,a)') 'ic,ic_total,kt,kdt', iis,ic_case,kt1,kdt1, &
         (t2-t3)/60, (t2-t1)/60, ' min.'
@@ -129,7 +128,7 @@
         Call Add_res(nui,is,js)
         Call Add_it_oper(is,js)          
         ip_proc(j) = 0
-        t2=RRTC()                
+        Call CPU_time(t2)                
         write(*,'(a,2i5,f10.2,a)') 'proc', j, sum(ip_proc), &
           (t2-t1)/60, ' min.'
        End do
@@ -139,7 +138,7 @@
        Do i=1,nprocs-1
         Call Send_det_exp(i,-1,-1)
        End do
-       t2=RRTC()                
+       Call CPU_time(t2)                
        write(*,'(a,f10.2,a)') 'conf_loop is done', (t2-t1)/60, ' min.'
 
       End Subroutine Conf_loop

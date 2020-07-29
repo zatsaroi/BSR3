@@ -76,7 +76,7 @@
  
       Character(60) :: AFORM = '(f14.8,f14.7,f12.2,2f15.5,f12.6,f8.3,i5)'
 
-      t1 = rrtc()
+      Call CPU_time(t1)
 !----------------------------------------------------------------------
 ! ... define input parameters
 
@@ -164,6 +164,8 @@
 
       GI = ILI + ILI + 1           !  2L+1 
       if(ISI.eq.0) GI = ILI+1      !  2J+1
+
+      PI = ACOS(-1.d0)
 
 !-----------------------------------------------------------------------
 ! ... define energies:
@@ -289,6 +291,7 @@
        write(ics,'(5d15.8)') SLP,SL(1:nopen)
        write(ics,'(5d15.8)') SVP,SV(1:nopen)
        write(ics,'(5d15.8)') us ,ui(1:nopen)
+
        Do i=1,nopen
         write(ics,'(4d15.8)') dlr(i),dli(i),dvr(i),dvi(i)
        End do
@@ -302,6 +305,7 @@
        if(ikm.gt.0) &
         write(ics,'(6d13.6)') ((KMAT(i,j),i=1,j),j=1,nopen)
        Close(ics)
+
 
 ! ...  --> photo.out:
  
@@ -319,7 +323,7 @@
       OPEN(iph,file=AF_ph)
       Call Sort_photo(iph,AFORM)
 
-      t2 = rrtc()
+      Call CPU_time(t2)
       write(pri,'(/a,f6.2,a)')  ' time = ',(t2-t1)/60,' min'
  
       End  ! program bsr_phot

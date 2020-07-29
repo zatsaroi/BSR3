@@ -1,0 +1,15 @@
+#!/bin/bash
+#SBATCH -J bsr_prep
+#SBATCH -o bsr_prep.out
+#SBATCH -e bsr_prep.err
+#SBATCH -n 1
+#SBATCH -N 1
+#SBATCH -p development
+#SBATCH -t 02:00:00
+#SBATCH -A TG-PHY090031
+
+  set echo
+
+  ibrun ~/BIN/bsr_prep3 
+
+

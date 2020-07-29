@@ -51,7 +51,6 @@
       
       Implicit none
       Real(8) :: t1,t2
-      Real(8), external :: RRTC
 
       Call bsr_hd_inf
 !---------------------------------------------------------------------
@@ -78,7 +77,7 @@
 
        write(*,'(/a,i3,a,i3)') 'BSR_HD: calculations for partial wave: ',klsp
 
-       t1=RRTC();  Call SUB1_HD;  t2=RRTC()
+       Call CPU_time(t1);  Call SUB1_HD;  Call CPU_time(t2)
 
        write(*,'(/a, F10.2, a )' ) 'time =',(t2-t1)/60, ' min.'
 

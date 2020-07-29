@@ -1,0 +1,94 @@
+
+#  test run for electron scattering on Ca:   e + Ca
+
+#--------------------------------------------------------------     step 0
+#  initial preparations:
+
+#  copy/move the target states (file pairs  name.c and name.bsw) from 
+#  the folder Ca_bound, after preliminary calculations of the
+#  Ca bound states in the core-frozen approach
+
+#  copy the knot.dat file from the same folder
+
+#  the model includes the 39 target states from 4s2 to 4s8s_1S
+
+#--------------------------------------------------------------     step 1
+#  bsr_pre3:  checking and preparation of target states
+
+#  prepare initial 'target' file which contains list of target states
+#  (see target.0 as example of inital target file, this file                                                                                           #
+#   will be furher changed and added by programs bsr_prep and bsr_conf) 
+
+#  prepare bsr_par file with specific paramters 
+#  this file can be empty if only default parametrs are used
+
+#  in this test we indicate number of partial waves nlsp=0 
+#  to allowd the bsr_prep program to generate this list yourself;
+#  bsr_par file will then indication of minimum amd maximum  values
+#  for total L and S 
+
+#  run bsr_prep3  or qsub\sbatch qprep 
+
+#  it is a serial run and takes no much time
+
+#  Modified target file indicates 12 partial waves for L=0-5
+#  (for real calculations you must use much bigger L ~ 25-50)
+
+#--------------------------------------------------------------     step 2
+#  bsr_conf3_mpi:  preparation of configuration expansions                                                                                                                                        
+
+#  run bsr_conf3 (serial)  or qsub\sbatch qconf  with  bsr_conf3_mpi
+
+#  It prepares all configuration expansions for partial waves in cfg.nnn files
+
+#  When we use MPI version, the number of cores is less or equal to 
+#  number of partial waves + plus one: nlsp+1
+
+#  after these states, we may clean the forlder from all initial 
+#  target states files
+
+#--------------------------------------------------------------     step 3
+#  bsr_breit3_mpi:  calculations of angular coefficients
+
+#  run bsr_breit3 klsp1=1 klsp2=14  or qsub\sbatch qbreit
+#  for bsr_breit3_mpi
+
+#----------------------------------------------------------------   step 4
+#  bsr_mat3_mpi:  calculations of the Hamiltonian matrixes
+
+#  run bsr_mat3 klsp1=1 klsp2=14  or qsub\sbatch qmat
+#  for bsr_mat3_mpi
+
+#  It is advised to run each partial waves separately
+
+#----------------------------------------------------------------  step 5
+#  bsr_hdb3:  diagonalization of the Hamiltonian matrixes
+
+#  run bsr_hd3 klsp1=1 klsp2=14  or qsub\sbatch qmat
+#  for bsr_hdb3 (mpi version with BLACS/SCALAPCK routines)
+#  parameters p, q define the SCALAPACK grid 
+
+#  It is advised to run each partial waves separately
+
+#----------------------------------------------------------------  step 6
+#  sum_hh:  generation of the final H.DAT file
+
+#  the previous step generate h.nnn files for each partial wave 'nnn'
+
+#  These files can be collected in one final standard H.DAT file
+#  using the utility-program sum_hh 
+
+#  H.DAT file is used for scattering calculations using programs 'stgf/pstgf'
+#  from RMATRIX complex (Badnell): http://www.apap-network.org/codes.html. 
+  
+
+
+   
+
+
+
+
+
+
+ 
+

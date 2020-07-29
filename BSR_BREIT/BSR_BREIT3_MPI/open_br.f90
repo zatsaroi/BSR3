@@ -13,7 +13,7 @@
       Character(3) :: ALSP
       Integer, External :: Icheck_file
 
-      write(ALSP,'(i3.3)') klsp   ! Call Anumber(klsp,3,ALSP) 
+      write(ALSP,'(i3.3)') klsp    
 
        Select case(nu)
 

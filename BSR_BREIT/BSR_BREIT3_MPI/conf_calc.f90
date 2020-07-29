@@ -14,7 +14,7 @@
       Implicit none 
       Integer :: i,m,k,k1,k2,it,jt,ic,jc
       Real(8) :: t1,t2, C_ee,C_so,C_ss, zero=0.d0, one=1.d0  
-      Real(8), External :: Z_3j, RRTC
+      Real(8), External :: Z_3j
 
       Call Alloc_boef(-1)
       Call Alloc_blk (-1)
@@ -27,11 +27,11 @@
 
 ! ...  initial allocations:        
 
-       t1=RRTC()
+       Call CPU_time(t1)
 
        Call Alloc_coef(-1)    !
-       Call Alloc_boef(-1)
-       Call Alloc_blk (-1)
+       Call Alloc_ndet(-1)
+       Call Alloc_ndef(-1)
 
 ! ... define the normalization constants for different operators:
 
@@ -88,7 +88,7 @@
 
       Call Send_res(ic,jc)
 
-      t2=RRTC()
+      Call CPU_time(t2)
       if(pri.gt.0) write(pri,'(a,2i8,f10.2,a)') &
                    'send coef.s for ic,jc:', ic,jc, (t2-t1)/60, '  min'
       go to 1

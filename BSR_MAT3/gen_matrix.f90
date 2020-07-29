@@ -10,9 +10,8 @@
       Integer, intent(in) :: jtype,jpol
       Integer :: i,j,k,n
       Real(8) :: t1,t2
-      Real(8), external :: RRTC
 
-      t1 = RRTC()
+      Call CPU_time(t1)
 
 ! ... prepare the data:
        
@@ -57,7 +56,7 @@
        Case(11);               Call O_data
       End Select
 
-      t2 = RRTC()
+      Call CPU_time(t2)
 
       if(debug.gt.1) &
       write(pri,'(a,3(a,i2),a,i3,a,i6,a,f8.2,a)') 'Gen_matrix:', &

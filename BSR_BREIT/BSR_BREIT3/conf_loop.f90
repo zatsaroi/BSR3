@@ -20,7 +20,7 @@
       Integer :: k1,k2, it,jt, ij, MLT2,MST2, is,js,ic,jc
       Real(8) :: t1,t2, C_ee,C_so,C_ss, zero=0.d0, one=1.d0  
       Integer, external :: IDEF_cme, DEF_ij
-      Real(8), external :: RRTC, Z_3j
+      Real(8), external :: Z_3j
       Character(80) :: conf
 
       Call Alloc_boef(-1)
@@ -51,7 +51,7 @@
 
        if(IC_need(ic).eq.0) Cycle
 
-       t1=RRTC()
+       Call CPU_time(t1)
 
        Call Alloc_boef(-1)
        Call Alloc_blk (-1)
@@ -132,6 +132,8 @@
 ! ...  initial allocations:
 
        Call Alloc_coef(-1)
+       Call Alloc_ndet(-1)
+       Call Alloc_ndef(-1)
 
 !----------------------------------------------------------------------
 ! ...  calculations:
@@ -160,7 +162,7 @@
 
       End do    ! over js
 
-      t2=RRTC()
+      Call CPU_time(t2)
 
       Call Symc_conf(ic,conf)
       write(*  ,'(a,i6,a,i6,a,i6,a,i6,F10.2,a,3x,a)') &
@@ -173,32 +175,5 @@
       End do    ! over is
 
       End Subroutine Conf_loop
-
-
-!======================================================================
-      Subroutine Symc_conf(ic,conf)
-!======================================================================
-!     get label for configuration
-!----------------------------------------------------------------------
-      Use conf_LS, only: LTOTAL,STOTAL,no,nn,ln,iq,kn 
-
-      Implicit none
-      Integer, intent(in) :: ic
-      Integer :: i,k
-      Character(*) :: conf
-      Character(4), external :: AL
-
-      conf = ' '
-
-      Call Get_symc_LS(ic,LTOTAL,STOTAL,no,nn,ln,iq,kn)
-
-      k=0
-      Do i=1,no; if(iq(i).eq.0) Cycle
-       conf(k+2:k+2) = AL(ln(i),1)
-       write(conf(k+3:k+6),'(a1,i2,a1)') '(',iq(i),')'
-       k=k+6
-      End do
-
-      End Subroutine Symc_conf
 
 

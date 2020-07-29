@@ -26,7 +26,7 @@ O = $(S:.f90=.o)
 $(N): $(O)
 	$(FC) -o $(N) $(O) $(link) $(L) 
 	mv $(N) $(BINDIR)
-#	rm *.o *.mod 
+	rm *.o *.mod 
  
 clean:
 	rm -f *.o *.mod 

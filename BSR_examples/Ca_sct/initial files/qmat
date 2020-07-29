@@ -1,0 +1,18 @@
+#!/bin/bash
+#SBATCH -J bsr_mat
+#SBATCH -o bsr_mat.out
+#SBATCH -e bsr_mat.err
+#SBATCH --ntasks-per-node 64
+#SBATCH -n 256
+#SBATCH -N 4
+#SBATCH -p development
+#SBATCH -t 02:00:00
+#SBATCH -A TG-PHY090031
+
+  set echo
+
+for n in 001 002 003 004 005 006 007 008 009 010 011 012
+do
+  ibrun ~/BIN/bsr_mat3_mpi klsp=$n  
+done
+

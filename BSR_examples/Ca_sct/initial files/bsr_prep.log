@@ -1,0 +1,1598 @@
+BSR_PREP:
+
+eps_ovl  =     0.10000D-05 - tolerance for orthogonality between orbitals
+
+eps_sub  =     0.50000D+00 - tolerance for substitution orbitals
+
+eps_phys =     0.25000D+00 - tolerance for physical orbitals
+
+ii_sub   =               0 - restriction for substitution orbitals
+
+
+------------------------------------------------------------------------
+
+CORE:    1s  2s  2p  3s                                                                                                                                                                                        
+
+------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------
+
+ target     1    4s2_1S              
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    new orbitals and new set index     0.00000000
+ 4s1 -->  4s1    new orbitals and new set index     0.00000000
+ 7p1 -->  7p1    new orbitals but old set index     0.00000001
+ 7d1 -->  7d1    new orbitals and new set index     0.00000001
+ 7s2 -->  7s2    new orbitals and new set index     0.69922749
+ 7f1 -->  7f1    new orbitals and new set index     0.69922749
+ 8d1 -->  8d1    new orbitals but old set index     0.00000000
+ 8f1 -->  8f1    new orbitals but old set index     0.00000000
+ 5s1 -->  5s1    new orbitals but old set index     0.00000005
+ 3d2 -->  3d2    new orbitals and new set index     0.91801060
+ 7p2 -->  7p2    new orbitals and new set index     0.97412415
+ 7d3 -->  7d3    new orbitals and new set index     0.86989888
+ 7f2 -->  7f2    new orbitals and new set index     0.75674594
+ 8d3 -->  8d3    new orbitals but old set index     0.00000000
+ 4d2 -->  4d2    new orbitals but old set index     0.00000002
+ 4p3 -->  4p3    new orbitals and new set index     0.65964720
+ 7d4 -->  7d4    new orbitals and new set index     0.94938827
+ 8d4 -->  8d4    new orbitals but old set index     0.00000000
+ 7s3 -->  7s3    new orbitals and new set index     0.83561768
+ 7p4 -->  7p4    new orbitals and new set index     0.59422189
+ 5p3 -->  5p3    new orbitals but old set index     0.00000005
+ 4s4 -->  4s4    new orbitals and new set index     0.83380622
+ nd5 -->  nd5    new orbitals and new set index     0.91804278
+ np5 -->  np5    new orbitals and new set index     0.61354562
+ ns5 -->  ns5    new orbitals and new set index     0.27001044
+ nd6 -->  nd6    new orbitals and new set index     0.64568554
+ np6 -->  np6    new orbitals and new set index     0.07814028
+
+------------------------------------------------------------------------
+
+ target     2    4s4p_3P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 4p5 -->  4p7    new orbitals and new set index     0.16084207
+ np6 -->  np8    new orbitals and new set index     0.98678891
+ nf3 -->  nf3    new orbitals and new set index     0.29869018
+ ns4 -->  ns6    new orbitals and new set index     0.77576746
+ nd5 -->  nd7    new orbitals and new set index     0.75769773
+ np7 -->  np9    new orbitals and new set index     0.06452258
+ np8 -->  npa    new orbitals and new set index     0.99910849
+ nf4 -->  nf4    new orbitals and new set index     0.88639190
+ ns5 -->  ns1    new orbitals but old set index     0.00000000
+ nd6 -->  nd2    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target     3    4s4p_1P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 4p5 -->  4pb    new orbitals and new set index     0.41452580
+ np6 -->  npc    new orbitals and new set index     0.96440446
+ nf3 -->  nf5    new orbitals and new set index     0.90626627
+ ns4 -->  ns7    new orbitals and new set index     0.98948022
+ nd5 -->  nd8    new orbitals and new set index     0.99847160
+ np7 -->  npd    new orbitals and new set index     0.18020107
+ np8 -->  npe    new orbitals and new set index     0.72046536
+ nf4 -->  nf6    new orbitals and new set index     0.89083589
+ ns5 -->  ns8    new orbitals and new set index     0.45666474
+ nd6 -->  nd9    new orbitals and new set index     0.28358165
+
+------------------------------------------------------------------------
+
+ target     4    4s3d_3D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 3d5 -->  3da    new orbitals and new set index     0.06764214
+ ns4 -->  ns9    new orbitals and new set index     0.23974839
+ nd6 -->  ndb    new orbitals and new set index     0.34952928
+ ng1 -->  ng1    new orbitals and new set index     0.34952928
+ np5 -->  npf    new orbitals and new set index     0.97915252
+ nf3 -->  nf7    new orbitals and new set index     0.80063670
+ nd7 -->  ndc    new orbitals and new set index     0.45649917
+ ns5 -->  nsa    new orbitals and new set index     0.19814752
+ nd8 -->  ndd    new orbitals and new set index     0.02649561
+ ng2 -->  ng2    new orbitals and new set index     0.99398438
+ np6 -->  np3    new orbitals but old set index     0.00000000
+ nf4 -->  nf8    new orbitals and new set index     0.87461452
+
+------------------------------------------------------------------------
+
+ target     5    4s3d_1D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 3d5 -->  3de    new orbitals and new set index     0.00017558
+ ns4 -->  nsb    new orbitals and new set index     0.20583210
+ nd6 -->  ndf    new orbitals and new set index     0.94359768
+ ng1 -->  ng3    new orbitals and new set index     0.97419797
+ np5 -->  npg    new orbitals and new set index     0.15989730
+ nf3 -->  nf9    new orbitals and new set index     0.88466892
+ nd7 -->  ndg    new orbitals and new set index     0.57991695
+ ns5 -->  nsc    new orbitals and new set index     0.08799080
+ nd8 -->  ndh    new orbitals and new set index     0.84894441
+ ng2 -->  ng4    new orbitals and new set index     0.95455529
+ np6 -->  nph    new orbitals and new set index     0.14799310
+ nf4 -->  nfa    new orbitals and new set index     0.85607354
+
+------------------------------------------------------------------------
+
+ target     6    4s5s_3S             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5s4 -->  5sd    new orbitals and new set index     0.04724512
+ nd5 -->  ndi    new orbitals and new set index     0.41860765
+ np5 -->  npi    new orbitals and new set index     0.72269946
+ ns5 -->  nse    new orbitals and new set index     0.38849423
+ nd6 -->  ndj    new orbitals and new set index     0.21631790
+ np6 -->  npj    new orbitals and new set index     0.01392490
+
+------------------------------------------------------------------------
+
+ target     7    4s5s_1S             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5s4 -->  5sf    new orbitals and new set index     0.53030367
+ nd5 -->  ndk    new orbitals and new set index     0.54947031
+ np5 -->  npk    new orbitals and new set index     0.03332433
+ ns5 -->  nsg    new orbitals and new set index     0.43647855
+ nd6 -->  ndl    new orbitals and new set index     0.14747579
+ np6 -->  npl    new orbitals and new set index     0.73600176
+
+------------------------------------------------------------------------
+
+ target     8    3d4p_1D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1             excessive orbital
+ 7p1             excessive orbital
+ 7d1             excessive orbital
+ 7s2             excessive orbital
+ 7f1             excessive orbital
+ 8d1             excessive orbital
+ 8f1             excessive orbital
+ 5s1             excessive orbital
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 4p5 -->  4pm    new orbitals and new set index     0.33204567
+ nf3 -->  nfb    new orbitals and new set index     0.89924610
+ nd5 -->  ndm    new orbitals and new set index     0.91160931
+ np6 -->  npn    new orbitals and new set index     0.32718943
+ nf4 -->  nfc    new orbitals and new set index     0.98680555
+ nd6 -->  ndn    new orbitals and new set index     0.24447453
+
+------------------------------------------------------------------------
+
+ target     9    3d4p_3F             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ nf3 -->  nfd    new orbitals and new set index     0.89056135
+ 4p5 -->  4po    new orbitals and new set index     0.32133244
+ nf4 -->  nfe    new orbitals and new set index     0.67838297
+ nd5 -->  ndo    new orbitals and new set index     0.21478602
+ ng1 -->  ng5    new orbitals and new set index     0.72253386
+ nf5 -->  nff    new orbitals and new set index     0.74801547
+ np6 -->  npp    new orbitals and new set index     0.32940460
+ nf6 -->  nfg    new orbitals and new set index     0.97208399
+ nd6 -->  ndp    new orbitals and new set index     0.22007376
+ ng2 -->  ng6    new orbitals and new set index     0.28722805
+
+------------------------------------------------------------------------
+
+ target    10    4s5p_3P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5p5 -->  5pq    new orbitals and new set index     0.36071836
+ np6 -->  npr    new orbitals and new set index     0.25272306
+ nf3 -->  nfh    new orbitals and new set index     0.64661669
+ ns4 -->  nsh    new orbitals and new set index     0.44225267
+ nd5 -->  ndq    new orbitals and new set index     0.82831662
+ np7 -->  nps    new orbitals and new set index     0.44050327
+ np8 -->  npt    new orbitals and new set index     0.24184740
+ nf4 -->  nfi    new orbitals and new set index     0.86535594
+ ns5 -->  nsi    new orbitals and new set index     0.88743606
+ nd6 -->  ndr    new orbitals and new set index     0.43183953
+ 5pq -->  5p7    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    11    4s5p_1P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5p5 -->  5pu    new orbitals and new set index     0.44932498
+ np6 -->  npv    new orbitals and new set index     0.14974459
+ nf3 -->  nfj    new orbitals and new set index     0.94078286
+ ns4 -->  nsj    new orbitals and new set index     0.11873032
+ nd5 -->  nds    new orbitals and new set index     0.46796748
+ np7 -->  npw    new orbitals and new set index     0.41490522
+ np8 -->  npx    new orbitals and new set index     0.95168805
+ nf4 -->  nfk    new orbitals and new set index     0.92825076
+ ns5 -->  nsk    new orbitals and new set index     0.13785334
+ nd6 -->  ndt    new orbitals and new set index     0.81760266
+
+------------------------------------------------------------------------
+
+ target    12    3d4p_3D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1             excessive orbital
+ 7p1             excessive orbital
+ 7d1             excessive orbital
+ 7s2             excessive orbital
+ 7f1             excessive orbital
+ 8d1             excessive orbital
+ 8f1             excessive orbital
+ 5s1             excessive orbital
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 4p5 -->  4py    new orbitals and new set index     0.43135649
+ nf3 -->  nfl    new orbitals and new set index     0.98974691
+ nd5 -->  ndu    new orbitals and new set index     0.31594167
+ np6 -->  npz    new orbitals and new set index     0.24087448
+ nf4 -->  nfm    new orbitals and new set index     0.96913516
+ nd6 -->  ndv    new orbitals and new set index     0.31303075
+
+------------------------------------------------------------------------
+
+ target    13    4s4d_1D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 4d5 -->  4dw    new orbitals and new set index     0.36979134
+ ns4 -->  nsl    new orbitals and new set index     0.03833863
+ nd6 -->  ndx    new orbitals and new set index     0.14230366
+ ng1 -->  ng7    new orbitals and new set index     0.38818563
+ np5 -->  npA    new orbitals and new set index     0.32037019
+ nf3 -->  nfn    new orbitals and new set index     0.16557963
+ nd7 -->  ndy    new orbitals and new set index     0.67213087
+ ns5 -->  nsm    new orbitals and new set index     0.03572394
+ nd8 -->  ndz    new orbitals and new set index     0.78806645
+ ng2 -->  ng8    new orbitals and new set index     0.98548419
+ np6 -->  npB    new orbitals and new set index     0.56858897
+ nf4 -->  nfo    new orbitals and new set index     0.49261019
+ 4dw -->  4da    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    14    4s4d_3D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 4d5 -->  4dA    new orbitals and new set index     0.74529893
+ ns4 -->  nsn    new orbitals and new set index     0.00758170
+ nd6 -->  ndB    new orbitals and new set index     0.75423959
+ ng1 -->  ng9    new orbitals and new set index     0.96608764
+ np5 -->  npC    new orbitals and new set index     0.60966596
+ nf3 -->  nfp    new orbitals and new set index     0.54519281
+ nd7 -->  ndC    new orbitals and new set index     0.93476948
+ ns5 -->  nso    new orbitals and new set index     0.01440159
+ nd8 -->  ndD    new orbitals and new set index     0.21661433
+ ng2 -->  nga    new orbitals and new set index     0.94558478
+ np6 -->  npD    new orbitals and new set index     0.00677090
+ nf4 -->  nfq    new orbitals and new set index     0.43077550
+
+------------------------------------------------------------------------
+
+ target    15    4p2_3P              
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1             excessive orbital
+ 7p1             excessive orbital
+ 7d1             excessive orbital
+ 7s2             excessive orbital
+ 7f1             excessive orbital
+ 8d1             excessive orbital
+ 8f1             excessive orbital
+ 5s1             excessive orbital
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ nd5 -->  ndE    new orbitals and new set index     0.08085458
+ 4p5 -->  4pE    new orbitals and new set index     0.06700383
+ nd6 -->  ndF    new orbitals and new set index     0.71285597
+ np6 -->  npF    new orbitals and new set index     0.27165139
+
+------------------------------------------------------------------------
+
+ target    16    3d4p_3P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ np5 -->  npG    new orbitals and new set index     0.17647813
+ 4p6 -->  4pH    new orbitals and new set index     0.12660557
+ nf3 -->  nfr    new orbitals and new set index     0.94209035
+ ns4 -->  nsp    new orbitals and new set index     0.11919341
+ nd5 -->  ndG    new orbitals and new set index     0.79100178
+ np7 -->  npI    new orbitals and new set index     0.09561254
+ np8 -->  npJ    new orbitals and new set index     0.46083325
+ nf4 -->  nfs    new orbitals and new set index     0.97823610
+ ns5 -->  nsq    new orbitals and new set index     0.08382340
+ nd6 -->  ndH    new orbitals and new set index     0.02757411
+
+------------------------------------------------------------------------
+
+ target    17    3d4p_1F             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ nf3 -->  nft    new orbitals and new set index     0.61117278
+ 4p5 -->  4pK    new orbitals and new set index     0.37555997
+ nf4 -->  nfu    new orbitals and new set index     0.77247910
+ nd5 -->  ndI    new orbitals and new set index     0.04318383
+ ng1 -->  ngb    new orbitals and new set index     0.95589189
+ nf5 -->  nfv    new orbitals and new set index     0.99319179
+ np6 -->  npL    new orbitals and new set index     0.17550714
+ nf6 -->  nfw    new orbitals and new set index     0.98007807
+ nd6 -->  ndJ    new orbitals and new set index     0.00192627
+ ng2 -->  ngc    new orbitals and new set index     0.44221913
+
+------------------------------------------------------------------------
+
+ target    18    4s6s_3S             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 6s4 -->  6sr    new orbitals and new set index     0.07790433
+ nd5 -->  ndK    new orbitals and new set index     0.00770571
+ np5 -->  npM    new orbitals and new set index     0.02003149
+ ns5 -->  nss    new orbitals and new set index     0.61941483
+ nd6 -->  ndL    new orbitals and new set index     0.25159861
+ np6 -->  npN    new orbitals and new set index     0.26465909
+ 6sr -->  6sd    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    19    4s6s_1S             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 6s4 -->  6st    new orbitals and new set index     0.51392037
+ nd5 -->  ndM    new orbitals and new set index     0.10807329
+ np5 -->  npO    new orbitals and new set index     0.06351391
+ ns5 -->  nsu    new orbitals and new set index     0.32139189
+ nd6 -->  ndN    new orbitals and new set index     0.70930508
+ np6 -->  npP    new orbitals and new set index     0.54731940
+
+------------------------------------------------------------------------
+
+ target    20    4p2_1D              
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ nd5 -->  ndO    new orbitals and new set index     0.12443077
+ ns4 -->  nsv    new orbitals and new set index     0.72686327
+ 3d6 -->  3dP    new orbitals and new set index     0.24015078
+ ng1 -->  ngd    new orbitals and new set index     0.09002844
+ np5 -->  npQ    new orbitals and new set index     0.32435365
+ nf3 -->  nfx    new orbitals and new set index     0.88907521
+ nd7 -->  ndQ    new orbitals and new set index     0.78872378
+ ns5 -->  nsw    new orbitals and new set index     0.12004525
+ nd8 -->  ndR    new orbitals and new set index     0.97145762
+ ng2 -->  nge    new orbitals and new set index     0.19975120
+ np6 -->  npR    new orbitals and new set index     0.31125926
+ nf4 -->  nfy    new orbitals and new set index     0.78702632
+
+------------------------------------------------------------------------
+
+ target    21    4s6p_1P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 6p5 -->  6pS    new orbitals and new set index     0.29802704
+ np6 -->  npT    new orbitals and new set index     0.20747682
+ nf3 -->  nfz    new orbitals and new set index     0.89667075
+ ns4 -->  nsx    new orbitals and new set index     0.00839086
+ nd5 -->  ndS    new orbitals and new set index     0.65222532
+ np7 -->  npU    new orbitals and new set index     0.57022505
+ np8 -->  npV    new orbitals and new set index     0.32590079
+ nf4 -->  nfA    new orbitals and new set index     0.96408334
+ ns5 -->  nsy    new orbitals and new set index     0.01952525
+ nd6 -->  ndT    new orbitals and new set index     0.04161697
+ 6pS -->  6p7    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    22    4p2_1S              
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ ns4 -->  nsz    new orbitals and new set index     0.24488700
+ 3d5 -->  3dU    new orbitals and new set index     0.00644352
+ np5 -->  npW    new orbitals and new set index     0.06107670
+ ns5 -->  nsA    new orbitals and new set index     0.14790985
+ nd6 -->  ndV    new orbitals and new set index     0.72447182
+ np6 -->  npX    new orbitals and new set index     0.27329854
+
+------------------------------------------------------------------------
+
+ target    23    4s4f_3F             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 4f3 -->  4fB    new orbitals and new set index     0.16939102
+ np5 -->  npY    new orbitals and new set index     0.45271962
+ nf4 -->  nfC    new orbitals and new set index     0.83377504
+ nd5 -->  ndW    new orbitals and new set index     0.35930772
+ ng1 -->  ngf    new orbitals and new set index     0.51075670
+ nf5 -->  nfD    new orbitals and new set index     0.90252641
+ np6 -->  npZ    new orbitals and new set index     0.62766922
+ nf6 -->  nfE    new orbitals and new set index     0.93044339
+ nd6 -->  ndX    new orbitals and new set index     0.56789830
+ ng2 -->  ngg    new orbitals and new set index     0.19784185
+
+------------------------------------------------------------------------
+
+ target    24    4s4f_1F             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5f3 -->  5fF    new orbitals and new set index     0.71653586
+ np5 --> np11    new orbitals and new set index     0.47576689
+ nf4 -->  nfG    new orbitals and new set index     0.51717813
+ nd5 -->  ndY    new orbitals and new set index     0.49117426
+ ng1 -->  ngh    new orbitals and new set index     0.22592659
+ nf5 -->  nfH    new orbitals and new set index     0.03393236
+ np6 --> np12    new orbitals and new set index     0.26819619
+ nf6 -->  nfI    new orbitals and new set index     0.34838494
+ nd6 -->  ndZ    new orbitals and new set index     0.29857227
+ ng2 -->  ngi    new orbitals and new set index     0.53865983
+
+------------------------------------------------------------------------
+
+ target    25    4s6p_3P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 6p5 --> 6p13    new orbitals and new set index     0.18543385
+ np6 --> np14    new orbitals and new set index     0.09330538
+ nf3 -->  nfJ    new orbitals and new set index     0.85388266
+ ns4 -->  nsB    new orbitals and new set index     0.34753355
+ nd5 --> nd11    new orbitals and new set index     0.53165045
+ np7 --> np15    new orbitals and new set index     0.56595447
+ np8 --> np16    new orbitals and new set index     0.75501946
+ nf4 -->  nfK    new orbitals and new set index     0.99007751
+ ns5 -->  nsC    new orbitals and new set index     0.51416015
+ nd6 --> nd12    new orbitals and new set index     0.48246447
+
+------------------------------------------------------------------------
+
+ target    26    4s5d_3D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5d5 --> 5d13    new orbitals and new set index     0.28665262
+ ns4 -->  nsD    new orbitals and new set index     0.21739853
+ nd6 --> nd14    new orbitals and new set index     0.38576903
+ ng1 -->  ngj    new orbitals and new set index     0.34510126
+ np5 --> np17    new orbitals and new set index     0.93271907
+ nf3 -->  nfL    new orbitals and new set index     0.22809130
+ nd7 --> nd15    new orbitals and new set index     0.90354180
+ ns5 -->  nsE    new orbitals and new set index     0.24525755
+ nd8 --> nd16    new orbitals and new set index     0.22579784
+ ng2 -->  ngk    new orbitals and new set index     0.82831878
+ np6 --> np18    new orbitals and new set index     0.07396172
+ nf4 -->  nfM    new orbitals and new set index     0.53912059
+5d13 -->  5da    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    27    4s5d_1D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5d5 --> 5d17    new orbitals and new set index     0.34279118
+ ns4 -->  nsF    new orbitals and new set index     0.25055627
+ nd6 --> nd18    new orbitals and new set index     0.24578506
+ ng1 -->  ngl    new orbitals and new set index     0.91908346
+ np5 --> np19    new orbitals and new set index     0.08005131
+ nf3 -->  nfN    new orbitals and new set index     0.60417761
+ nd7 --> nd19    new orbitals and new set index     0.63617285
+ ns5 -->  nsG    new orbitals and new set index     0.15191350
+ nd8 --> nd1a    new orbitals and new set index     0.95464009
+ ng2 -->  ngm    new orbitals and new set index     0.89374610
+ np6 --> np1a    new orbitals and new set index     0.13223415
+ nf4 -->  nfO    new orbitals and new set index     0.51079977
+
+------------------------------------------------------------------------
+
+ target    28    3d2_3F              
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1             excessive orbital
+ 7p1             excessive orbital
+ 7d1             excessive orbital
+ 7s2             excessive orbital
+ 7f1             excessive orbital
+ 8d1             excessive orbital
+ 8f1             excessive orbital
+ 5s1             excessive orbital
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 3d5 --> 3d1b    new orbitals and new set index     0.66719862
+ ng1 -->  ngn    new orbitals and new set index     0.57452727
+ nf3 -->  nfP    new orbitals and new set index     0.94839806
+ nd6 --> nd1c    new orbitals and new set index     0.59559605
+ ng2 -->  ngo    new orbitals and new set index     0.92863220
+ nf4 -->  nfQ    new orbitals and new set index     0.53571578
+
+------------------------------------------------------------------------
+
+ target    29    3d4p_1P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 6p5 --> 6p1b    new orbitals and new set index     0.08799771
+ np6 --> np1c    new orbitals and new set index     0.02418939
+ nf3 -->  nfR    new orbitals and new set index     0.52153083
+ ns4 -->  nsH    new orbitals and new set index     0.01258055
+ nd5 --> nd1d    new orbitals and new set index     0.34864491
+ np7 --> np1d    new orbitals and new set index     0.67129532
+ np8 --> np1e    new orbitals and new set index     0.07687761
+ nf4 -->  nfS    new orbitals and new set index     0.97004511
+ ns5 -->  nsI    new orbitals and new set index     0.26490278
+ nd6 --> nd1e    new orbitals and new set index     0.38410683
+
+------------------------------------------------------------------------
+
+ target    30    4s7s_3S             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 7s4 -->  7sJ    new orbitals and new set index     0.23875733
+ nd5 --> nd1f    new orbitals and new set index     0.11813872
+ np5 --> np1f    new orbitals and new set index     0.07013789
+ ns5 -->  nsK    new orbitals and new set index     0.34572637
+ nd6 --> nd1g    new orbitals and new set index     0.22061810
+ np6 --> np1g    new orbitals and new set index     0.26645595
+ 7sJ -->  7sd    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    31    4s7s_1S             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 7s4 -->  7sL    new orbitals and new set index     0.25108091
+ nd5 --> nd1h    new orbitals and new set index     0.01507483
+ np5 --> np1h    new orbitals and new set index     0.19173790
+ ns5 -->  nsM    new orbitals and new set index     0.21867919
+ nd6 --> nd1i    new orbitals and new set index     0.67624687
+ np6 --> np1i    new orbitals and new set index     0.20116834
+
+------------------------------------------------------------------------
+
+ target    32    4s5f_3F             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5f3 -->  5fT    new orbitals and new set index     0.12469019
+ np5 --> np1j    new orbitals and new set index     0.34005501
+ nf4 -->  nfU    new orbitals and new set index     0.50969774
+ nd5 --> nd1j    new orbitals and new set index     0.45415502
+ ng1 -->  ngp    new orbitals and new set index     0.55561875
+ nf5 -->  nfV    new orbitals and new set index     0.92451240
+ np6 --> np1k    new orbitals and new set index     0.71080297
+ nf6 -->  nfW    new orbitals and new set index     0.95012854
+ nd6 --> nd1k    new orbitals and new set index     0.43214440
+ ng2 -->  ngq    new orbitals and new set index     0.41061377
+ 5fT -->  5fB    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    33    4s5f_1F             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 5f3 -->  5fX    new orbitals and new set index     0.48456086
+ np5 --> np1l    new orbitals and new set index     0.60378369
+ nf4 -->  nfY    new orbitals and new set index     0.39754791
+ nd5 --> nd1l    new orbitals and new set index     0.37709714
+ ng1 -->  ngr    new orbitals and new set index     0.42693481
+ nf5 -->  nfZ    new orbitals and new set index     0.90805213
+ np6 --> np1m    new orbitals and new set index     0.10544344
+ nf6 --> nf11    new orbitals and new set index     0.71944100
+ nd6 --> nd1m    new orbitals and new set index     0.25472564
+ ng2 -->  ngs    new orbitals and new set index     0.08042545
+
+------------------------------------------------------------------------
+
+ target    34    4s7p_3P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 7p5 --> 7p1n    new orbitals and new set index     0.14232961
+ np6 --> np1o    new orbitals and new set index     0.04946876
+ nf3 --> nf12    new orbitals and new set index     0.68273253
+ ns4 -->  nsN    new orbitals and new set index     0.32439862
+ nd5 --> nd1n    new orbitals and new set index     0.49737261
+ np7 --> np1p    new orbitals and new set index     0.61915063
+ np8 --> np1q    new orbitals and new set index     0.38660941
+ nf4 --> nf13    new orbitals and new set index     0.97434071
+ ns5 -->  nsO    new orbitals and new set index     0.48366432
+ nd6 --> nd1o    new orbitals and new set index     0.15772728
+7p1n -->  7p7    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    35    4s6d_1D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 6d5 --> 6d1p    new orbitals and new set index     0.19678733
+ ns4 -->  nsP    new orbitals and new set index     0.33957673
+ nd6 --> nd1q    new orbitals and new set index     0.12255878
+ ng1 -->  ngt    new orbitals and new set index     0.05793575
+ np5 --> np1r    new orbitals and new set index     0.06385210
+ nf3 --> nf14    new orbitals and new set index     0.14288169
+ nd7 --> nd1r    new orbitals and new set index     0.69467110
+ ns5 -->  nsQ    new orbitals and new set index     0.28209899
+ nd8 --> nd1s    new orbitals and new set index     0.90112016
+ ng2 -->  ngu    new orbitals and new set index     0.58811348
+ np6 --> np1s    new orbitals and new set index     0.10532783
+ nf4 --> nf15    new orbitals and new set index     0.45228756
+6d1p -->  6da    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    36    4s6d_3D             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 6d5 --> 6d1t    new orbitals and new set index     0.40216163
+ ns4 -->  nsR    new orbitals and new set index     0.29076986
+ nd6 --> nd1u    new orbitals and new set index     0.19138237
+ ng1 -->  ngv    new orbitals and new set index     0.05753505
+ np5 --> np1t    new orbitals and new set index     0.83981791
+ nf3 --> nf16    new orbitals and new set index     0.64380097
+ nd7 --> nd1v    new orbitals and new set index     0.80361952
+ ns5 -->  nsS    new orbitals and new set index     0.42163077
+ nd8 --> nd1w    new orbitals and new set index     0.22437804
+ ng2 -->  ngw    new orbitals and new set index     0.48540919
+ np6 --> np1u    new orbitals and new set index     0.17209867
+ nf4 --> nf17    new orbitals and new set index     0.63552638
+
+------------------------------------------------------------------------
+
+ target    37    4s7p_1P             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 7p5 --> 7p1v    new orbitals and new set index     0.18368985
+ np6 --> np1w    new orbitals and new set index     0.05733213
+ nf3 --> nf18    new orbitals and new set index     0.98925376
+ ns4 -->  nsT    new orbitals and new set index     0.16670047
+ nd5 --> nd1x    new orbitals and new set index     0.57316000
+ np7 --> np1x    new orbitals and new set index     0.72676764
+ np8 --> np1y    new orbitals and new set index     0.42045412
+ nf4 --> nf19    new orbitals and new set index     0.97355971
+ ns5 -->  nsU    new orbitals and new set index     0.21742323
+ nd6 --> nd1y    new orbitals and new set index     0.60860030
+
+------------------------------------------------------------------------
+
+ target    38    4s8s_3S             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 8s4 -->  8sV    new orbitals and new set index     0.17212785
+ nd5 --> nd1z    new orbitals and new set index     0.11069772
+ np5 --> np1z    new orbitals and new set index     0.15937257
+ ns5 -->  nsW    new orbitals and new set index     0.24397097
+ nd6 --> nd1A    new orbitals and new set index     0.18170911
+ np6 --> np1A    new orbitals and new set index     0.25022327
+ 8sV -->  8sd    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target    39    4s8s_1S             
+
+  1s -->   1s    the same
+  2s -->   2s    the same
+  2p -->   2p    the same
+  3s -->   3s    the same
+ 3p1 -->  3p1    the same
+ 4s1 -->  4s1    the same
+ 7p1 -->  7p1    the same
+ 7d1 -->  7d1    the same
+ 7s2 -->  7s2    the same
+ 7f1 -->  7f1    the same
+ 8d1 -->  8d1    the same
+ 8f1 -->  8f1    the same
+ 5s1 -->  5s1    the same
+ 3d2 -->  3d2    the same
+ 7p2 -->  7p2    the same
+ 7d3 -->  7d3    the same
+ 7f2 -->  7f2    the same
+ 8d3 -->  8d3    the same
+ 4d2 -->  4d2    the same
+ 4p3 -->  4p3    the same
+ 7d4 -->  7d4    the same
+ 8d4 -->  8d4    the same
+ 7s3 -->  7s3    the same
+ 7p4 -->  7p4    the same
+ 5p3 -->  5p3    the same
+ 8s4 -->  8sX    new orbitals and new set index     0.18894906
+ nd5 --> nd1B    new orbitals and new set index     0.03067250
+ np5 --> np1B    new orbitals and new set index     0.21583160
+ ns5 -->  nsY    new orbitals and new set index     0.17024282
+ nd6 --> nd1C    new orbitals and new set index     0.60100928
+ np6 --> np1C    new orbitals and new set index     0.56804886
+
+------------------------------------------------------------------------
+
+
+ target orbitals, nbf =   385
+
+   1s   2s   2p   3s  3p1  4s1  7p1  7d1  7s2  7f1  8d1  8f1  5s1  3d2
+  7p2  7d3  7f2  8d3  4d2  4p3  7d4  8d4  7s3  7p4  5p3  4s4  nd5  np5
+  ns5  nd6  np6  4p7  np8  nf3  ns6  nd7  np9  npa  nf4  ns1  nd2  4pb
+  npc  nf5  ns7  nd8  npd  npe  nf6  ns8  nd9  3da  ns9  ndb  ng1  npf
+  nf7  ndc  nsa  ndd  ng2  np3  nf8  3de  nsb  ndf  ng3  npg  nf9  ndg
+  nsc  ndh  ng4  nph  nfa  5sd  ndi  npi  nse  ndj  npj  5sf  ndk  npk
+  nsg  ndl  npl  4pm  nfb  ndm  npn  nfc  ndn  nfd  4po  nfe  ndo  ng5
+  nff  npp  nfg  ndp  ng6  5pq  npr  nfh  nsh  ndq  nps  npt  nfi  nsi
+  ndr  5p7  5pu  npv  nfj  nsj  nds  npw  npx  nfk  nsk  ndt  4py  nfl
+  ndu  npz  nfm  ndv  4dw  nsl  ndx  ng7  npA  nfn  ndy  nsm  ndz  ng8
+  npB  nfo  4da  4dA  nsn  ndB  ng9  npC  nfp  ndC  nso  ndD  nga  npD
+  nfq  ndE  4pE  ndF  npF  npG  4pH  nfr  nsp  ndG  npI  npJ  nfs  nsq
+  ndH  nft  4pK  nfu  ndI  ngb  nfv  npL  nfw  ndJ  ngc  6sr  ndK  npM
+  nss  ndL  npN  6sd  6st  ndM  npO  nsu  ndN  npP  ndO  nsv  3dP  ngd
+  npQ  nfx  ndQ  nsw  ndR  nge  npR  nfy  6pS  npT  nfz  nsx  ndS  npU
+  npV  nfA  nsy  ndT  6p7  nsz  3dU  npW  nsA  ndV  npX  4fB  npY  nfC
+  ndW  ngf  nfD  npZ  nfE  ndX  ngg  5fF np11  nfG  ndY  ngh  nfH np12
+  nfI  ndZ  ngi 6p13 np14  nfJ  nsB nd11 np15 np16  nfK  nsC nd12 5d13
+  nsD nd14  ngj np17  nfL nd15  nsE nd16  ngk np18  nfM  5da 5d17  nsF
+ nd18  ngl np19  nfN nd19  nsG nd1a  ngm np1a  nfO 3d1b  ngn  nfP nd1c
+  ngo  nfQ 6p1b np1c  nfR  nsH nd1d np1d np1e  nfS  nsI nd1e  7sJ nd1f
+ np1f  nsK nd1g np1g  7sd  7sL nd1h np1h  nsM nd1i np1i  5fT np1j  nfU
+ nd1j  ngp  nfV np1k  nfW nd1k  ngq  5fB  5fX np1l  nfY nd1l  ngr  nfZ
+ np1m nf11 nd1m  ngs 7p1n np1o nf12  nsN nd1n np1p np1q nf13  nsO nd1o
+  7p7 6d1p  nsP nd1q  ngt np1r nf14 nd1r  nsQ nd1s  ngu np1s nf15  6da
+ 6d1t  nsR nd1u  ngv np1t nf16 nd1v  nsS nd1w  ngw np1u nf17 7p1v np1w
+ nf18  nsT nd1x np1x np1y nf19  nsU nd1y  8sV nd1z np1z  nsW nd1A np1A
+  8sd  8sX nd1B np1B  nsY nd1C np1C
+
+------------------------------------------------------------------------
+
+
+ substitution orbitals for target states: nsub =    20
+
+   1s   2s   2p   3s  3p1  4s1  4p7  3da  5sd  5p7  4da  6sd  6p7  4fB                                                                                                                                  
+  5da  7sd  5fB  7p7  6da  8sd                                                                                                                                                                          
+
+ all substitution orbitals are orthogonal
+
+
+------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------
+

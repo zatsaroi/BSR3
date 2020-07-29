@@ -115,10 +115,10 @@
       Implicit none
       Real(8) :: t1,t2,AWT
       Integer :: i,j,n,l,k
-      Real(8), external :: RRTC,DJ_fact,DJM_fact
+      Real(8), external :: DJ_fact,DJM_fact
       Integer, external :: Jfind_bsorb, IBORT
 
-      t1 = RRTC()
+      Call CPU_time(t1)
 
       Call inf_bsr_dmat
 
@@ -380,7 +380,7 @@
        Case default;            Call DD_out
       End Select
 
-      t2 = RRTC()
+      Call CPU_time(t2)
       write(pri,'(/a,f10.2,a)') 'BSR_DMAT:',(t2-t1)/60,' min '
       write(*  ,'( a,f10.2,a)') 'BSR_DMAT:',(t2-t1)/60,' min '
 

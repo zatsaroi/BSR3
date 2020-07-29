@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH -J bsr_conf
+#SBATCH -o bsr_conf.out
+#SBATCH -e bsr_conf.err
+#SBATCH -n 4
+#SBATCH -N 1
+#SBATCH --ntasks-per-node 4
+#SBATCH -p development
+#SBATCH -t 02:00:00
+#SBATCH -A TG-PHY090031
+
+  set echo
+
+  ibrun ~/BIN/bsr_conf3_mpi  
+
+

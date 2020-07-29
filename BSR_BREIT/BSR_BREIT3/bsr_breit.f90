@@ -61,7 +61,6 @@
       Implicit none 
       Integer :: klsp, i, ntotc, system
       Real(8) :: time, t1,t2,tt, adet,adef
-      Real(8), external :: RRTC
 
       Character(80) :: AS,BS
 
@@ -86,7 +85,7 @@
        write(pri,'(80(''-''))') 
        write(pri,'(/a,i5/)') ' Partial wave: ',klsp
        if(klsp.gt.0) write(*,'(/a,i5/)') ' Partial wave: ',klsp
-       t1 = RRTC()
+       Call CPU_time(t1)
 
 ! ... open relevant files: 
 
@@ -176,7 +175,7 @@
 
 ! ... time for one partial wave:
 
-       t2=RRTC(); tt=(t2-t1)/60
+       Call CPU_time(t2); tt=(t2-t1)/60
        write(pri,'(/a,F12.2,a)') ' Partial wave:',tt,' min'
        write(*,  '( a,F12.2,a)') ' Partial wave:',tt,' min'
        time = time + tt

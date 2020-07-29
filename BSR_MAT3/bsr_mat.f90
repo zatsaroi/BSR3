@@ -34,7 +34,6 @@
       Implicit none
       Real(8) :: t1,t2,t3
       Integer :: i
-      Real(8), external :: RRTC
 
       Call bsr_mat_inf
       Open(prj,file=AF_prj)       
@@ -76,7 +75,7 @@
       write(prj,'(/a,F15.8,a)') 'Ecore   =', EC, &
        '  -  Used core energy'
 
-      t1 = RRTC()
+      Call CPU_time(t1)
 !----------------------------------------------------------------------
 ! ... loop over partial waves:
 
@@ -84,14 +83,14 @@
  
        write(*,'(/a,i3/)') 'BSR_MAT3:  klsp =', klsp
 
-       t2=RRTC();  Call SUB1;  t3=RRTC()
+       Call CPU_time(t2);  Call SUB1;  Call CPU_time(t3)
 
        write(pri,'(/a,5x,f8.2,a)') 'Total time:', (t3-t2)/60, ' min'
        write(*  ,'( a,5x,f8.2,a)') 'Total time:', (t3-t2)/60, ' min'
 
       End do  ! over klsp
 
-      t2 = RRTC()
+      Call CPU_time(t2)
       write(prj,'(/a,f10.2,a)') 'bsr_mat3:  ',(t2-t1)/60,'  min'
 
       End  ! program bsr_mat

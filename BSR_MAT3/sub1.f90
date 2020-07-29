@@ -20,7 +20,6 @@
       Real(8) :: C,t3,t4
       Integer :: i,j,k,l,ich,jch, ij, i1,i2
       Character(100) :: line
-      Real(8), external :: RRTC
 
 !-----------------------------------------------------------------------
 ! ... read configuration expansion and orbitals information: 
@@ -66,7 +65,7 @@
 
 !-----------------------------------------------------------------------
 !                                                        overlap matrix:
-      t3 = RRTC()
+      Call CPU_time(t3)
 
 ! ... B-spline overlaps:
 
@@ -110,7 +109,7 @@
 
       Call Record_matrix(nui)  
 
-      t4 = RRTC()
+      Call CPU_time(t4)
       write(pri,'(/a,f10.2,a)') 'Overlaps:     ',(t4-t3)/60,' min '
       write(  *,'( a,f10.2,a)') 'Overlaps:     ',(t4-t3)/60,' min '
 
@@ -123,7 +122,7 @@
       if(kcp.gt.0) then;  hcb = hcb * EC; hbb = hbb * EC;  end if
 !----------------------------------------------------------------------
 !                                                          L-integrals:
-      t3 = RRTC()
+      Call CPU_time(t3)
 
       Call Gen_Lval
 
@@ -131,7 +130,7 @@
 
       Call Alloc_Lcore(0,0,0)
 
-      t4 = RRTC()
+      Call CPU_time(t4)
       write(pri,'(/a,f10.2,a)') 'L-integrals:  ',(t4-t3)/60,' min '
       write(*,'(a,f10.2,a)') 'L-integrals:  ',(t4-t3)/60,' min '
 
@@ -140,13 +139,13 @@
 !                                                          Z-integrals:
       if(mso.gt.0) then    
 
-       t3 = RRTC()
+       Call CPU_time(t3)
 
        Call Gen_Zval;  icase=7;  Call State_res   
 
        Call Alloc_zcore(0,0,0)
 
-       t4 = RRTC()
+       Call CPU_time(t4)
        
        write(*,'(a,f10.2,a)') 'Z-integrals:  ',(t4-t3)/60,' min '
 
@@ -165,7 +164,7 @@
         case(3,4); if(moo.eq.-1.or.(mrel.lt.5.and.moo.ne.1)) Cycle
        End Select
 
-        t3 = RRTC();   Call State_res;    t4 = RRTC()
+        Call CPU_time(t3);   Call State_res;   Call CPU_time(t4)
 
         write(pri,'(/a,a,f10.2,a)') Aint(icase),'-integrals:  ',&
                                       (t4-t3)/60,' min '
@@ -193,7 +192,7 @@
 
 ! ... orthogonal conditions:
 
-      t3 = RRTC();   Call BS_ORTH;  t4 = RRTC()
+      Call CPU_time(t3);   Call BS_ORTH;  Call CPU_time(t4)
 
       write(pri,'(/a,4x,f10.2,a)') 'BS_ORTH:  ',(t4-t3)/60,' min '
       write(*  ,'( a,4x,f10.2,a)') 'BS_ORTH:  ',(t4-t3)/60,' min '

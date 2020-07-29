@@ -18,7 +18,7 @@
       Integer :: k1,k2, it,jt, i,m,k, is,js,ic,jc, itype
       Real(8) :: C_ee,C_so,C_ss, zero=0.d0, one=1.d0, tt1, tt2, tt3, tt4, tt5  
       Integer, external :: IDEF_cme
-      Real(8), external :: RRTC, Z_3j
+      Real(8), external :: Z_3j
       Integer(8) :: ij
       Integer(8), external :: DEF_ij8
       Character(80) :: conf, confi, confj, AF

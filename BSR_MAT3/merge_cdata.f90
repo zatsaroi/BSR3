@@ -16,9 +16,8 @@
       Integer :: i,ii, j,jj, m,mm, nn,nc
       Integer :: ip(nn),jp(nn)
       Real(8) :: eps_cc, t1,t2
-      Real(8), external :: RRTC
 
-      t1 = RRTC()
+      Call CPU_time(t1)
       nc = 0
 
 ! ... choose the non-empty block
@@ -85,7 +84,7 @@
          if(IP(m).gt.0) then; mm=m; go to 1; end if
         End do
        end if
-       t2 = RRTC(); Tmerge = Tmerge + (t2-t1)
+       Call CPU_time(t2); Tmerge = Tmerge + (t2-t1)
        if(debug.gt.1) &
        write(pri,'(a,2i9,f10.1)') 'merge data:', nn,nc,(t2-t1)/60
 

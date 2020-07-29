@@ -1,0 +1,25 @@
+klsp = 2
+
+elow  =  0.001
+estep =  0.001
+ehigh =  1.000
+
+awt   = 12.0
+ibug  = 0
+AC    = 0.01
+iauto = 1
+mfgi  = 300
+nwt = -1
+DR  = 0.1
+
+
+
+------------------------------------------------------------
+!
+!  Elow, Estep, Ehigh - define photion energy in rydberg
+!
+!  AWT  - atomic weight
+!
+!  AC   - accuracy parameter for AFACE
+!
+------------------------------------------------------------

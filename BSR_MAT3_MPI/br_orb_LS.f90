@@ -32,7 +32,7 @@
 !       Allocate(IORT(mwf,mwf))
 !      end if
 !      Call MPI_BCAST(IORT,mwf*mwf,MPI_INTEGER,0,MPI_COMM_WORLD,ierr)
-      if(allocated(IORT)) Deallocate(IORT)
+!      if(allocated(IORT)) Deallocate(IORT)
 
       End Subroutine br_orb_LS
 

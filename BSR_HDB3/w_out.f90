@@ -41,7 +41,7 @@
       Integer, allocatable :: iprm(:)
       Integer, external :: Icheck_file
 
-      Call Get_t0
+      Call CPU_time(t0)
 
 ! ... local allocations:
 
@@ -175,7 +175,11 @@
 
       end if ! over cwt
 
-      Call Get_t1('W_out')
+      if(io_processor) then           
+       Call CPU_time(t1)
+       write (pri,'(/a,T30,f10.2,a)') 'W_out:,', (t1-t0)/60, ' min.'
+       write (*  ,'(/a,T30,f10.2,a)') 'W_out:,', (t1-t0)/60, ' min.'
+      end if
 
       End Subroutine W_OUT
 

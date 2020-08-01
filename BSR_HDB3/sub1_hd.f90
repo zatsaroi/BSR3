@@ -21,7 +21,13 @@
 
 ! ... check and print main parameters and file:
 
-      if(io_processor) Call pri_mainpar
+      if(io_processor) then
+       Call pri_mainpar
+      elseif(debug.gt.0) then
+       pri = 100+myrow*10+mycol
+       write(AF,'(a,i3.3,a,i3.3)') 'debug ',myrow,'_',mycol
+       Open(pri,file=AF)
+      end if
 
       Call br_ipar(fail); if(fail.ne.0) Return
 
@@ -43,23 +49,18 @@
       if(itype.ge.0.and.io_processor) then
 
        ! read max. mutipole order and asymptotic coef.s:
-
        read(nui) lamax
-
        if(allocated(CF)) Deallocate(CF)
        Allocate (CF(kch,kch,lamax+1))
        read(nui) CF
        read(nui) RA     !  RM radius:
 
-       if(itype.ge.0)  then
-         if(iiexp.eq.0) Call H_out
-         if(iiexp.ne.0) Call H_out1
-       end if
+       if(iiexp.eq.0) Call H_out
+       if(iiexp.ne.0) Call H_out1
 
       end if
 
       Call BLACS_BARRIER (ctxt, 'all')
-
 
 !----------------------------------------------------------------------
 ! ... output of bound states in bound.nnn:

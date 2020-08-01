@@ -117,7 +117,7 @@
         write(nud) IS_det
         write(nud) Msym(1:ne)
         write(nud) Lsym(1:ne)
-        write(*,*) 'i_case, kt,kdt',ic_case,kt,kdt
+!        write(*,*) 'i_case, kt,kdt',ic_case,kt,kdt
        else
         Do k = 1,kt,ktm 
          kk = k+ktm-1; if(kk.gt.kt) kk=kt

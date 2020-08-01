@@ -48,10 +48,12 @@
 
       Use blacs
       Use bsr_hd
+      Use spline_param, only: ns,ks
      
       Implicit none
       Integer :: err
       Integer, external :: Icheck_file
+      Real(8) :: tt1,tt2
 
 !----------------------------------------------------------------------
 ! ... define the blacs grid:
@@ -89,9 +91,9 @@
       fail=Icheck_file(AF_par) 
       if(fail.eq.0) then
        write(*,'(a)') 'Can not find file bsr_par, defaults are used'
-       Call R_arg(0)
+       Call Read_arg(0)
       else
-       Open(nup,file=AF_par); Call R_arg(nup);  Close(nup)    
+       Open(nup,file=AF_par); Call Read_arg(nup);  Close(nup)    
       end if
 
       end if ! io_processor
@@ -112,17 +114,16 @@
 
         fail = 0
         Call BLACS_BARRIER (ctxt, 'All')
-        call cpu_time (t0)
+        call cpu_time (tt1)
 
          Call SUB1_HD
 
         Call BLACS_BARRIER (ctxt, 'All')
-        call cpu_time (t1)
 
-        if(io_processor) then
-         ctime = (t1-t0)/60
-         write (pri,'(/a,f10.2,a)') 'CPU time     = ', ctime, ' min.'
-         write (*  ,'(/a,f10.2,a)') 'CPU time     = ', ctime, ' min.'
+        if(io_processor) then           
+         Call CPU_time(tt2)
+         write (pri,'(/a,T30,f10.2,a)') 'Partial wave:,', (tt2-tt1)/60, ' min.'
+         write (*  ,'(/a,T30,f10.2,a)') 'Partial wave:,', (tt2-tt1)/60, ' min.'
         end if
 
        End do     

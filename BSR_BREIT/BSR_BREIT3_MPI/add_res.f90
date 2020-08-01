@@ -3,14 +3,13 @@
 !======================================================================
 !     records results from 'coef_list' to unit 'nu'
 !----------------------------------------------------------------------
-
       USE bsr_breit
       USE coef_list
       USE term_exp,  ONLY: jt1,jt2, JP_kt1,JP_kt2
       USE ndef_list, ONLY: IPF
 
       Implicit none
-      Integer, Intent(in) :: nu
+      Integer, intent(in) :: nu
       Integer :: i,j, it,jt, is,js, k,k1,k2, nd, iihm(ktrm)
 
       if(ncoef.le.0) Return 
@@ -43,6 +42,7 @@
        Do i = 1,ktrm 
         if(abs(coef(i,j)).lt.Eps_C) Cycle
         write(nu) coef(i,j),iihm(i),intc(j),idfc(j)
+        nc_new = nc_new + 1
        End do
       End do
 

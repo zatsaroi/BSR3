@@ -13,7 +13,7 @@
       Integer :: i,j,k,ich,it,NCHAN,LRANG2,NAST,LRGL,NSPN,NPTY,MNP2,MORE
       Real(8) :: BSTO
 
-      Call Get_t0
+      Call CPU_time(t0)
 
       i = INDEX(AF_h,'.'); AF = AF_h(1:i)//ALSP
       Open(nuh,file=AF,form='UNFORMATTED')
@@ -78,7 +78,9 @@
 
       Close(nuh)
 
-      Call Get_t1('H_out')
+      Call CPU_time(t1)
+      write (pri,'(/a,T30,f10.2,a)') 'H_out:,', (t1-t0)/60, ' min.'
+      write (*  ,'(/a,T30,f10.2,a)') 'H_out:,', (t1-t0)/60, ' min.'
 
       End Subroutine H_OUT
 
@@ -98,7 +100,7 @@
       Integer :: i,j,k,ich,it,NCHAN,LRANG2,NAST,LRGL,NSPN,NPTY,MNP2,MORE
       Real(8) :: BSTO
 
-      Call Get_t0
+      Call CPU_time(t0)
 
       i = INDEX(AF_h,'.'); AF = AF_h(1:i)//ALSP
       Open(nuh,file=AF,form='UNFORMATTED')
@@ -178,7 +180,9 @@
 
       Close(nuh)
 
-      Call Get_t1('H_out1')
+      Call CPU_time(t1)
+      write (pri,'(/a,T30,f10.2,a)') 'H1_out:,', (t1-t0)/60, ' min.'
+      write (*  ,'(/a,T30,f10.2,a)') 'H1_out:,', (t1-t0)/60, ' min.'
 
       End Subroutine H_OUT1
 

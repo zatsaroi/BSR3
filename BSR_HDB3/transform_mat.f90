@@ -11,15 +11,15 @@
       Real(8) :: S
       Integer :: i,j, i1,i2,j1,j2, ic,jc, ii,jj, idim,jdim, ich, info
 
-      Call Get_t0
+      Call CPU_time(t0)
 
 !--------------------------------------------------------------------------
 ! ... initialize array descriptor for the interaction matrices:
 ! ... np, nq are matrix size on current processor from modul bsr_hd
 
-      call descinit(desca,khm,khm,nblock,nblock,rsrc,csrc,ctxt,ld,info)
-      call p_error(info,'desca descriptor error in transform_mat')
-      allocate (a(np,nq));  a=zero
+      Call descinit(desca,khm,khm,nblock,nblock,rsrc,csrc,ctxt,ld,info)
+      Call p_error(info,'desca descriptor error in transform_mat')
+      if(allocated(a)) deallocate(a); allocate (a(np,nq));  a=zero
 
       Do ich = 1,kch
        i1=ipsol(ich-1)+1; idim=ipsol(ich)-ipsol(ich-1)
@@ -92,6 +92,10 @@
                                        zero,  a, i,i, desca  )
       end if
 
-      Call Get_t1('transform_mat')
+      if(io_processor) then           
+       Call CPU_time(t1)
+       write (pri,'(/a,T30,f10.2,a)') 'Transform_mat:,', (t1-t0)/60, ' min.'
+       write (*  ,'(/a,T30,f10.2,a)') 'Transform_mat:,', (t1-t0)/60, ' min.'
+      end if
 
       End Subroutine transform_mat

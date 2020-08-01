@@ -55,7 +55,6 @@
       USE MPI
 
       USE bsr_breit
-
       USE conf_LS,       only: ne
       Use spin_orbitals, only: mls_max
 
@@ -145,7 +144,6 @@
        end if
 
        Call MPI_BARRIER(MPI_COMM_WORLD, ierr)
-       if(myid.eq.0) write(*,*) 'Pre_det done'
 
 ! ... calculations for new angular symmetries:
 
@@ -173,9 +171,9 @@
 !======================================================================
       Subroutine Read_dets(nub,new)
 !======================================================================
-
+!     read overlap factors if any
+!----------------------------------------------------------------------
       Implicit none
-
       Integer :: nub, new
 
       if(new.eq.1) then 
@@ -192,13 +190,11 @@
 !======================================================================
       Subroutine Record_results
 !======================================================================
-
       USE bsr_breit
       USE det_list
       USE def_list
 
       Implicit none
-
       Character AS*80
       Integer :: i, ii, nc
       Real(8) :: adet,adef
@@ -208,17 +204,16 @@
       Call Write_symt_LS(nur)
       Call Write_oper_LS(nur)
 
-      adet=ldet; adet=adet/ndet
       Call Record_det(nur)
-      adet=ldef; adef=adef/ndef
       Call Record_def(nur)
 
-      nc = 0
-      if(new.eq.0) Call RW(nub,nur,nc); Close(nub)
+      nc_old = 0
+      if(new.eq.0) Call RW(nub,nur,nc_old); Close(nub)
 
-      AS = ' '
       write(AS,'(a,a,a,a)') 'cat ',trim(AF_i),' >> ',trim(AF_r)
       Call System(trim(AS))
+
+ write(*,*) AS
 
       Close(nui,status='DELETE')
 
@@ -230,25 +225,27 @@
 
       write(pri,'(/a/)') &
           ' Results for new angular symmetry calculations:'
+      adet=ldet; adet=adet/ndet
       write(pri,'(a,i10,f10.1,i10)') &
           ' number of overlap determinants =', ndet,adet,ldet
+      adet=ldef; adef=adef/ndef
       write(pri,'(a,i10,f10.1,i10)') &
           ' number of overlap factors      =', ndef,adef,ldef 
-      write(pri,'(a,i10)') &
-          ' total number of coeff.s        =', nc
+      nc_total = nc_old + nc_new 
+      write(pri,'(a,3i10)') &
+          ' total number of coeff.s        =', nc_total, nc_old, nc_new
 
 ! ... rename new results as new data bank (int_res -> int_bnk): 
  
-      AS = 'mv ';   i = 3  
       if(klsp.eq.0) then
-       ii = LEN_TRIM(AF_r); AS(i+1:i+ii)=AF_r; i=i+ii+1
-       ii = LEN_TRIM(AF_b); AS(i+1:i+ii)=AF_b; i=i+ii
+       write(AS,'(a,a,a,a)') 'mv ',trim(AF_r),' ',trim(AF_b)
       else
-       ii = LEN_TRIM(BF_r); AS(i+1:i+ii)=BF_r; i=i+ii+1
-       ii = LEN_TRIM(BF_b); AS(i+1:i+ii)=BF_b; i=i+ii
+       write(AS,'(a,a,a,a)') 'mv ',trim(AF_r),' ',trim(BF_b)
       end if
 
-      Call System(AS(1:i))
+ write(*,*) AS
+
+      Call System(trim(AS))
 
       End Subroutine Record_results
 

@@ -117,7 +117,6 @@
        i=LEN_TRIM(AFP); 
        if(AFP(i-1:i).eq.'.c') i=i-2
        AF=AFP(1:i)//'.bsw'
-write(pri,*) AFP,'   ',AF
        Call Check_file(AF)
        Open(nuw, file=AF, form='UNFORMATTED')
        Call Read_bsw(nuw)
@@ -149,6 +148,7 @@ write(pri,*) AFP,'   ',AF
 
 !----------------------------------------------------------------------
 !                                  additional orthogonality conditions:
+
       JORT=1
       Do i=1,nwf; Do j=1,nwf
         if(LEF(i).ne.LEF(j)) then

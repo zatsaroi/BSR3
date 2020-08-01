@@ -1,9 +1,8 @@
 !======================================================================
-      MODULE bsr_breit
+      Module bsr_breit
 !======================================================================
 !     main parameters and files:
 !----------------------------------------------------------------------
-
       Implicit none
 !----------------------------------------------------------------------
 ! ... main files: 
@@ -37,6 +36,8 @@
       Integer :: new     ! pointer on the previous calculation  
       Integer :: icalc   ! pointer for need of new calculations
 
+      Integer :: nc_old, nc_new, nc_total 
+
 ! ... range of partial waves:
 
       Integer :: klsp=0, klsp1=0, klsp2=0
@@ -69,20 +70,20 @@
 !     Operator(6)   -   spin-spin
 !     Operator(7)   -   orbit-orbit
 
-      Integer, Allocatable :: JT_oper(:,:)
-      Real(8), Allocatable :: CT_oper(:,:)
-      Integer, Allocatable :: JD_oper(:,:)  ! MPI copy
+      Integer, allocatable :: JT_oper(:,:)
+      Real(8), allocatable :: CT_oper(:,:)
+      Integer, allocatable :: JD_oper(:,:)  ! MPI copy
 
 ! ... MPI insert:
 
       Integer :: nprocs, myid, ierr
-      Integer, Allocatable :: ip_proc(:)
+      Integer, allocatable :: ip_proc(:)
       Integer :: debug=0
 
 ! ... restrictions:
 
       Integer :: mktkdt=100000000
 
-      End MODULE bsr_breit
+      End Module bsr_breit
 
 

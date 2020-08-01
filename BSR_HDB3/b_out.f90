@@ -1,5 +1,5 @@
 !=======================================================================
-      Subroutine b_out 
+      Subroutine B_out 
 !=======================================================================
 !     output the bound solutions
 !-----------------------------------------------------------------------
@@ -17,9 +17,8 @@
       Integer, Allocatable :: n_eff(:)
       Integer :: i,j,i1,i2,j1,j2,ich,is,js,it,nbound,ms
 
-      Call Get_t0     
+      Call CPU_time(t0)     
 
-!----------------------------------------------------------------------
       if(io_processor) then 
 
 ! ... output file:
@@ -139,9 +138,13 @@
 
        end if
 
-       Call Get_t1('b_out')     
+       if(io_processor) then           
+        Call CPU_time(t1)
+        write (pri,'(/a,T30,f10.2,a)') 'B_out:,', (t1-t0)/60, ' min.'
+        write (*  ,'(/a,T30,f10.2,a)') 'B_out:,', (t1-t0)/60, ' min.'
+       end if
 
-       End Subroutine b_out
+       End Subroutine B_out
 
 
 

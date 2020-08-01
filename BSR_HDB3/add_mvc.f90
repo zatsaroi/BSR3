@@ -11,12 +11,10 @@
 
       Implicit none
       Real(8) :: S, vc(ns,ks)
-      Real(8), External :: BVMV
-
+      Real(8), external :: BVMV
       Integer :: i,j, i1,i2, it,l, idim, ich, ii
 
-      Call Get_t0
-!----------------------------------------------------------------------
+      Call CPU_time(t0)
 
       Do ich = 1,kch
 
@@ -39,6 +37,10 @@
                       one,    a, i1, i1, desca  )
       End do
 
-      Call Get_t1('Add_mvc')
+      if(io_processor) then           
+       Call CPU_time(t1)
+       write (pri,'(/a,T30,f10.2,a)') 'Add_mvc:,', (t1-t0)/60, ' min.'
+       write (*  ,'(/a,T30,f10.2,a)') 'Add_mvc:,', (t1-t0)/60, ' min.'
+      end if
 
       End Subroutine Add_mvc

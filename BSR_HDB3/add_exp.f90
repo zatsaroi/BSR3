@@ -12,9 +12,8 @@
       Real(8) :: S
       Integer :: i, i1, it, idim, ich
 
-      Call Get_t0
+      Call CPU_time(t0)
 
-!----------------------------------------------------------------------
       if(io_processor.and.debug.gt.0) & 
        write(pri,'(/a/)') 'Experimental energies:'  
 
@@ -41,7 +40,11 @@
                       one,    a, i1, i1, desca    )
       End do
 
-      Call Get_t1('Add_exp')
+      if(io_processor) then           
+       Call CPU_time(t1)
+       write (pri,'(/a,T30,f10.2,a)') 'Add_exp:,', (t1-t0)/60, ' min.'
+       write (*  ,'(/a,T30,f10.2,a)') 'Add_exp:,', (t1-t0)/60, ' min.'
+      end if
 
       End Subroutine Add_exp
 

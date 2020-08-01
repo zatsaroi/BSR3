@@ -3,19 +3,18 @@
 !======================================================================
 !     open (close) files in the breit_bsr program
 !----------------------------------------------------------------------
-
-      USE bsr_breit
+      Use bsr_breit
 
       Implicit none
       Integer, Intent(in) :: nu
       Integer :: i,iarg
       Character(ma) :: AF,BF
       Character(3) :: ALSP
-      Integer, External :: Icheck_file
+      Integer, external :: Icheck_file
 
       write(ALSP,'(i3.3)') klsp    
 
-       Select case(nu)
+      Select case(nu)
 
        Case(1)               ! c-file
 
@@ -45,16 +44,12 @@
         new=1
         if(Icheck_file(AF).eq.1) then
          new = 0
-         Open(nub,file=AF,form='UNFORMATTED',STATUS='OLD')
+         Open(nu,file=AF,form='UNFORMATTED',STATUS='OLD')
         end if   
 
         Case(3)              ! results
 
-         AF = AF_r
-         if(klsp.gt.0) then
-          i=Index(BF_r,'.'); AF=BF_r(1:i)//ALSP; BF_r=AF
-         end if  
-         Open(nur,file=AF,form='UNFORMATTED')
+         Open(nu,file=AF_r,form='UNFORMATTED')
 
         Case(6)             ! log-file
 
@@ -62,7 +57,7 @@
 
         Case(11)
 
-         Open(nui,file=AF_i,form='UNFORMATTED')
+         Open(nu,file=AF_i,form='UNFORMATTED')
 
         Case(4,12,13)    !  scratch files
 

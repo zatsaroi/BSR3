@@ -72,22 +72,22 @@
 
 ! ... initial linear context:
 
-      integer, save      :: ictxt  ! initial blacs context handle
-      integer, save      :: iam    ! processor id in initial context
-      integer, save      :: nprocs ! total # processors
+      integer    :: ictxt  ! initial blacs context handle
+      integer    :: iam    ! processor id in initial context
+      integer    :: nprocs ! total # processors
 
 ! ... context for main calculation: p * q <= nprocs
 
-      integer, save      :: ctxt         ! blacs context handle
-      integer, save      :: p=0, q=0     ! # processors in grid
-      integer, save      :: mycol, myrow ! processor coordinates
-      logical, save      :: io_processor ! i/o processor flag
-      integer, save      :: nblock = 64  ! blacs blocking factor
-      integer, save      :: rsrc=0       ! raws source
-      integer, save      :: csrc=0       ! cols source
-      integer, save      :: np=1         ! local # rows
-      integer, save      :: nq=1         ! local # cols
-      integer, save      :: ld=1         ! leading dimension
+      integer    :: ctxt         ! blacs context handle
+      integer    :: p=0, q=0     ! # processors in grid
+      integer    :: mycol, myrow ! processor coordinates
+      logical    :: io_processor ! i/o processor flag
+      integer    :: nblock = 64  ! blacs blocking factor
+      integer    :: rsrc=0       ! raws source
+      integer    :: csrc=0       ! cols source
+      integer    :: np=1         ! local # rows
+      integer    :: nq=1         ! local # cols
+      integer    :: ld=1         ! leading dimension
 
       End module blacs
 

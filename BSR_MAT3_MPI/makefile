@@ -6,7 +6,7 @@ N  = bsr_mat3_mpi
  
 # Libraries to be searched:
  
-L  =   $(BS) $(ZCONFLS) $(ZCOM) $(LAPACK)
+L  =   $(BS) $(ZCONFLS) $(ZCOM) # $(LAPACK)
  
 S  =	spline_moments.f90       spline_integrals.f90     rk_moments.f90  mrk_cell.f90 \
 	mod_param_mpi.f90        mod_dets.f90             mod_ndef.f90             \
@@ -44,5 +44,5 @@ x:
 .SUFFIXES: .f90 .mod .o
  
 .f90.o:
-	$(FC_mpi) -auto $(comp) $<
+	$(FC_mpi) -traceback -CB $(comp) $<
  

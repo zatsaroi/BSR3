@@ -20,6 +20,7 @@
 
       Call CPU_time(t1)
 
+      nc_new = 0
 !----------------------------------------------------------------------
 !                                          cycle 1 over configurations:
       rewind(nud)

@@ -1,5 +1,5 @@
 !======================================================================
-      Subroutine R_arg(nu)
+      Subroutine Read_arg(nu)
 !======================================================================
 !     read arguments, first from file unit 'nu, then from comand line
 !----------------------------------------------------------------------
@@ -87,12 +87,12 @@
        iiexp=0
        Do i=1,ntarg; if(ip_exp(i).ne.i) iiexp=1; End do
 
-       write(*,*) 'unit = ', unit, au_cm,au_eV, '    iiexp =',iiexp
-       Do i=1,ntarg; write(*,*) i,ip_exp(i); End do
+       write(*,*) 'unit = ', unit, au_cm,au_eV
+       write(*,*) 'iiexp =',iiexp
 
       end if
 
-      End Subroutine R_arg
+      End Subroutine Read_arg
 
 
 !======================================================================
@@ -101,6 +101,7 @@
 !     broadcast main arguments
 !----------------------------------------------------------------------
       Use bsr_hd
+      Use spline_param, only: ns,ks
 
       Implicit none
 
@@ -118,5 +119,7 @@
       Call br_ipar(iwt   )
       Call br_dpar(cwt   )
       Call br_ipar(debug )
+      Call br_ipar(ns    )
+      Call br_ipar(ks    )
 
       End Subroutine br_arg

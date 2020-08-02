@@ -117,38 +117,8 @@
 ! ... debug and timing:
 
       Integer :: debug = 0   
-      Real(8) :: t0, t1, ctime, etime
-      Integer :: c0, c1, crate
+      Real(8) :: t0, t1
 
       End module bsr_hd
 
-
-!======================================================================
-      Subroutine Get_t0
-!======================================================================
-      Use bsr_hd
-      Use blacs
-
-      call blacs_barrier (ctxt, 'All')
-      call cpu_time (t0)
-
-      End Subroutine Get_t0
-
-!======================================================================
-      Subroutine Get_t1(name)
-!======================================================================
-      Use bsr_hd
-      Use blacs
-      Character(*) :: name
-
-      call blacs_barrier (ctxt, 'All')
-      call cpu_time (t1)
-
-      if(io_processor) then
-       ctime = (t1-t0)/60
-       write (pri,'(/a,T20,a,f10.2,a)') trim(name),' CPU     = ', ctime, ' min.'
-       write (*  ,'(/a,T20,a,f10.2,a)') trim(name),' CPU     = ', ctime, ' min.'
-      end if
-
-      End Subroutine Get_t1
 

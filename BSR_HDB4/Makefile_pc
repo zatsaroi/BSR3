@@ -8,6 +8,8 @@ N  = bsr_hdb3
  
 L  =  $(BS)  $(ZCONFLS) $(ZCOM)
  
+LIB = -L${MKLROOT}/lib/intel64 -lmkl_scalapack_lp64 -lmkl_intel_lp64 -lmkl_sequential \
+      -lmkl_core -lmkl_blacs_intelmpi_lp64 -lpthread -lm -ldl
 
 S  =	mod_blacs.f90            mod_hd.f90               add_exp.f90              \
 	add_mvc.f90              bsr_hdb.f90              b_out.f90                \

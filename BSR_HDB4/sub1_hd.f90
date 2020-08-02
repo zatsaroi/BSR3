@@ -3,12 +3,10 @@
 !=====================================================================
 !     calculations for given partial wave
 !---------------------------------------------------------------------
-
-      USE blacs
-
-      USE bsr_hd
-      USE target
-      USE channel
+      Use blacs
+      Use bsr_hd
+      Use target
+      Use channel
       Use spline_param, only: ns
       Use spline_grid,  only: t
 

@@ -13,7 +13,7 @@
       Real(8) :: S, SS
       Integer :: i,j, i1,i2,j1,j2, ic,jc, ii,jj, idim,jdim, info
 
-      Call Get_t0
+      Call CPU_time(t0)
 
       if(io_processor) then
 
@@ -149,6 +149,10 @@
                                        zero,  b, i,i, descb )
       end if
 
-      Call Get_t1('transform_overlap')
+      if(io_processor) then           
+       Call CPU_time(t1)
+       write (pri,'(/a,T30,f10.2,a)') 'Transform_ovl:,', (t1-t0)/60, ' min.'
+       write (*  ,'(/a,T30,f10.2,a)') 'Transform_ovl:,', (t1-t0)/60, ' min.'
+      end if
 
       End Subroutine transform_ovl

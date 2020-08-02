@@ -29,21 +29,23 @@
 !----------------------------------------------------------------------
 ! ... read diagonal blocks:
 
-      Call Get_t0
+      Call CPU_time(t0)
 
       if(io_processor) Call read_diag
 
       Call br_ipar(fail); if(fail.ne.0) Return
 
-      Call Get_t1('Read_diag')
+      if(io_processor) then           
+       Call CPU_time(t1)
+       write (pri,'(/a,T30,f10.2,a)') 'read_diag:,', (t1-t0)/60, ' min.'
+       write (*  ,'(/a,T30,f10.2,a)') 'read_diag:,', (t1-t0)/60, ' min.'
+      end if
 
 !----------------------------------------------------------------------
 ! ... broadcast main parameters:
 
       Call BLACS_BARRIER (ctxt, 'All')
 
-      Call br_ipar(ns)
-      Call br_ipar(ks)
       Call br_ipar(khm)
       Call br_ipar(kch)
       Call br_ipar(kcp)
@@ -127,7 +129,7 @@
 
       if(diag_ovl.eq.0) then
 
-      Call Get_t0
+      Call CPU_time(t0)
 
       call PDPOTRF (uplo, khm, b, 1, 1, descb, info)
 
@@ -156,7 +158,11 @@
 
       call p_error (info, 'pdsyngst error')
 
-      Call Get_t1('Cholesky')
+      if(io_processor) then           
+       Call CPU_time(t1)
+       write (pri,'(/a,T30,f10.2,a)') 'Cholesky factorization:,', (t1-t0)/60, ' min.'
+       write (*  ,'(/a,T30,f10.2,a)') 'Cholesky factorization:,', (t1-t0)/60, ' min.'
+      end if
 
       end if  ! over diag_ovl
 
@@ -169,7 +175,7 @@
 ! ... Solve standard eigenvalue problem 
 ! ... (note:  divide and concer algorith requires much more space)
 
-      Call Get_t0
+      Call CPU_time(t0)
 
       call descinit(descz,khm,khm,nblock,nblock,rsrc,csrc,ctxt,ld,info)
       call p_error(info,'descz descriptor error')
@@ -194,14 +200,16 @@
         'diagonalization:  nhm =',nhm,'  khm =',khm,'  lwork =',lwork
 
       call blacs_barrier (ctxt, 'All')
-      call cpu_time (t0)
-      call system_clock (count=c0)
 
       Call PDSYEV (job, uplo, khm,a,1,1,desca, eval, z,1,1,descz, &
                     work, lwork, info)
       call p_error (info, 'pdsyev error')
 
-      Call Get_t1('PDSYEV')
+      if(io_processor) then           
+       Call CPU_time(t1)
+       write (pri,'(/a,T30,f10.2,a)') 'diagonalization:,', (t1-t0)/60, ' min.'
+       write (*  ,'(/a,T30,f10.2,a)') 'diagonalization:,', (t1-t0)/60, ' min.'
+      end if
 
       deallocate (work)
 
@@ -224,16 +232,17 @@
 
       if(diag_ovl.eq.0) then
 
-       Call Get_t0
+       Call CPU_time(t0)
 
        Call PDTRSM ('Left', uplo, trans, 'Non-unit', khm, khm, one, &
                     b, 1,1, descb, z, 1,1, descz)
        if (scale /= one) call DSCAL(khm, scale, eval, 1)
  
-      if(io_processor) &
-       write(pri,'(/a,5f15.5)') 'diag_ovl =',diag_ovl
-
-      Call Get_t1('Back_transform')
+       if(io_processor) then           
+        Call CPU_time(t1)
+        write (pri,'(/a,T30,f10.2,a)') 'Back_transform:,', (t1-t0)/60, ' min.'
+        write (*  ,'(/a,T30,f10.2,a)') 'Back_transform:,', (t1-t0)/60, ' min.'
+       end if
 
       end if ! over diag_ovl
 

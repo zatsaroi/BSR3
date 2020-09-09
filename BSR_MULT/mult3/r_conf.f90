@@ -166,7 +166,7 @@
         Do jk=IC_term1(jc),IC_term2(jc);  jt=IT_sort(jk)
          ij = DEF_ij(it,jt)
          if(JT_need(ij).eq.0) Cycle
-		       JC_need(ijc)=1; IC_need(ic)=1; IC_need(jc)=1
+         JC_need(ijc)=1; IC_need(ic)=1; IC_need(jc)=1
         End do
         End do
       End do; End do

@@ -45,9 +45,9 @@
 !      Character(5) :: move = 'move '   !  for WINDOWS
       Character(5) :: move = 'mv   '   !  for INIX
 
-! ...  multipole transition under consideration:
+! ... multipole transition under consideration:
 
-      Integer :: kpol = 1, qpol, mpol, spol
+      Integer :: kpol = 1, qpol, mpol, spol, ovl=1
       Character(1) :: ktype = 'E'
 
 ! ... configurations under consideration:

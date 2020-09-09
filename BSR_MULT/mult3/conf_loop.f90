@@ -4,7 +4,7 @@
 !     run loop over configurations 
 !-----------------------------------------------------------------------
 
-      USE mult_par,      only: pri,nui,nud,ic,jc, kpol,ktype, &
+      USE mult_par,      only: pri,nui,nud,ic,jc, kpol,ktype, ovl, &
                                JT_oper,CT_oper, qpol,mpol,spol, CNA,CNB
       USE spin_orbitals, only: Lsym1,Msym1,Ssym1,NNsym1, &
                                Lsym2,Msym2,Ssym2,NNsym2
@@ -114,6 +114,8 @@
       CNA = Z_3j(ILT1,-MLT1+2,2*kpol+1,MLT1-MLT2+1,ILT2,MLT2) &
             * (-1)**((ILT1-MLT1)/2)
 
+      if(kpol.eq.0.and.ovl.eq.0) CNA = CNA * sqrt(1.d0*ILT1)
+
       if(IST1.ne.IST2) CNA = 0.d0
 
       if(ktype.eq.'E') then
@@ -184,29 +186,3 @@
 
       End Subroutine Conf_loop
 
-
-!======================================================================
-      Subroutine Symc_conf(ic,conf)
-!======================================================================
-!     configuration conf from ZOI format to c-file format
-!----------------------------------------------------------------------
-      Use conf_LS, only: LTOTAL,STOTAL,no,nn,ln,iq,kn 
-
-      Implicit none
-      Integer, Intent(in) :: ic
-      Character(*) :: conf
-      Character(4), External :: AL
-      Integer :: i,k
-
-      conf = ' '
-
-      Call Get_symc_LS(ic,LTOTAL,STOTAL,no,nn,ln,iq,kn)
-
-      k=0
-      Do i=1,no; if(iq(i).eq.0) Cycle
-       conf(k+2:k+2) = AL(ln(i),1)
-       write(conf(k+3:k+6),'(a1,i2,a1)') '(',iq(i),')'
-       k=k+6
-      End do
-
-      End Subroutine Symc_conf

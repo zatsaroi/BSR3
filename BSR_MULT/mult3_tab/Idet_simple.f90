@@ -6,11 +6,9 @@
 !     kz - number of needed permutations (added !!!)
 !     JDET_SIMP = 0,1,2 with overlap determinant = 0,1 or some value  
 !----------------------------------------------------------------------
-
       Use orb_LS, ONLY: nwf,IORT
 
       Implicit none
-
       Integer :: kz,kn
       Integer, Dimension(kn) :: N1(kn),N2(kn)
       Integer :: i,j,ii,i1,i2, k,kk,k1,k2, m1,m2 
@@ -22,7 +20,6 @@
       if(max(i,j).gt.nwf) Stop 'JDET_SIMPL: orbital index > nwf' 
 
       JDET_SIMP=0
-
 !----------------------------------------------------------------------
 !                       Check for a row with only one non-zero element:
     1  Do i1=1,kn                

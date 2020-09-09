@@ -1,6 +1,6 @@
 !=======================================================================
       Subroutine Mult_2conf(no1,nn1,ln1,iq1,LS1,no2,nn2,ln2,iq2,LS2, &
-                            kpol, ck,ik,jk)
+                            atype,nk,ca,cb,ik,jk)
 !=======================================================================
 !     compute the angular coefficients for multipole operator "kpol"
 !     between 2 atomic states in case of orthogonal orbitals.
@@ -13,9 +13,6 @@
 
       Integer, intent(in)  :: no1,nn1(no1),ln1(no1),iq1(no1),LS1(5,no1)
       Integer, intent(in)  :: no2,nn2(no2),ln2(no2),iq2(no2),LS2(5,no2)
-      Integer, intent(in)  :: kpol
-      Integer, intent(out) :: ik, jk
-      Real(8), intent(out) :: ck
 
 ! ... determinant expansion:
 
@@ -23,44 +20,62 @@
       Real(8), allocatable :: Cdet1(:), Cdet2(:)
       Integer, allocatable :: MLdet1(:,:), MSdet1(:,:), &
                               MLdet2(:,:), MSdet2(:,:) 
-      Real(8) :: CC_det, eps_C = 1.d-6
+      Real(8) :: CC_det, eps_C = 1.d-6, C
 
 ! ... local variables:
 
-      Integer :: ne, kd1, kd2, i, k, mdt1, mdt2, i1,i2,i3, j1,j2, qpol, &
-                 LT1, LT2, MT1, MT2
-      Integer, allocatable :: nl1(:), nl2(:), ip1(:), ip2(:)
+      Integer :: ne, kd1, kd2, i, k, mdt1, mdt2, i1,i2,i3, j1,j2, kpol, qpol, spol, mpol, &
+                 LT1, LT2, MT1, MT2, ST1, ST2, MS1, MS2
+      Integer, allocatable :: nl1(:),nl2(:), ip1(:),ip2(:), in1(:),in2(:)
       Integer, external :: Iglq
-      Real(8) :: CN
-      Real(8) , external :: Z_3j   
+      Real(8) :: CNA, CNB
+      Real(8), allocatable :: detnl(:,:)
+      Real(8) , external :: Z_3j, CLEBSH, DET   
 
+      Character(1) :: ktype
+      Character(2) :: atype
+      Integer, intent(out) :: nk,ik(*),jk(*)
+      Real(8), intent(out) :: ca(*),cb(*)
+
+      nk = 0
+      read(atype,'(a1,i1)') ktype,kpol
 
 ! ... check the selection rules for electric multipole transition:
 
-      ck = 0.d0; ik=0; jk=0; if(kpol.le.0) Return
       i1=(-1) ** SUM(ln1(1:no1)*iq1(1:no1)) 
       i2=(-1) ** SUM(ln2(1:no2)*iq2(1:no2)) 
-      if(i1.eq.i2.and.mod(kpol,2).ne.0) Return
-      if(i1.ne.i2.and.mod(kpol,2).ne.1) Return
-      if(LS1(5,no1).ne.LS2(5,no2)) Return
-      i1 = (LS1(4,no1)-1)/2;  i2 = (LS2(4,no2)-1)/2; i3=kpol
-      if(i1.gt.i2+i3.or.i2.gt.i1+i3.or.i3.gt.i1+i2) Return
-      if(i1.lt.iabs(i2-i3).or.i2.lt.iabs(i1-i3).or. &
-         i3.lt.iabs(i1-i2)) Return
+      if(ktype.eq.'E') then
+       if(i1.eq.i2.and.mod(kpol,2).ne.0) Return
+       if(i1.ne.i2.and.mod(kpol,2).ne.1) Return
+      else 
+       if(i1.eq.i2.and.mod(kpol,2).ne.1) Return
+       if(i1.ne.i2.and.mod(kpol,2).ne.0) Return
+      end if
+
+!      i1 = (LS1(4,no1)-1)/2;  i2 = (LS2(4,no2)-1)/2; i3=kpol
+!      if(i1.gt.i2+i3.or.i2.gt.i1+i3.or.i3.gt.i1+i2) Return
+!      if(i1.lt.iabs(i2-i3).or.i2.lt.iabs(i1-i3).or. &
+!         i3.lt.iabs(i1-i2)) Return
+
       LT1 = LS1(4,no1);  MT1 = LT1
       LT2 = LS2(4,no2);  MT2 = LT2
+      ST1 = LS1(5,no1);  MS1 = ST1
+      ST2 = LS2(5,no2);  MS2 = ST2
+      if(ktype.eq.'E'.and.ST1.ne.ST2)  Return
 
 ! ... initialize arrays:
 
       ne = SUM(iq1(1:no1))
       if(ne.ne.SUM(iq2(1:no2))) Stop 'Coef_ee_2conf: ne1 <> ne2' 
-      if(allocated(nl1)) Deallocate(nl1,ip1); Allocate(nl1(ne),ip1(ne))
-      if(allocated(nl2)) Deallocate(nl2,ip2); Allocate(nl2(ne),ip2(ne))
+      if(allocated(nl1)) Deallocate(nl1,ip1,in1); Allocate(nl1(ne),ip1(ne),in1(ne))
+      if(allocated(nl2)) Deallocate(nl2,ip2,in2); Allocate(nl2(ne),ip2(ne),in2(ne))
       
       k=1; Do i=1,no1; nl1(k:k+iq1(i)-1)=nn1(i)*1000+ln1(i); k=k+iq1(i); End do
       k=1; Do i=1,no1; ip1(k:k+iq1(i)-1)=i; k=k+iq1(i); End do
       k=1; Do i=1,no2; nl2(k:k+iq2(i)-1)=nn2(i)*1000+ln2(i); k=k+iq2(i); End do
       k=1; Do i=1,no2; ip2(k:k+iq2(i)-1)=i; k=k+iq2(i); End do
+
+      if(allocated(detnl)) Deallocate(detnl); Allocate(detnl(ne,ne))
 
 ! ... determinant expansion 1:
 
@@ -82,27 +97,158 @@
 
 ! ... calculations:     
 
-      qpol = (LS1(4,no1)-LS2(4,no2))/2
+      qpol = (MT1-MT2)/2; spol = (MS1-MS2)/2; mpol = qpol + spol
 
-      CN = Z_3j(LT1,-MT1+2,2*kpol+1,MT1-MT2+1,LT2,MT2) * (-1)**((LT1-MT1)/2)
+      CNA = Z_3j(LT1,-MT1+2,2*kpol+1,MT1-MT2+1,LT2,MT2) * (-1)**((LT1-MT1)/2)
 
-      if(CN.eq.0.d0) Return
+      if(ST1.ne.ST2) CNA = 0.d0
+
+      if(ktype.eq.'E') then   
+       CNB = 0.d0
+      else  
+       CNB =  Z_3j(LT1,-MT1+2,2*kpol-1,MT1-MT2+1,LT2,MT2) &
+	        * (-1)**((LT1-MT1)/2) &
+	      		* Z_3j(ST1,-MS1+2,3,MS1-MS2+1,ST2,MS2) &
+	        * (-1)**((ST1-MS1)/2) &
+		      	* CLEBSH(2*kpol-1,MT1-MT2+1,3,MS1-MS2+1, &
+			         2*kpol+1,mpol+mpol+1)
+      end if
+
+      if(CNA.ne.0.d0) CNA = 1.d0/CNA  
+      if(CNB.ne.0.d0) CNB = 1.d0/CNB  
+
+      if(atype.eq.'E0') CNA = CNA /sqrt(1.d0*LT1)     ! ???
+
+      if(abs(CNA)+abs(CNB).eq.0.d0) Return
 
       Do kd1 = 1,kdt1
       Do kd2 = 1,kdt2
        CC_det = Cdet1(kd1) * Cdet2(kd2)
        Call me_det
-
-write(*,*) kd1,kd2, CC_det
-
       End do;  End do
 
-write(*,*) 'CN,CK',CN, CK
+      if(nk.gt.0) then 
 
-      CK = CK / CN
+       CA(1:nk) = CA(1:nk) * CNA
+       CB(1:nk) = CB(1:nk) * CNB
+
+       k = 0
+       Do i = 1,nk
+        if(abs(CA(i))+abs(CB(i)).lt.eps_C) Cycle
+        k = k + 1; CA(k) = CA(i); CB(k) = CB(i); ik(k)=ik(i); jk(k)=jk(i)
+       End do
+       nk=k
+
+      end if
 
 
 CONTAINS
+
+
+!======================================================================
+      Subroutine me_det
+!======================================================================
+!     find the possible interaction orbitals in two determinants and
+!     call the subroutine to calculate m.e. between possible 
+!     combinations of nj-orbitals 
+!----------------------------------------------------------------------
+      Implicit none
+      Integer :: i,i1,i2, j,j1,j2, m,m1,m2, idif, jdif,  &
+                 k,k1,k2, kz, ii
+      Real(8) :: C1,C2
+      Integer, external :: Isort
+
+! ... find interaction orbitals:
+
+      Do i1=1,ne
+       Do i2=1,ne 
+        detnl(i1,i2) = 0.d0
+        if(nl1(i1).ne.nl2(i2)) Cycle
+        if(MLdet1(i1,kd1).ne.MLdet2(i2,kd2)) Cycle
+        if(MSdet1(i1,kd1).ne.MSdet2(i2,kd2)) Cycle
+        detnl(i1,i2) = 1.d0
+       End do
+      End do
+
+      idif=0
+      Do i1=1,ne
+       if(sum(detnl(i1,:)).ne.0.d0) Cycle;  idif = idif + 1;  i = i1
+      End do
+
+      jdif=0
+      Do i2=1,ne
+       if(sum(detnl(:,i2)).ne.0.d0) Cycle;  jdif = jdif + 1;  j = i2
+      End do
+
+      if(idif.ne.jdif) Stop 'me_det: problems with determinants'
+      if(idif.gt.1) Return
+      if(idif.eq.0.and.kpol.eq.0) Return
+
+      if(idif.eq.1) then
+
+       i1 = ip1(i);  i2 = ip2(j)
+       Call Radi_matr(ktype,kpol,qpol,spol,ln1(i1),MLdet1(i,kd1),MSdet1(i,kd1), &
+                                           ln2(i2),MLdet2(j,kd2),MSdet2(j,kd2),C1,C2)
+       C1 =  C1 * CC_det 
+       C2 =  C2 * CC_det 
+       if(abs(C1)+abs(C2).eq.0.d0) Return
+
+       detnl(i,j) = 1.d0
+       k = NINT(det(ne,detnl))
+       C1 = C1 * k
+       C2 = C2 * k
+
+       if(nk.eq.0) then
+        nk = 1;  ca(1)=C1; cb(1)=C2; ik(1)=i1; jk(1)=i2 
+       else
+        k = 0
+        Do i = 1, nk
+         if(i1.ne.ik(i)) Cycle
+         if(i2.ne.jk(i)) Cycle
+         ca(i) = ca(i) + C1
+         cb(i) = cb(i) + C2
+         k = 1; Exit
+        End do
+        if(k.eq.0) then
+         nk = nk+1; ca(nk)=C1; cb(nk)=C2; ik(nk)=i1; jk(nk)=i2
+        end if
+       end if
+
+      else  ! equal set of orbitals
+
+       kz = NINT(det(ne,detnl))
+       Do i = 1,ne; i1 = ip1(i) 
+        Do j = 1,ne; if(detnl(i,j).eq.0.d0) Cycle; Exit; End do; i2 = ip2(j)
+
+        Call Radi_matr(ktype,kpol,qpol,spol,ln1(i1),MLdet1(i,kd1),MSdet1(i,kd1), &
+                                            ln2(i2),MLdet2(j,kd2),MSdet1(j,kd2),C1,C2)
+        if(abs(C1)+abs(C2).eq.0.d0) Cycle
+        C1 =  C1 * CC_det * kz 
+        C2 =  C2 * CC_det * kz
+
+       if(nk.eq.0) then
+        nk = 1; ca(1)=C1; cb(1)=C2; ik(1)=i1; jk(1)=i1 
+       else
+        k = 0
+        Do ii = 1, nk             
+         if(i1.ne.ik(ii)) Cycle
+         if(i1.ne.jk(ii)) Cycle
+         ca(ii) = ca(ii) + C1
+         cb(ii) = cb(ii) + C2
+         k = 1; Exit
+        End do
+        if(k.eq.0) then
+         nk = nk+1; ca(nk)=C1; cb(nk)=C2; ik(nk)=i1; jk(nk)=i1
+        end if
+       end if
+
+       End do
+
+      end if
+
+      End Subroutine me_det
+
+
 
 !======================================================================
       Subroutine Det_expn_1conf(no,ln,iq,LS,ne,mdt,kdt,Cdet,MLdet,MSdet)    
@@ -132,7 +278,7 @@ CONTAINS
       k=1 
       Do i=1,no
        in(i)=k; k=k+iq(i); md(i)=Iglq(ln(i),iq(i)) 
-	      it(i)=Iterm_LS(ln(i),iq(i),0,LS(1,i),LS(2,i),LS(3,i)) 
+       it(i)=Iterm_LS(ln(i),iq(i),0,LS(1,i),LS(2,i),LS(3,i)) 
       End do
 
       MLT = LS(4,no)
@@ -204,83 +350,49 @@ CONTAINS
       End Subroutine Det_expn_1conf
 
 
-!======================================================================
-      Subroutine me_det
-!======================================================================
-!     find the possible interaction orbitals in two determinants and
-!     call the subroutine to calculate m.e. between possible 
-!     combinations of nj-orbitals ()
-!----------------------------------------------------------------------
-      Implicit none
-      Integer :: i,i1,i2, j,j1,j2, m, idif, jdif, is,js, &
-                 k1,k2,k3,k4
-      Real(8), external :: D_matr
-
-! ... find interaction orbitals:
-
-       idif=0
-       Do i1=1,ne
-        m=0
-        Do i2=1,ne 
-         if(nl1(i1).ne.nl2(i2)) Cycle
-         if(MLdet1(i1,kd1).ne.MLdet2(i2,kd2)) Cycle
-         if(MSdet1(i1,kd1).ne.MSdet2(i2,kd2)) Cycle
-         m=1; Exit 
-        End do
-        if(m.eq.1) Cycle  
-        idif=idif+1
-        if(idif.gt.1) Return
-        i=i1
-       End do
-
-       jdif=0
-       Do i2=1,ne
-        m=0
-        Do i1=1,ne 
-         if(nl1(i1).ne.nl2(i2)) Cycle
-         if(MLdet1(i1,kd1).ne.MLdet2(i2,kd2)) Cycle
-         if(MSdet1(i1,kd1).ne.MSdet2(i2,kd2)) Cycle
-         m=1; Exit 
-        End do
-        if(m.eq.1) Cycle  
-        jdif=jdif+1
-        if(jdif.gt.1) Return
-        j=i2
-       End do
-
-       if(idif.ne.jdif) Stop 'me_det: problems with determinants'
-
-       if(idif.ne.1) Return
-
-       if(ik.eq.0) ik = ip1(i)
-       if(jk.eq.0) jk = ip2(j)
-       if(ip1(i).ne.ik) Stop 'me_det: problems with int. orbitals' 
-       if(ip2(j).ne.jk) Stop 'me_det: problems with int. orbitals' 
-
-       CK = CK + CC_det * D_matr(kpol,qpol,ln1(ik),MLdet1(i,kd1), &
-                                           ln2(jk),MLdet2(j,kd2)) &
-                        * (-1) ** (i+j)
-       End Subroutine me_det
+      End Subroutine Mult_2conf
 
 
-       End Subroutine Mult_2conf
-
-
-!====================================================================
-      Real(8) Function D_matr(kpol,qpol,l1,m1,l2,m2)
-!====================================================================
-!     angular part of electric transition operator 
+!=======================================================================
+      Subroutine Radi_matr(ktype,kpol,qpol,spol,l1,m1,s1,l2,m2,s2,CA,CB)
+!=======================================================================
+!     angular part of electric or magnetic transition operator 
 !     between 'nlms' orbitals:
-!
+!                                                                                          C
 !            <n1,l1,m1,s1| T(kq) | n2,l2,m2,s2>
 !--------------------------------------------------------------------
       Implicit none
-      Integer, intent(in) :: kpol,qpol,l1,m1,l2,m2
-   	  Real(8), external :: Z_3jj, ZCLKL
 
-      D_matr =  (-1)**(l1-m1) * Z_3jj(l1,-m1,kpol,qpol,l2,m2) &
-                              * ZCLKL(l1,kpol,l2)
-   	  End Function D_matr
+      Integer, intent(in)  :: l1,m1,s1,l2,m2,s2,kpol,qpol,spol
+      Real(8), intent(out) :: CA,CB
+      Real(8), external    :: Z_3j, Z_3jj, Z_6jj, ZCLKL, CLEBCH
+      Character(1) :: ktype
+
+      CA = 0.d0; CB = 0.d0
+      Select case(ktype)
+
+      Case('E')
+
+       CA = (-1)**(l1-m1) * Z_3jj(l1,-m1,kpol,qpol,l2,m2) * ZCLKL(l1,kpol,l2)
+
+      Case('M')
+
+       CA = (-1)**(l1-m1) * Z_3jj(l1,-m1,kpol,qpol,l2,m2) & 
+          * ZCLKL(l1,kpol-1,l2) * sqrt(1.d0*l2*(l2+1)*(l2+l2+1)) &
+          * sqrt(kpol+kpol+1.d0) * (-1)**(l1+kpol+l2) &
+          * Z_6jj(kpol-1,1,kpol,l2,l1,l2)
+
+       CB = (-1)**(l1-m1) * Z_3jj(l1,-m1,kpol-1,qpol,l2,m2) * &
+            (-1)**((2-s1)/2) * Z_3j(2,-s1+2,3,spol+spol+1,2,s2) * &
+            CLEBCH(kpol-1,qpol,1,spol,kpol,qpol+spol) * &
+            ZCLKL(l1,kpol-1,l2) * sqrt(1.5d0)
+
+      End Select
+
+      if(s1.ne.s2) CA=0.d0
+
+      End Subroutine Radi_matr
+
 
 !======================================================================
       Integer Function Iterm_LS (l,iq,k,IA,IL,IS)
@@ -299,14 +411,14 @@ CONTAINS
       Integer, parameter :: nsh=10, nterms=419
       Integer :: lqnp(4,nsh)
       Data lqnp / 0, 0,   1,   0,    &    ! full 
-		                1, 3,   3,   1,    &    ! p3
+                  1, 3,   3,   1,    &    ! p3
                   2, 3,   8,   4,    &    ! d3
-			            	  2, 4,  16,  12,    &    ! d4
-				              2, 5,  16,  28,    &    ! d5
-              		  3, 3,  17,  44,    &    ! f3
-			            	  3, 4,  47,  61,    &    ! f4
-				              3, 5,  73, 108,    &    ! f5
-				              3, 6, 119, 181,    &    ! f6
+	             2, 4,  16,  12,    &    ! d4
+			   2, 5,  16,  28,    &    ! d5
+                  3, 3,  17,  44,    &    ! f3
+                  3, 4,  47,  61,    &    ! f4
+                  3, 5,  73, 108,    &    ! f5
+                  3, 6, 119, 181,    &    ! f6
                   3, 7, 119, 300/         ! f7
 
       Integer :: ILS(3,nterms)
@@ -835,3 +947,198 @@ CONTAINS
       Iglq=S+0.5
 
       End Function Iglq
+
+
+!======================================================================
+      Integer Function ISORT (n,S)
+!======================================================================
+!     simple sorting for integer array NN(1:n)
+!     isort - number of needed permutations
+!----------------------------------------------------------------------
+      Implicit none
+      Integer :: n, i,j,k
+      Integer :: S(n)
+      ISORT = 0
+      Do i=1,n-1
+       Do j=i+1,n
+        if(S(i).le.S(j)) Cycle
+        k=S(i); S(i)=S(j); S(j)=k; ISORT=ISORT+1
+       End do
+      End do
+      End Function ISORT 
+
+
+!======================================================================
+      Real(8) Function Z_6J (j1,j2,j3,j4,j5,j6)
+!======================================================================
+!     determination of 6j-symbols without direct using of factorials
+!     accoding to formula:
+!
+!     6j{j1,j2,j3,j4,j5,j6) = {j1,j2,j3}*{j1,j5,j6}*{j4,j2,j3}*{j4,j5,j3}*
+!                                SUM(z) {   (-1)^z * (z+1)!   /
+!          [ (z-j1-j2-j3)! * (z-j1-j5-j6)! * (z-j4-j2-j3)! *(z-j4-j5-j3)! *
+!              (j1+j2+j4+j5-z)! * (j1+j3+j4+j6-z)! * (j2+j3+j5+j6-z)! ]
+!
+!     where {a,b,c}=sqrt[ (a+b-c)! * (a-b+c)! * (b-a+c)! / (a+b+c+1)! ]
+!
+!     If we introduce the auxiliary values L(i)
+!     (see below the text of program) then
+!
+!     6j = sqrt{ Pr(j=5,7,i=1,4) (L(j)-L(i))! / Pr(i=1,4) (L(i)+1)! }
+!                Sum(z) { (-1)^z * (z+1)! /
+!          [ Pr(i=1,4) (z-L(i))!  * Pr(j=5,7) (L(j)-z) ] }
+!
+!     (the momenta are used in (2J+1)-representation)
+!
+!----------------------------------------------------------------------
+      Implicit none
+      Integer, intent(in) :: j1,j2,j3,j4,j5,j6
+      Integer :: I, IZ_min, IZ_max, K, KK, M, IZ, I_max
+      Integer :: L(7),J(23)
+      Real(8) :: X, R, C
+
+      Z_6J = 0.0
+
+      L(1)=j1+j2+j3-3                    ! auxiliary values
+      L(2)=j1+j5+j6-3
+      L(3)=j4+j2+j6-3
+      L(4)=j4+j5+j3-3
+      L(5)=j1+j2+j4+j5-4
+      L(6)=j1+j3+j4+j6-4
+      L(7)=j2+j3+j5+j6-4
+      DO I=1,7
+      IF(mod(L(I),2).eq.1) Return
+       L(I)=L(I)/2
+      END DO
+
+      IZ_min=MAX0(L(1),L(2),L(3),L(4))   ! limits of the sum
+      IZ_max=MIN0(L(5),L(6),L(7))
+      IF(IZ_max.LT.IZ_min) Return
+
+      Do I=1,4
+       J(I)=L(I)+1
+       Do K=5,7
+        M=L(K)-L(I)
+        IF(M.LT.0) Return                ! check of triangle rule
+        J(4+3*I+K)=M
+       End do
+      End do
+                                         ! initial factorial parameters
+                                         ! in the sum
+      Do I=5,8;  J(I)=IZ_min-L(I-4); End do                          
+      Do I=9,11; J(I)=L(I-4)-IZ_min; End do
+
+      C=0.0
+      DO IZ=IZ_min,IZ_max           ! summation
+       I_max=IZ+1
+
+!      this limit for max. factorial follows from symmetry propeties:
+!      let's a(i)=L(i) for i=1,4;  b(i)=L(j),j=5,7;
+!      then  b(j)-a(i) <= a(k)  <= max[a(k)] = IZ_min;
+!      also  a(j) <= b(j), then a(i)-a(j) <= b(i)-a(j) <= IZ_min;
+!      and last (a(i)+1) < max(a(i))+1 < IZ_min+1;
+
+       X=1.0
+       DO I=2,I_max            ! estimation of one term in sum
+        K=2                    ! K - the power of integer I in the term
+        DO M=12,23; IF(J(M).GE.I) K=K+1;  End do
+        DO M=1,4;   IF(J(M).GE.I) K=K-1;  End do
+        DO M=5,11;  IF(J(M).GE.I) K=K-2;  End do
+        IF(K.EQ.0) Cycle
+
+        R=DBLE(I)               ! X = X * I ** K/2
+        KK=IABS(K)/2
+        IF(KK.GT.0) THEN
+         DO M=1,KK
+          IF(K.GT.0) X=X*R
+          IF(K.LT.0) X=X/R
+         END DO
+        END IF
+        IF(mod(K,2).EQ.+1) X=X*SQRT(R)
+        IF(mod(K,2).EQ.-1) X=X/SQRT(R)
+       End do 
+
+       IF(mod(IZ,2).eq.1) X=-X
+       C=C+X
+                                    ! new factorial parameters in sum
+       Do I=5,8;  J(I)=J(I)+1; End do
+       DO I=9,11; J(I)=J(I)-1; End do
+
+      End do                        ! end of summation
+
+      Z_6J=C
+
+      End Function Z_6J
+
+
+!====================================================================
+      Real(8) Function Z_6jj(j1,j2,j3,j4,j5,j6)
+!====================================================================
+
+      Implicit none
+      Integer, intent(in) :: j1,j2,j3,j4,j5,j6
+      Real(8), external :: Z_6j
+
+      Z_6jj = Z_6j(j1+j1+1,j2+j2+1,j3+j3+1,j4+j4+1,j5+j5+1,j6+j6+1)
+
+      End Function Z_6JJ
+
+!====================================================================
+      Real(8) Function Z_6j2(j1,j2,j3,j4,j5,j6)
+!====================================================================
+
+      Implicit none
+
+      Integer, intent(in) :: j1,j2,j3,j4,j5,j6
+      Real(8), external :: Z_6j
+
+      Z_6j2 = Z_6j(j1+1,j2+1,j3+1,j4+1,j5+1,j6+1)
+
+      End Function Z_6j2
+
+!---------------------------------------------------------------------
+      Real(8) Function DET(N,A)
+!---------------------------------------------------------------------
+!     determinant of array A(N,N)   (Gauss method)
+!---------------------------------------------------------------------
+      Implicit none
+      Integer, intent(in) :: N
+      Real(8), intent(inout) :: A(N,N)
+      Integer :: I,J,K
+      Real(8) :: MAX, T
+
+      DET = 1.d0
+      
+      DO K=1,N
+
+       MAX=0.d0
+       DO I=K,N
+        T=A(I,K)
+        if(ABS(T).gt.ABS(MAX)) then
+         MAX=T; J=I
+        end if
+       END DO
+
+       IF(MAX.EQ.0.d0) THEN; DET=0.d0; Return; END IF
+      
+       IF(J.NE.K) THEN
+        DET = -DET
+        DO I=K,N
+         T=A(J,I); A(J,I)=A(K,I); A(K,I)=T
+        END DO
+       END IF
+  
+       IF(K+1.LE.N) THEN
+        DO I=K+1,N
+         T=A(I,K)/MAX
+         DO J=K+1,N
+          A(I,J)=A(I,J)-T*A(K,J)
+         END DO
+        END DO
+       END IF
+    
+       DET=DET*A(K,K)
+    
+      END DO
+    
+      End Function DET

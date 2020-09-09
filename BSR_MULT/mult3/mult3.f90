@@ -57,6 +57,7 @@
       end if
 
       Call Read_aarg('label',label)
+      Call Read_iarg('ovl',ovl)
 
 ! ... open log-file:
 

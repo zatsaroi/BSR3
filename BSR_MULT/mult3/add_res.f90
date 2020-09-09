@@ -6,8 +6,8 @@
 
       USE mult_par
       USE coef_list
-      USE term_exp,  ONLY: kt1,kt2, IP_kt1,IP_kt2
-      USE ndef_list, ONLY: IPF 
+      USE term_exp,  only: kt1,kt2, IP_kt1,IP_kt2
+      USE ndef_list, only: IPF 
 
       Implicit none
       Integer, Intent(in) :: nu

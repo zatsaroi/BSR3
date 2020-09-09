@@ -19,15 +19,15 @@
 !    OUTPUT FILES:   AF_tab    (default  - coef.tab)
 !    
 !----------------------------------------------------------------------     
-      Implicit none 
+      Implicit real(8) (A-H,O-Z) 
 
-      Integer :: nuc=1; Character(40) :: AF_cfg = 'cfg.inp'
-      Integer :: out=2; Character(40) :: AF_tab = 'coef.tab'
-      Character(40) :: name = ' '
+      Integer :: nu1=1; Character(80) :: AF_cfg1 
+      Integer :: nu2=2; Character(80) :: AF_cfg2 
+      Integer :: out=3; Character(80) :: AF_tab  
 
       Integer :: kpol = 1      !  multipole index 
-      Integer :: ik, jk        !  indexes of interaction orbitals
-      Real(8) :: Ck            !  angular coefficient
+      Character(2) :: atype='E1'
+      Character(1) :: ktype 
 
       Integer, parameter :: msh = 8
       Integer :: no1, nn1(msh),ln1(msh),iq1(msh),kn1(msh), LS1(5,msh)
@@ -40,59 +40,91 @@
       Integer :: i,j, k, k1,k2,k3,k4, ic,jc, i1,i2,j1,j2, ncfg
       Integer, external :: Idef_ncfg 
 
+      Integer, parameter :: mk = 100
+      Integer :: nk,ik(mk),jk(mk)
+      Real(8) :: ca(mk),cb(mk) 
+
 !----------------------------------------------------------------------
 ! ... input data:     
 
-      Call Read_name(name)
-      if(len_trim(name).ne.0) then
-       AF_cfg=trim(name)//'.c'
-       AF_tab=trim(name)//'.tab'
-      else
-       Call Read_aarg('cfg',AF_cfg)
-       Call Read_aarg('tab',AF_tab)
+      i = command_argument_count()
+      if(i.lt.3) then
+       write(*,*)
+       write(*,*) 'Should be at least 3 command arguments:  name1.c nam12.c  E1|E2|.. [tab=..]'
+       write(*,*)
+       Stop ' '
       end if
-      Call Read_iarg('kpol',kpol)
 
-      Call Check_file(AF_cfg)
-      Open(nuc,file=AF_cfg)
-      ncfg = Idef_ncfg(nuc)
-      Allocate(CONFIG(ncfg),COUPLE(ncfg))
-      if(ncfg.eq.0) Stop 'ncfg=0: nothing to do'
+      Call GET_COMMAND_ARGUMENT(1,AF_cfg1)
+      Call GET_COMMAND_ARGUMENT(2,AF_cfg2)
+      Call GET_COMMAND_ARGUMENT(3,atype)
+      read(atype,'(a1,i1)') ktype, kpol
+
+      Call Check_file(AF_cfg1)
+      Open(nu1,file=AF_cfg1)
+      ncfg1 = Idef_ncfg(nu1)
+      Call Check_file(AF_cfg2)
+      Open(nu2,file=AF_cfg2)
+      ncfg2 = Idef_ncfg(nu2)
+
+      Allocate(CONFIG(ncfg1+ncfg2),COUPLE(ncfg1+ncfg2))
+
+      i1 = Len_trim(AF_cfg1)-2
+      i2 = Len_trim(AF_cfg2)-2
+      write(AF_tab,'(a,a,a,a)') 'tab_',AF_cfg1(1:i1),'_',AF_cfg2(1:i2)
+      Call Read_aarg('tab',AF_tab)
       Open(out,file=AF_tab)
 
-      rewind(nuc)
-      Do ic = 1,ncfg
+      rewind(nu1)
+      Do ic = 1,ncfg1
       Do 
-       read(nuc,'(a)') AS
+       read(nu1,'(a)') AS
        if(AS(5:5).ne.'(') Cycle
        CONFIG(ic) = AS
-       read(nuc,'(a)') COUPLE(ic)
+       read(nu1,'(a)') COUPLE(ic)
        Exit
       End do
       End do
 
-      Do ic = 1,ncfg
+      rewind(nu2)
+      Do ic = ncfg1+1,ncfg1+ncfg2
+      Do 
+       read(nu2,'(a)') AS
+       if(AS(5:5).ne.'(') Cycle
+       CONFIG(ic) = AS
+       read(nu2,'(a)') COUPLE(ic)
+       Exit
+      End do
+      End do
+
+
+      Do ic = 1,ncfg1
        Call Decode_cn (CONFIG(ic),COUPLE(ic),no1,nn1,ln1,iq1,kn1,LS1)
-      Do jc = ic,ncfg
+
+      Do jc = ncfg1+1,ncfg1+ncfg2
        Call Decode_cn (CONFIG(jc),COUPLE(jc),no2,nn2,ln2,iq2,kn2,LS2)
-     
 
        Call mult_2conf(no1,nn1,ln1,iq1,LS1,no2,nn2,ln2,iq2,LS2, &
-                       kpol,Ck,ik,jk)
-       if(ik.eq.0) Cycle
+                       atype,nk,ca,cb,ik,jk)
+       if(nk.eq.0) Cycle
 
-
-       write(out,'(64("-"))')
-       write(out,'(a)') trim(CONFIG(ic)) 
+       write(out,'(80("-"))')
+       write(out,'(a,T70,i5)') trim(CONFIG(ic)),ic 
        write(out,'(a)') trim(COUPLE(ic))
-       write(out,'(a)') trim(CONFIG(jc)) 
+       write(out,'(a,T70,i5)') trim(CONFIG(jc)),jc-ncfg1 
        write(out,'(a)') trim(COUPLE(jc))
-       write(out,'(64("-"))')
+       write(out,'(80("-"))')
 
-       AS = CONFIG(ic);  i = 2 + (ik-1)*8; EL1=AS(i:i+2)
-       AS = CONFIG(jc);  j = 2 + (jk-1)*8; EL2=AS(j:j+2)
-       write(out,'(a,i1,1x,a,a,a,a,a,f10.5)') &
-		       'd',kpol,'(',EL1,',',EL2,')=',Ck        
+       Do k = 1,nk
+        AS = CONFIG(ic);  i = 2 + (ik(k)-1)*8; EL1=AS(i:i+2)
+        AS = CONFIG(jc);  j = 2 + (jk(k)-1)*8; EL2=AS(j:j+2)
+        if(ca(k).ne.0.d0) &
+        write(out,'(a,i1,1x,a,a,a,a,a,f10.5)') &
+                   'd',kpol,'(',EL1,',',EL2,')=',ca(k)        
+        if(cb(k).ne.0.d0) &
+        write(out,'(a,i1,1x,a,a,a,a,a,f10.5)') &
+                   'm',kpol,'(',EL1,',',EL2,')=',cb(k)        
+       End do
        write(out,*)
 
       End do; End do   ! over ic
@@ -157,28 +189,6 @@
 
       End Function Idef_ncfg
 
-!======================================================================
-      Subroutine Read_name(name)
-!======================================================================
-!     read characer argument
-!----------------------------------------------------------------------
-
-      Implicit none
-
-      Character(*) :: name
-
-      Integer :: iarg,i,i1,i2,iname
-      Character(80) :: AS
-
-      iarg = Command_argument_count(); if(iarg.eq.0) Return 
-      Do i=1,iarg
-       Call GET_COMMAND_ARGUMENT(i,AS)
-       if(INDEX(AS,'=').ne.0) Cycle
-       name=AS
-       Exit
-      End do
-
-      End Subroutine Read_name
 
 !======================================================================
       Subroutine Read_aarg(name,avalue)

@@ -16,7 +16,6 @@
       Use orb_LS
       Use det_list
       Use def_list
-      Use rk4_data
 
       Implicit real(8) (A-H,O-Z)
 
@@ -62,10 +61,9 @@
       Call Read_aarg('c2',AF2);      Call Check_file(AF2)
       Call Read_aarg('bnk',AF_bnk);  Call Check_file(AF_bnk)
       Call Read_aarg('tab',AF_tab)
-      icc=0; Call Read_iarg('ic',icc)
-      jcc=0; Call Read_iarg('jc',jcc)
+      Call Read_iarg('ic',ic)
+      Call Read_iarg('jc',jc)
       Call Read_iarg('jort',jort)
-      Call Read_iarg('ovl',ovl)
 
       Open(nub,file=AF_bnk,form='UNFORMATTED') 
       read(nub) ktype,kpol
@@ -92,25 +90,22 @@
 ! ... Cycle over configurations:
 
       Do is = 1,ncfg1
-       if(icc.gt.0.and.icc.ne.is) Cycle
+       if(ic.gt.0.and.ic.ne.is) Cycle
        it = IC_term(is)
        Call Get_cfg_LS(is)
-       Call Incode_c
-       CONFIG1 = CONFIG
-       COUPLe1 = COUPLE
+       write(out,'(71(''-''))')
+       Call Prj_conf_LS (out,0.d0)
        Call Save_cfg_LS(1)
        ips = IP_state(is)
       Do js = ncfg1+1,ncfg2 
-       if(jcc.gt.0.and.jcc.ne.js) Cycle
+       if(jc.gt.0.and.jc.ne.js) Cycle
        jt = IC_term(js)
        Call Get_cfg_LS(js)
-       Call Incode_c
-       CONFIG2 = CONFIG
-       COUPLE2 = COUPLE
+       Call Prj_conf_LS (out,0.d0)
+       write(out,'(71(''-''))')
+       write(out,*)
        Call Save_cfg_LS(2)
        jps = IP_state(js)
-
-       Call alloc_rk4_data(m)
 
 ! ... read the bank:
 
@@ -126,7 +121,8 @@
       Call Alloc_ndef(-1)
 
    10 read(nub,end=20) C,ijt,int,idf
-      ik = ijt/ibc; jk = mod(ijt,ibc)
+
+      ik=ijt/ibc; jk = mod(ijt,ibc)
 
       m = 0
       if(it.eq.ik.and.jt.eq.jk) m=1
@@ -180,25 +176,12 @@
 
       C = C * (-1)**kz
 
-      Call Add_rk4_data(itype,j1,j2,idf,C)
+      Call PRI_MULT(out,C,itype,kpol,j1,j2,idf)
+
+      write(out,*)
 
       go to 10
    20 Continue
-
-      if(nrk.eq.0) Cycle
-
-      write(out,'(80("-"))')
-      write(out,'(a,T70,i5)') trim(CONFIG1),is
-      write(out,'(a)') trim(COUPLE1)
-      write(out,'(a,T70,i5)') trim(CONFIG2),js-ncfg1
-      write(out,'(a)') trim(COUPLE2)
-      write(out,'(80("-"))')
-
-      Do i=1,nrk
-       Call PRI_MULT(out,kpol,kr1(i),kr2(i),kr3(i),kr4(i),crk(i))
-      End do
-
-      write(out,*)
 
       End do;  End do  ! is,js
 

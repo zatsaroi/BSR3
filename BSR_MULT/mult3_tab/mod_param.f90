@@ -1,7 +1,6 @@
 !======================================================================
       MODULE  mult_tab
 !======================================================================
-
       Implicit none
 
 ! ... main files:
@@ -15,12 +14,13 @@
       Integer :: ic=0, jc=0, ips,jps, ipc,jpc
 
       Character(1)  ::  ktype
-      Integer :: kpol
+      Integer :: kpol, ovl = 1
 
+      Character(200) :: CONFIG1, COUPLE1, CONFIG2, COUPLE2
 
 ! ... tolerence for coefficients:
 
-      Real(8) :: Eps_c = 1.d-7      
+      Real(8) :: Eps_c = 1.d-6      
 
       Integer, parameter :: me = 200  ! max.number of electrons
 

@@ -1,9 +1,8 @@
 !======================================================================
-      SUBROUTINE PRI_MULT(nu,C,itype,k,i1,i2,idf)
+      SUBROUTINE PRI_MULT(nu,k,itype,i1,i2,idf,C)
 !======================================================================
 !     Prints one angular integral
 !----------------------------------------------------------------------
-
       Use orb_LS,     only: ELF
       Use mult_tab
       USE ndet_list
@@ -11,7 +10,7 @@
 
       Implicit real(8) (A-H,O-Z)
 
-      Character(1), Dimension(3) :: AI
+      Character(1) :: AI(3)
       Data AI /'d','m','M'/
       Character(3) :: EL,EL1,EL2,EL3,EL4
       Character(220) :: A
@@ -24,7 +23,13 @@
       Select case(itype)
 
       Case(0)                             ! Overlap
-       ia=0
+       if(ovl.eq.1) then
+        ia=0
+       else
+        write(A,'(a1,i1,a2,2(a4,a1))') &
+              'o',k,' (',ELF(i1),',',ELF(i2),')'
+        ia=LEN_TRIM(A)
+       end if
       Case(1,2,3)                         ! One-electron integrals
        write(A,'(a1,i1,a2,2(a4,a1))') &
              AI(itype),k,' (',ELF(i1),',',ELF(i2),')'

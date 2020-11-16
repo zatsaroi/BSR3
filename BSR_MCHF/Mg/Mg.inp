@@ -1,0 +1,63 @@
+Main atomic parameters:
+
+atom    =  Mg
+z       =  12.0000
+ion     =  
+core    =  1s  2s  2p
+conf    =  3s(2)
+varied  =  all
+term    =  AV
+eal     =  5
+
+Running parameters:
+
+scf_tol =  1.00E-11                    - Energy convergence tolerance
+orb_tol =  1.00E-08                    - Orbital convergence tolerance
+end_tol =  1.00E-08                    - Orbital tail cut-off
+max_it  =  75                          - max. number of iterations
+ilzero  =  0                           - initial zero B-splines
+ibzero  =  2                           - minimum zero B-splines in the end
+rotate  =  0                           - use orbital rotation
+debug   =  0                           - additional debug output
+
+All parameters from input files can be replaced from command line as:
+
+bsr_hf name par1=value par2=value par3=value ... 
+
+Name-driven file-names and key-words for their re-definition:
+
+name.inp      dat=...                  - input parameters                           
+name.log      log=...                  - run output and summry                      
+name.knot     knot=...                 - B-spline parameters                        
+name.bsw      inp=...                  - input wavefunctions if any                 
+name.bsw      out=...                  - output wavefunctions                       
+name.plot     plot=...                 - plot wavefunctions                         
+name.nl       nl=...                   - output w.f. for whole spectrum of outer electron
+name.conf     confs=..                 - input configurations if any                
+name.cfg      c=...                    - input LS atomic states if any              
+
+Call bsr_hf as:
+
+bsr_hf name  -  name.inp is supposed to be created by user 
+bsr_hf atom  -  choose the atom with given atomic symbol
+bsr_hf an=.. -  choose the atom with atomic number an
+bsr_hf name  an=...  ion=... -  choose needed ion for given an
+________________________________________________________________________________
+
+! Additional information for input parameters:
+
+! term=AV  - optimize the configuration given as conf=...
+!            or set of configurations given in the name.conf file
+! term=LS  - optimize ASF given as conf=...
+!            or set of configurations given in the name.LS file
+! eal      - indicates the mode for the state weights:
+!            =1 - equally weighted
+!            =5 - statistically weighed, default
+!            =9 - defined by user in .conf or .c files
+!            
+! varied   - possible options -> all, none, list of nl, =last, n=..., n>...
+!            
+!            
+! out_nl=1   - additional output of name.nl with w.f. for outer electron
+! out_plot=1 - additional output in name.plot
+________________________________________________________________________________

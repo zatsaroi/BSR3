@@ -1,0 +1,1 @@
+bsr_mchf  1 atom=Mg  varied=3s,3d,3p  physical=3s,3d   inp=Mg.bsw  

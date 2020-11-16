@@ -1,0 +1,73 @@
+================================================================================
+                   MULTICONFIGURATION B-SPLINE HARTREE-FOCK
+================================================================================
+
+Name of case:      He
+
+B-spline parameters:
+
+ns   =   71             -  number of splines
+ks   =    8             -  order  of splines
+h    =    0.125         -  initial point
+hmax =    1.000         -  exponetial step size
+rmax =   40.000         -  maximum radius
+
+atom:              He
+
+term:                
+
+valence orbitals:      1s
+
+physical orbitals:     1s
+
+varied orbitals:       1s
+
+Initial estimations for orbitals:
+
+  1s - read from file He.bsw                                                                                              
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+--------------------------------------------------------------------------------
+Iteration    1
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91796E+00    0.20000E+01    0.18924E-05      39
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+ Etotal =      -2.86168000
+
+Maximum orbital diff (relative):         1.89D-06  1.00D-05
+Energy difference (relative):            3.11D-12  1.00D-09
+
+--------------------------------------------------------------------------------
+
+ATOM:  He
+
+Convergence (latest difference):
+Orbital diff. =                          1.89D-06
+SCF diff. =                              3.11D-12
+
+  nl       E(nl)        1/R       R       R**2       dmp       ns     max_R
+
+   1s    -0.91795660    1.687    0.927    1.185    1.89E-06    39     15.45
+
+Average energy:                          -2.8616799956082097
+
+Optimized states:
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+time:                    0.11  sec
+
+--------------------------------------------------------------------------------
+

@@ -1,0 +1,482 @@
+
+=========================================
+ B - S P L I N E  H A R T R E E - F O C K  
+=========================================
+
+name:   Ne                                                                              
+
+ATOM    Ne
+TERM    AV
+Z      10.
+
+core:   1s
+conf:   2s(2.0)2p(6.0)
+
+orbitals to optimize:  all                                                                             
+
+
+Running parameters:
+
+scf_tol =  1.00E-11     - energy convergence tolerance
+orb_tol =  1.00E-08     - orbital convergence tolerance
+end_tol =  1.00E-08     - orbital tail cut-off
+max_it  =  75           - max. number of iterations
+
+
+B-spline parameters:
+
+ns   =   85             -  number of splines
+ks   =    8             -  order  of splines
+h    =    0.125         -  initial point
+hmax =    1.000         -  exponetial step size
+rmax =   40.000         -  maximum radius
+
+
+Initial estimations for orbitals:
+
+  1s - hydrogenic orbital with screening  0.50
+  2s - hydrogenic orbital with screening  2.50
+  2p - hydrogenic orbital with screening  8.50
+
+
+Iteration      1
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -41.09696535     6.06D-02      38
+   2s     -6.98125008     1.65D+00      48
+   2p     -5.16890188     2.67D+00      84
+
+Etotal =    -109.86383674
+
+Maximum orbital diff.     2.67D+00
+Energy difference         1.07D-03
+
+
+Iteration      2
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -34.32796186     2.27D-02      50
+   2s     -3.76661199     6.60D-01      83
+   2p     -1.96181562     2.69D-01      84
+
+Etotal =    -119.83831298
+
+Maximum orbital diff.     6.60D-01
+Energy difference         8.32D-02
+
+
+Iteration      3
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -31.00155965     1.01D-02      69
+   2s     -2.02214778     3.08D-01      83
+   2p     -0.83092763     1.21D-01      84
+
+Etotal =    -126.21249800
+
+Maximum orbital diff.     3.08D-01
+Energy difference         5.05D-02
+
+
+Iteration      4
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -31.88732032     6.28D-03      69
+   2s     -1.94607512     1.58D-01      83
+   2p     -0.85182636     3.17D-02      84
+
+Etotal =    -127.98744191
+
+Maximum orbital diff.     1.58D-01
+Energy difference         1.39D-02
+
+
+Iteration      5
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.40373263     3.56D-03      69
+   2s     -1.93757033     9.61D-02      83
+   2p     -0.85591421     1.60D-02      84
+
+Etotal =    -128.41398481
+
+Maximum orbital diff.     9.61D-02
+Energy difference         3.32D-03
+
+
+Iteration      6
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.61181345     1.88D-03      67
+   2s     -1.93320727     5.13D-02      83
+   2p     -0.85298125     7.96D-03      84
+
+Etotal =    -128.51536787
+
+Maximum orbital diff.     5.13D-02
+Energy difference         7.89D-04
+
+
+Iteration      7
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.69967547     9.64D-04      66
+   2s     -1.93172258     2.58D-02      83
+   2p     -0.85161292     3.97D-03      84
+
+Etotal =    -128.53951548
+
+Maximum orbital diff.     2.58D-02
+Energy difference         1.88D-04
+
+
+Iteration      8
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.73846034     4.85D-04      64
+   2s     -1.93106783     1.27D-02      83
+   2p     -0.85098749     1.98D-03      84
+
+Etotal =    -128.54528347
+
+Maximum orbital diff.     1.27D-02
+Energy difference         4.49D-05
+
+
+Iteration      9
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.75626599     2.42D-04      61
+   2s     -1.93074192     6.20D-03      83
+   2p     -0.85069169     9.90D-04      84
+
+Etotal =    -128.54666348
+
+Maximum orbital diff.     6.20D-03
+Energy difference         1.07D-05
+
+
+Iteration     10
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.76465701     1.20D-04      59
+   2s     -1.93057360     3.01D-03      83
+   2p     -0.85054861     4.95D-04      84
+
+Etotal =    -128.54699393
+
+Maximum orbital diff.     3.01D-03
+Energy difference         2.57D-06
+
+
+Iteration     11
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.76867306     5.90D-05      57
+   2s     -1.93048592     1.47D-03      81
+   2p     -0.85047854     2.47D-04      84
+
+Etotal =    -128.54707311
+
+Maximum orbital diff.     1.47D-03
+Energy difference         6.16D-07
+
+
+Iteration     12
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77061187     2.90D-05      55
+   2s     -1.93044022     7.35D-04      79
+   2p     -0.85044396     1.24D-04      84
+
+Etotal =    -128.54709210
+
+Maximum orbital diff.     7.35D-04
+Energy difference         1.48D-07
+
+
+Iteration     13
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77155220     1.42D-05      52
+   2s     -1.93041643     3.67D-04      76
+   2p     -0.85042679     6.18D-05      84
+
+Etotal =    -128.54709666
+
+Maximum orbital diff.     3.67D-04
+Energy difference         3.55D-08
+
+
+Iteration     14
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77200935     6.92D-06      50
+   2s     -1.93040407     1.83D-04      73
+   2p     -0.85041823     3.09D-05      84
+
+Etotal =    -128.54709776
+
+Maximum orbital diff.     1.83D-04
+Energy difference         8.54D-09
+
+
+Iteration     15
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77223184     3.37D-06      49
+   2s     -1.93039766     9.10D-05      71
+   2p     -0.85041395     1.55D-05      84
+
+Etotal =    -128.54709802
+
+Maximum orbital diff.     9.10D-05
+Energy difference         2.06D-09
+
+
+Iteration     16
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77234017     1.64D-06      48
+   2s     -1.93039436     4.51D-05      68
+   2p     -0.85041181     7.73D-06      84
+
+Etotal =    -128.54709809
+
+Maximum orbital diff.     4.51D-05
+Energy difference         4.98D-10
+
+
+Iteration     17
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77239290     7.96D-07      48
+   2s     -1.93039266     2.22D-05      66
+   2p     -0.85041073     3.87D-06      84
+
+Etotal =    -128.54709810
+
+Maximum orbital diff.     2.22D-05
+Energy difference         1.21D-10
+
+
+Iteration     18
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77241856     3.86D-07      48
+   2s     -1.93039178     1.09D-05      63
+   2p     -0.85041019     1.93D-06      84
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     1.09D-05
+Energy difference         2.95D-11
+
+
+Iteration     19
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77243103     1.87D-07      48
+   2s     -1.93039134     5.36D-06      61
+   2p     -0.85040992     9.68D-07      84
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     5.36D-06
+Energy difference         7.22D-12
+
+
+Iteration     20
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77243709     9.07D-08      48
+   2s     -1.93039111     2.62D-06      58
+   2p     -0.85040979     4.84D-07      80
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     2.62D-06
+Energy difference         1.77D-12
+
+
+Iteration     21
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77244003     4.40D-08      48
+   2s     -1.93039100     1.27D-06      56
+   2p     -0.85040972     2.42D-07      76
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     1.27D-06
+Energy difference         4.36D-13
+
+
+Iteration     22
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77244146     2.13D-08      48
+   2s     -1.93039094     6.16D-07      54
+   2p     -0.85040969     1.21D-07      72
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     6.16D-07
+Energy difference         1.07D-13
+
+
+Iteration     23
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77244215     1.04D-08      48
+   2s     -1.93039091     2.97D-07      53
+   2p     -0.85040967     6.06D-08      69
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     2.97D-07
+Energy difference         2.68D-14
+
+
+Iteration     24
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77244248     5.04D-09      48
+   2s     -1.93039089     1.43D-07      53
+   2p     -0.85040966     3.03D-08      65
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     1.43D-07
+Energy difference         6.41D-15
+
+
+Iteration     25
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   1s    -32.77244264     2.47D-09      48
+   2s     -1.93039089     6.85D-08      53
+   2p     -0.85040965     1.52D-08      60
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     6.85D-08
+Energy difference         1.55D-15
+
+
+Iteration     26
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   2s     -1.93039088     3.38D-08      53
+   2p     -0.85040965     7.58D-09      58
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     3.38D-08
+Energy difference         4.42D-16
+
+
+Iteration     27
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   2s     -1.93039088     1.67D-08      53
+   2p     -0.85040965     3.79D-09      57
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     1.67D-08
+Energy difference         2.21D-16
+
+
+Iteration     28
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   2s     -1.93039088     8.24D-09      53
+   2p     -0.85040965     1.97D-09      57
+
+Etotal =    -128.54709811
+
+Maximum orbital diff.     8.24D-09
+Energy difference         0.00D+00
+
+
+--------------------------------------------------------------------------------
+
+                        ATOM   Ne     TERM   AV
+
+
+   nl       E(nl)        I(nl)        KE(nl)       AZ(nl)     S(nl)    ns
+   1s   -32.772443   -49.911704    46.268832    60.757795     0.484    48
+   2s    -1.930391   -11.111771     5.213764   -14.267993     3.274    53
+   2p    -0.850410   -10.089853     4.263651    27.850690     4.820    57
+
+
+   nl       1/R**3        1/R           R          R**2      Delta(r)  max_R
+   1s     0.000000     9.618054     0.157631     0.033470   293.761    10.786
+   2s     0.000000     1.632554     0.892113     0.967084    16.200    15.786
+   2p    10.906183     1.435350     0.965274     1.228456     0.000    19.786
+
+
+     TOTAL ENERGY (a.u.)        -128.54709811
+     REL ENERGY                 -128.67735596
+                   Kinetic       128.54709775
+                   Potential    -257.09419586
+                   Ratio          -2.00000000
+
+time:      8.09  sec

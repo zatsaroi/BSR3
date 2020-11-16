@@ -1,0 +1,48 @@
+BSR_CI calculations:
+
+CASE:  0
+
+ATOM = Cr
+
+NUCLEAR CHARGE =   24.00
+
+Parameters of calculations:
+
+relativistic corrections are included for:
+
+relativistic one-electron shift
+spin-orbit interaction
+
+max. 2J+1 =      6
+min. 2J+1 =      4
+
+Number of required eigenvalues:     10
+
+Parameters of c-list:
+
+NCFG   =  164  - number of configurations
+NTERMS =    1  - number of terms
+NCLOSD =    5  - number of common closed shells
+NE     =    5  - number of electrons
+
+one-electron orbitals: nwf    =   19
+
+   1s   2s   2p   3s   3p  3d1  4s1  4p2  4d2  4d1  5s1  4p3  4f3  4f1  4d3
+  5s2  5g1  4f2  4p1
+
+nclosd  =   5 - common core shells
+
+Ecore   = -1039.32193068  -  core energy
+
+Non-trivial total overlaps with eps_o:   0.30000
+
+***
+
+Non-trivial normalization with eps_d:   0.00100
+
+
+NORT = 0 --> simple eigenvalue problem
+
+
+Total time:                        0.04  min
+

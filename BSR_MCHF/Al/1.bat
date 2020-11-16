@@ -1,0 +1,1 @@
+bsr_mchf  1 atom=Al  varied=3s,3p,3d  physical=3s,3p   inp=Al.bsw  

@@ -29,8 +29,6 @@
                             Character(ma) :: BF_inp  = '.bsw'
                             Character(ma) :: AF_out  = 'name.bsw'
                             Character(ma) :: BF_out  = '.bsw'
-                            Character(ma) :: AF_w    = 'name.w'
-                            Character(ma) :: BF_w    = '.w'
                             Character(ma) :: AF_nl   = 'name.nl'
                             Character(ma) :: BF_nl   = '.nl'
       Integer :: nup = 12;  Character(ma) :: AF_plt  = 'name.plot'
@@ -64,19 +62,20 @@
       Integer :: nelc  = 0
       Integer :: nconf = 0
       Integer :: ncfg  = 0
-      Integer :: eal = 5
+      Integer :: eal = 1
       Real(8), allocatable :: weight(:)
       Integer, allocatable :: iqconf(:,:)
 
 ! ... convergence:
 
-      Real(8) :: scf_tol=1.d-11,  scf_diff
+      Real(8) :: scf_tol=1.d-12,  scf_diff
       Real(8) :: orb_tol=1.d-08,  orb_diff
       Real(8) :: end_tol=1.d-08
       Real(8) :: eps_ovl=1.d-08
+      Real(8) :: nr_tol =1.d-05
       Integer :: max_it = 75
 
-      Integer :: ac = 0
+      Integer :: acc = 0
       Real(8) :: aweight = 0.7
       Real(8) :: bweight = 0.7
 
@@ -84,6 +83,7 @@
 
       Integer :: debug  = 0
       Integer :: rotate = 0
+      Integer :: newton = 0
       Character :: meth = 'c'
       
 ! ... core 
@@ -115,26 +115,19 @@
 
       Real(8) :: eps_c = 1.d-6
       Integer :: ibi = 2**16
-      Integer :: mdiag = 0
 
-! ... solutions for Rydberg series:
-
-      Integer :: out_nl = 0
-      Integer :: nsol_nl = 0
-      Real(8), allocatable :: p_nl(:,:), e_nl(:)
-
-      Integer :: out_w = 0     ! output in the GRASP format
       Integer :: out_plot = 0  ! output in table form
-
-! ... frequently called functions: (instead interface)  
-
-      Integer, external :: Icheck_file
 
 ! ... debuging time:
 
       Real(8) :: time_hf_eiv=0.d0, time_hf_matrix=0.d0, &
                  time_hf_matrix_breit=0.d0, time_update_int=0.d0
       Real(8) :: au_cm, au_eV
+
+
+! ... frequently called functions: (instead interface)  
+
+      Integer, external :: Icheck_file
 
       End Module bsr_hf
 

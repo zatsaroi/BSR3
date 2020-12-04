@@ -1,7 +1,7 @@
 !=====================================================================
       Subroutine solve_HF
 !=====================================================================
-!     Solve the DF equations in turns 
+!     Solve the HF equations in turns 
 !---------------------------------------------------------------------
       Use bsr_hf
       Use hf_orbitals
@@ -9,7 +9,7 @@
       Implicit none
       Real(8) :: hfm(ns,ns), v(ns), et
       Real(8), external :: QUADR_hf, BVMV
-      Integer :: ip, i,j, it, kk
+      Integer :: ip, i,j, it
 
       Real(8) :: t1,t3,t4, S,S1,S2
     
@@ -24,9 +24,7 @@
 
 ! ... main iterations other orbitals:
 
-       Do ip = 1,nwf; i=iord(ip); if(i.eq.0) Cycle; kk=0
-
-     1  Continue
+       Do ip = 1,nwf; i=iord(ip); if(i.eq.0) Cycle
 
         Do j=i+1,nwf
          if(it.le.2) Cycle; if(rotate.eq.0) Cycle;  Call Rotate_ij(i,j)
@@ -36,20 +34,23 @@
 
         ! .. diagonalize the hf matrix
 
-        Call hf_eiv(i,hfm,v) 
+!        if(it <= 2 .or. newton == 0  .or. dpm(i) > nr_tol ) then
+         Call hf_eiv (i,hfm,v) 
+!        else
+!         Call hf_nr (i,hfm,v,e(i,i))
+!        end if
 
         S = maxval(abs(p(1:ns,i)-v(1:ns)))/maxval(abs(p(:,i)))
         if(ip.eq.1) then
-         if(S.lt.orb_tol) iord(i)=0
+         if(S.lt.orb_tol) iord(ip)=0
         else
-         if(S.lt.orb_tol.and.iord(ip-1).eq.0) iord(i)=0
+         if(S.lt.orb_tol.and.iord(ip-1).eq.0) iord(ip)=0
         end if
 
-        if((it.gt.1.and.S.gt.dpm(i)).or.ac.eq.1) then
+        if(it.gt.1.and.(S.gt.dpm(i).or.acc.eq.1)) then
          v(1:ns) = aweight * v(1:ns) + bweight * p(1:ns,i)
          S1 = BVMV (ns,ks,sb,'s',v,v); S2 = sqrt(S1)
          v = v / S2
-! kk=kk+;  if(kk.le.1) go to 1
         end if
        
         dpm(i)=maxval(abs(p(1:ns,i)-v(1:ns)))/maxval(abs(p(:,i)))
@@ -162,27 +163,6 @@
       end if
 
       mm = m - 1; if(mm.lt.1) mm=1
-
-! write(*,*) 'mm =', mm
-
-! ... save all solutions if nl > 0:
-
-      if(out_nl.gt.0.and.i.eq.nwf) then 
-       nsol_nl = kk - mm + 1 
-       if(.not.allocated(p_nl)) Allocate(p_nl(ns,nsol_nl),e_nl(nsol_nl))
-       p_nl = 0.d0; e_nl=0.d0
-       Do m=mm,kk
-        a(1:ns) = aa(1:ns,m);  v=0.d0; k=0
-        Do j=1,ns
-         if(iprm(j,i).eq.0) Cycle; k=k+1; v(j)=a(k)
-        End do 
-
-        if (v(ks) < 0.d0) v = -v
-
-        p_nl(:,m-mm+1)=v(:)
-        e_nl(m-mm+1) = eval(m)
-       End do
-      end if
 
 ! ... restore the solutions in original B-spline net:
 

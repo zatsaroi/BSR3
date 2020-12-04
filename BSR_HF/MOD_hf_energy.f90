@@ -316,7 +316,7 @@
 !----------------------------------------------------------------------
       Use hf_energy
       Use bsr_hf,      only: ncore,Ecore
-      Use hf_orbitals, only: nbf, l => lbs, qsum
+      Use hf_orbitals, only: l => lbs, qsum
 
       Implicit none
       Integer :: i,j,k

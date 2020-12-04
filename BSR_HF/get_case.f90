@@ -125,16 +125,15 @@
       Call Read_rpar(inp,'end_tol',end_tol)
       Call Read_ipar(inp,'max_it' ,max_it )
       Call Read_ipar(inp,'rotate' ,rotate )
+      Call Read_ipar(inp,'newton' ,newton )
       Call Read_ipar(inp,'debug'  ,debug  )
       Call Read_ipar(inp,'ilzero' ,ilzero )
       Call Read_ipar(inp,'ibzero' ,ibzero )
-      Call Read_ipar(inp,'out_nl' ,out_nl )
-      Call Read_ipar(inp,'out_w'  ,out_w  )
       Call Read_ipar(inp,'out_plot',out_plot)
-      Call Read_ipar(inp,'mdiag',mdiag)
 
       Call Read_rpar(inp,'aweight',aweight)
       Call Read_rpar(inp,'bweight',bweight)
+      Call Read_rpar(inp,'acc'    ,acc    )
 
       Call Read_apar(inp,'knot',knot)
 
@@ -143,10 +142,9 @@
       Call Read_aarg('atom',atom)
       Call Read_iarg('an',an)
       Call Read_rarg('z',z)
+      Call Read_rarg('Z',z)
       Call Read_aarg('ion',ion)
       Call Read_iarg('ai',ai)
-      Call Read_rarg('z',z)
-      Call Read_rarg('atw',atw)
       Call Read_aarg('core',core)      
       Call Read_aarg('conf',configuration)
       Call Read_aarg('term',term)
@@ -158,15 +156,15 @@
       Call Read_iarg('max_it' ,max_it )
       Call Read_iarg('rotate' ,rotate )
       Call Read_iarg('debug'  ,debug  )
+      Call Read_iarg('newton' ,newton )
       Call Read_iarg('ilzero' ,ilzero )
       Call Read_iarg('ibzero' ,ibzero )
-      Call Read_iarg('out_nl' ,out_nl )
       Call Read_iarg('out_plot',out_plot)
 
       Call Read_aarg('knot',knot)
       Call Read_rarg('aweight',aweight)
       Call Read_rarg('bweight',bweight)
-      Call Read_iarg('ac',ac)
+      Call Read_iarg('acc'    ,acc)
 
 !-----------------------------------------------------------------------------------
       if(term.ne.'AV'.and.term.ne.'LS'.and.len_trim(term).gt.0) then
@@ -297,6 +295,9 @@
       if(rotate.gt.0) &
       write(log,'(a,i2,T25,a)') 'rotate  = ',rotate, &
                 '- use rotations of orbitals'  
+      if(newton.gt.0) &
+      write(log,'(a,i2,T25,a)') 'newton = ',newton, &
+                '- use Newton-Raphson method'  
 
       Call Write_inp
 
@@ -533,7 +534,7 @@
        Do i=1,nconf
         qsum(io)=qsum(io) + iqconf(i,io)*weight(i)
        End do
-       i = INT(qsum(io)); if(i.eq.4*lbs(i)+2) clsd(io)=.TRUE.
+       i = INT(qsum(io)); if(i.eq.4*lbs(io)+2) clsd(io)=.TRUE.
       End do
 
       End Subroutine Read_confs
@@ -685,11 +686,13 @@
                 '- minimum zero B-splines in the end' 
       write(inp,'(a,i2,T40,a)') 'rotate  = ',rotate, &
                 '- use orbital rotation'  
+      write(inp,'(a,i2,T40,a)') 'newton  = ',newton, &
+                '- use Newton-Raphson method'  
       write(inp,'(a,i2,T40,a)') 'debug   = ',debug,  &
                 '- additional debug output'
 
       write(inp,'(/a,a)')  'All parameters from input files ', &
-                            'can be replaced from command line as:'
+                           'can be replaced from command line as:'
       write(inp,'(/a)') 'bsr_hf name par1=value par2=value par3=value ... '
 
       write(inp,'(/a/)') 'Name-driven file-names and key-words for their re-definition:' 
@@ -699,10 +702,10 @@
       write(inp,'(a,T15,a,T40,a)') 'name'//BF_grid,'knot=...','- B-spline parameters'
       write(inp,'(a,T15,a,T40,a)') 'name'//BF_inp, 'inp=...', '- input wavefunctions if any'
       write(inp,'(a,T15,a,T40,a)') 'name'//BF_out, 'out=...', '- output wavefunctions'
-      write(inp,'(a,T15,a,T40,a)') 'name'//BF_plt, 'plot=...','- plot wavefunctions'
-      write(inp,'(a,T15,a,T40,a)') 'name'//BF_nl,  'nl=...',  '- output w.f. for whole spectrum of outer electron'
       write(inp,'(a,T15,a,T40,a)') 'name'//BF_conf,'confs=..','- input configurations if any'
       write(inp,'(a,T15,a,T40,a)') 'name'//BF_cfg, 'c=...',   '- input LS atomic states if any'
+      write(inp,'(a,T15,a,T40,a)') 'name'//BF_plt, 'plot=...','- plot wavefunctions'
+      write(inp,'(a,T15,a,T40,a)') 'name_<nl>'//BF_nl,'nl=...',  '- output w.f. for whole spectrum'
 
       write(inp,'(/a/)') 'Call bsr_hf as:'
 
@@ -716,7 +719,7 @@
 
                            
       write(inp,'(80("_"))')                     
-      write(inp,'(/a/)') '! Additional information for input parameters:'
+      write(inp,'(/a/)') '! Additional information for input/output parameters:'
 
       write(inp,'(a)') '! term=AV  - optimize the configuration given as conf=...' 
       write(inp,'(a)') '!            or set of configurations given in the name.conf file'                  
@@ -730,7 +733,7 @@
       write(inp,'(a)') '! varied   - possible options -> all, none, list of nl, =last, n=..., n>...'
       write(inp,'(a)') '!            '
       write(inp,'(a)') '!            '
-      write(inp,'(a)') '! out_nl=1   - additional output of name.nl with w.f. for outer electron'
+      write(inp,'(a)') '! nl       - list of orbitals with additional output of all spectrum'
       write(inp,'(a)') '! out_plot=1 - additional output in name.plot'
       write(inp,'(80("_"))')
      

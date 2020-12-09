@@ -1,0 +1,82 @@
+
+=========================================
+ B - S P L I N E  H A R T R E E - F O C K  
+=========================================
+
+name:   N_2D                                                                            
+
+ATOM    N 
+TERM    2D
+Z       7.
+
+core:   1s
+conf:   2s(2.0)2p(3.0)
+
+orbitals to optimize:  2s,2p                                                                           
+
+
+Running parameters:
+
+scf_tol =  1.00E-12     - energy convergence tolerance
+orb_tol =  1.00E-08     - orbital convergence tolerance
+end_tol =  1.00E-08     - orbital tail cut-off
+max_it  =  75           - max. number of iterations
+
+
+B-spline parameters:
+
+ns   =   82             -  number of splines
+ks   =    8             -  order  of splines
+h    =    0.125         -  initial point
+hmax =    1.000         -  exponetial step size
+rmax =   40.000         -  maximum radius
+
+
+Initial estimations for orbitals:
+
+  1s - read from file N.bsw                                                                           
+  2s - read from file N.bsw                                                                           
+  2p - read from file N.bsw                                                                           
+
+
+Iteration      1
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   2s     -0.96367027     9.46D-09      54
+   2p     -0.50865486     8.03D-09      59
+
+Etotal =     -54.29616935
+
+Maximum orbital diff.     9.46D-09
+Energy difference         3.93D-16
+
+
+--------------------------------------------------------------------------------
+
+                        ATOM   N      TERM   2D
+
+
+   nl       E(nl)        I(nl)        KE(nl)       AZ(nl)     S(nl)    ns
+   1s     0.000000   -24.429801    22.147354    35.134012     0.429    48
+   2s    -0.963670    -5.317273     2.264974    -7.780467     2.476    54
+   2p    -0.508655    -4.770701     1.823837     9.781394     3.544    59
+
+
+   nl       1/R**3        1/R           R          R**2      Delta(r)  max_R
+   1s     0.000000     6.653879     0.228260     0.070236    98.230    13.815
+   2s     0.000000     1.083178     1.326323     2.129412     4.817    19.815
+   2p     3.020512     0.942077     1.446623     2.707158     0.000    24.815
+
+
+     CORE ENERGY (a.u.)         -44.73398626
+
+
+     TOTAL ENERGY (a.u.)         -54.29616935
+     REL ENERGY                  -54.32329459
+                   Kinetic        54.29616931
+                   Potential    -108.59233865
+                   Ratio          -2.00000000
+
+time:      0.38  sec

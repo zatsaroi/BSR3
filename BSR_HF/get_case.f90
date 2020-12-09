@@ -227,9 +227,11 @@
       if(Icheck_file(AF_cfg).eq.1) then
        Open(nus,file=AF_cfg)
        Call Read_confs(nus)
+
       elseif(Icheck_file(AF_conf).eq.1) then                                     
        Open(nuc,file=AF_conf)
        Call Read_confs(nuc)
+
       elseif(len_trim(configuration).ne.0) then
        Call Def_conf
        if(term.ne.'AV') then
@@ -237,6 +239,7 @@
         Open(nus,file=AF_cfg)
         Call Read_confs(nus)
        end if
+
       else
        Stop 'I cannpt define the configuration'
       end if
@@ -462,6 +465,7 @@
     2 Continue
       if(nconf.eq.0) Return
 
+
 ! ... define one-electron orbitals:
 
       rewind(nu)
@@ -519,8 +523,7 @@
        iw = iw * Iglq(l,iq)
        start = i2+1
       End do
-      if(eal.eq.5) weight(i)=iw
-      if(eal.eq.9) read(line(start:),*) weight(i)
+      read(line(start:),*) weight(i)
       go to 10
    20 Continue
 

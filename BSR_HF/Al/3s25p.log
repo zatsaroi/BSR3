@@ -1,0 +1,100 @@
+
+=========================================
+ B - S P L I N E  H A R T R E E - F O C K  
+=========================================
+
+name:   3s25p                                                                           
+
+ATOM    Al
+TERM    AV
+Z      13.
+
+core:   1s  2s  2p
+conf:   3s(2.0)5p(1.0)
+
+orbitals to optimize:  5p                                                                              
+
+
+Running parameters:
+
+scf_tol =  1.00E-12     - energy convergence tolerance
+orb_tol =  1.00E-08     - orbital convergence tolerance
+end_tol =  1.00E-08     - orbital tail cut-off
+max_it  =  75           - max. number of iterations
+
+
+B-spline parameters:
+
+ns   =   87             -  number of splines
+ks   =    8             -  order  of splines
+h    =    0.125         -  initial point
+hmax =    1.000         -  exponetial step size
+rmax =   40.000         -  maximum radius
+
+
+Initial estimations for orbitals:
+
+  1s - read from file Al.bsw                                                                          
+  2s - read from file Al.bsw                                                                          
+  2p - read from file Al.bsw                                                                          
+  3s - read from file Al.bsw                                                                          
+  5p - hydrogenic orbital with screening 12.00
+
+
+Iteration      1
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   5p     -0.03507503     1.12D+00      86
+
+Etotal =    -241.70183582
+
+Maximum orbital diff.     1.12D+00
+Energy difference         9.08D-04
+
+
+Iteration      2
+----------------
+
+  nl         e(nl)          dpm         ns
+
+   5p     -0.03507503     0.00D+00      85
+
+Etotal =    -241.70183582
+
+Maximum orbital diff.     0.00D+00
+Energy difference         0.00D+00
+
+
+--------------------------------------------------------------------------------
+
+                        ATOM   Al     TERM   AV
+
+
+   nl       E(nl)        I(nl)        KE(nl)       AZ(nl)     S(nl)    ns
+   1s     0.000000   -84.395897    79.264281    90.712585     0.527    52
+   2s     0.000000   -19.652535    10.884323   -23.577913     3.323    59
+   2p     0.000000   -18.810832     9.856639    67.387153     4.674    58
+   3s     0.000000    -5.652128     0.935891     5.443525     7.806    71
+   5p    -0.035075    -0.831993     0.050489    -2.715000    11.171    85
+
+
+   nl       1/R**3        1/R           R          R**2      Delta(r)  max_R
+   1s     0.000000    12.589244     0.120258     0.019459   654.825    12.554
+   2s     0.000000     2.348989     0.620030     0.458902    44.239    19.554
+   2p    34.940543     2.205190     0.600493     0.455240     0.000    18.554
+   3s     0.000000     0.506771     2.599333     7.890996     2.358    31.554
+   5p     0.054208     0.067883    19.959568   445.322167     0.000    40.000
+
+
+     CORE ENERGY (a.u.)        -239.99828059
+
+
+     TOTAL ENERGY (a.u.)        -241.70183582
+     REL ENERGY                 -242.11954996
+                   Kinetic       241.35931386
+                   Potential    -483.06114968
+                   Ratio          -2.00141914
+
+time:      0.98  sec

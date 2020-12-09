@@ -5,8 +5,8 @@ z       =  26.0000
 ion     =  
 core    =  1s  2s  2p  3s  3p
 conf    =  3d(6)4s(2)
-varied  =  all
-term    =  AV
+varied  =  3s,3p,3d,4s
+term    =  5D
 eal     =  1
 
 Running parameters:

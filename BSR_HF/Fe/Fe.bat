@@ -1,2 +1,7 @@
-bsr_hf  Fe  atom=Fe  term=5D inp=Fe_AV.bsw   ac=1
+bsr_hf  Fe  acc=1
+
+
+
+ 
+
 

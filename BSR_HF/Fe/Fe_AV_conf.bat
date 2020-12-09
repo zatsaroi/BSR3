@@ -1,0 +1,1 @@
+bsr_hf Fe_AV_conf atom=Fe   inp=Fe.bsw  varied=3s,3p,3d,4s 

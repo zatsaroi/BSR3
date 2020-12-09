@@ -77,9 +77,6 @@
        if(debug.gt.0)  write(log,'(/a,a,a,a,3f16.8/)') &
         'Rotate ',ebs(i),ebs(j),' eps,g,dg = ', eps,g,dg
       
-       e(i,j) = 1.d0
-       e(j,i) = 1.d0
-      
       end if
       
       End Subroutine rotate_ij

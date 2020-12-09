@@ -71,7 +71,6 @@
         if(debug.gt.0) then
          Do j = 1,nwf 
           if(i.eq.j) Cycle 
-          if(e(i,j) < 1.d-10) Cycle      
           if(lbs(i).ne.lbs(j)) Cycle
           write(log,'(a,a,a,f16.8)') &
            'Orthogonality ',ebs(i),ebs(j),QUADR_hf(p(1,i),p(1,j),0)
@@ -124,7 +123,7 @@
       Real(8), intent(inout) :: hfm(ns,ns)
       Real(8), intent(out)   :: v(ns)
       Real(8) :: aa(ns,ns),ss(ns,ns),w(3*ns),eval(ns),a(ns),s(ns),t1,t2
-      Integer :: j, jp, info, k,kk,m,mm, ipos(1)
+      Integer :: j, jp, info, k,kk,m, ipos(1)
     
       Call CPU_time(t1)
 
@@ -133,10 +132,9 @@
       m = nbs(i)-lbs(i)
       Do j = 1,nwf 
        if(i.eq.j) Cycle 
-       if(e(i,j) < 1.d-10) Cycle     
        if(lbs(i).ne.lbs(j)) Cycle
-       Call orthogonality(hfm,p(1,j))
        if(j.lt.i) m = m - 1
+       Call orthogonality(hfm,p(1,j))
        if(debug.gt.0) write(log,'(a,a,a,a,i3)') &
         'Orthogonality ',ebs(i),ebs(j),' is applied, m =',m
       End do
@@ -162,11 +160,9 @@
        Stop ' '
       end if
 
-      mm = m - 1; if(mm.lt.1) mm=1
-
 ! ... restore the solutions in original B-spline net:
 
-      a(1:ns) = aa(1:ns,mm);  v=0.d0; k=0
+      a(1:ns) = aa(1:ns,m);  v=0.d0; k=0
       Do j=1,ns
        if(iprm(j,i).eq.0) Cycle; k=k+1; v(j)=a(k)
       End do 
@@ -176,7 +172,7 @@
 
 !      if (v(ks) < 0.d0) v = -v
 
-      e(i,i) = eval(mm)
+      e(i,i) = eval(m)
 
 !      if(debug.gt.0) then
 !       write(log,'(a,5E15.5)') 'eval =',eval(mm-2:mm+2)

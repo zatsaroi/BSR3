@@ -8,8 +8,7 @@
 
       Implicit none
       Integer :: anumber = 0, nlevel1=0, nlevel2=0, i
-      Character(200) :: A_core, A_conf
-      Character(20) :: AA
+      Character(200) :: A_core, A_conf, AS
 
 ! ... name of case:
                                                                                                   
@@ -51,7 +50,6 @@
        Call Read_apar(inp,'atom'   ,atom   )
        Call Read_rpar(inp,'z'      ,z      )
        Call Read_rpar(inp,'Z'      ,z      )
-       Call Read_rpar(inp,'atw'    ,atw    )
 
        Call Read_apar(inp,'varied' ,avaried)     
        Call Read_rpar(inp,'scf_tol',scf_tol)
@@ -65,12 +63,15 @@
        Call Read_ipar(inp,'newton' ,newton )
        Call Read_ipar(inp,'rotate' ,rotate )
        Call Read_ipar(inp,'debug'  ,debug  )
-       Call Read_ipar(inp,'n_corr' ,n_corr )
                                            
        Call Read_ipar(inp,'ilzero' ,ilzero )
        Call Read_ipar(inp,'ibzero' ,ibzero )
 
        Call Read_ipar(inp,'nlevels',nlevel1)
+
+       Call Read_rpar(inp,'aweight',aweight)
+       Call Read_rpar(inp,'bweight',bweight)
+       Call Read_ipar(inp,'acc',acc)
 
       end if
 
@@ -79,7 +80,6 @@
       Call Read_aarg('atom'   ,atom   )
       Call Read_rarg('z'      ,z      )
       Call Read_rarg('Z'      ,z      )
-      Call Read_rarg('atw'    ,atw    )
 
       Call Read_aarg('varied' ,avaried)     
 
@@ -90,11 +90,10 @@
 
       Call Read_iarg('method' ,method )
       Call Read_iarg('all'    ,all    )
-      Call Read_iarg('irhs'   ,irhs   )
+      Call Read_iarg('irhs'   ,irhs   )                          
       Call Read_iarg('newton' ,newton )
       Call Read_iarg('rotate' ,rotate )
       Call Read_iarg('debug'  ,debug  )
-      Call Read_iarg('n_corr' ,n_corr )
 	
       Call Read_iarg('ilzero' ,ilzero )
       Call Read_iarg('ibzero' ,ibzero )
@@ -103,33 +102,38 @@
 
       Call Read_rarg('aweight',aweight)
       Call Read_rarg('bweight',bweight)
-      Call Read_iarg('ac',ac)
+      Call Read_iarg('acc',acc)
 
 !----------------------------------------------------------------------------------
-! ... define levels for optimization:     at the moment only equal weights  ???
+! ... define levels for optimization:     
 
       if(nlevel2.gt.0) then
        nlevels=nlevel2
-       Allocate(level(nlevels),weight(nlevels),elevel(nlevels), &
-                ip_level(nlevels),labeln(nlevels))
-       level = 0; weight = 1.d0;  weight=weight /sqrt(SUM(weight*weight))
-       Call Read_iarr('level',nlevels,level)
-      elseif(nlevel1.gt.0) then 
+      elseif(nlevel1.gt.0) then
        nlevels=nlevel1
-       Allocate(level(nlevels),weight(nlevels),elevel(nlevels), &
-                ip_level(nlevels),labeln(nlevels))
-       level = 1; weight = 1.d0
-       if(nlevels.gt.1) then
-        Do i=1,nlevels
-         read(inp,*)  AA,level(i),AA,weight(i)
-        End do
-       end if
-       weight=weight /sqrt(SUM(weight*weight))
       else
-       nlevels=1
-       Allocate(level(nlevels),weight(nlevels),elevel(nlevels), &
-                ip_level(nlevels),labeln(nlevels))
-       level = 1; weight = 1.d0
+       nlevels = 1
+      end if
+
+      Allocate(level(nlevels),weight(nlevels),elevel(nlevels), &
+               ip_level(nlevels),labeln(nlevels))
+
+      Do i=1,nlevels
+       level(i)=i; weight(i)=1.d0
+      End do
+      weight=weight /sqrt(SUM(weight*weight))
+
+      if(nlevels.gt.1) then
+       AS = ' ' 
+       if(nlevel2.gt.0) then
+        Call Read_aarg('level',AS)
+       elseif(nlevel1.gt.0) then
+        Call Read_apar(inp,'level',AS)
+       end if
+       if(len_trim(AS).gt.0) then
+        read(AS,*) (level(i),weight(i),i=1,nlevels)
+        weight=weight /sqrt(SUM(weight*weight))
+       end if
       end if
 
 !------------------------------------------------------------------------------
@@ -181,7 +185,7 @@
       write(scr,'(/a,T20,a/)') 'Name of case:',trim(name)
       write(log,'(/a,T20,a )') 'Name of case:',trim(name)
 
-      if(Icheck_file(AF_dat).eq.0) Call Write_inp
+      Call Write_inp
 
       End Subroutine get_case
 
@@ -195,6 +199,7 @@
 
       Implicit none
       Integer :: i
+      Character(200) :: AS
 
       Open(inp,file=AF_dat)
       rewind(inp)
@@ -207,18 +212,14 @@
 
       write(inp,'(/a,a)')         'varied  =  ',trim(adjustl(avaried))
 
-      write(inp,'(/a,i2,T40,a)')  'eol     = ',eol, '- optimzation mode'
-
-      write(inp,'(/a,i2,T40,a)')  'nlevels = ',nlevels, '- levels fo optimzation'
-
-      if(nlevels.gt.1) then
-       Do i=1,nlevels
-        write(inp,'(a,i5,5x,a,f10.5)')  'level',level(i),'weight',weight(i)
-       End do
-      end if
-
       if(len_trim(physical).gt.0) &
       write(inp,'(/a,a)') 'physical=  ',trim(physical)
+
+      write(inp,'(/a,i2,T40,a)')  'nlevels = ',nlevels, '- number of levels for optimzation'
+      write(AS,'(100(i3,a,f10.5,a))') (level(i),',',weight(i),',',i=1,nlevels)
+      i = len_trim(AS); AS(i:i)=' '
+      Call Clean_a(AS)
+      write(inp,'(a,a)') 'level = ',trim(AS)
 
       Call Write_run_par(inp)
 
@@ -243,27 +244,19 @@
       write(inp,'(/80("-")/)')                     
       write(inp,'(a)') ' Additional information for input parameters:'
       write(inp,'(a)') '            '
-      write(inp,'(a)') ' varied   - possible options -> all, none, list of nl, =last, n=..., n>...'
+      write(inp,'(a)') ' varied     - possible options -> all, none, list of nl, =last, n=..., n>...'
       write(inp,'(a)') '            '
-      write(inp,'(a)') ' eol      - indicates the mode for the state weights:'
-      write(inp,'(a)') '            =1 - equally weighted' 
-      write(inp,'(a)') '            =5 - statistically weighed, default' 
-      write(inp,'(a)') '            =9 - defined by user'
+      write(inp,'(a)') ' physical   - list of physical one-electron orbitals'
       write(inp,'(a)') '            '
-      write(inp,'(a)') ' relevant level-block parameters:'
+      write(inp,'(a)') ' nlevels[1] - number of levels to be optimized' 
       write(inp,'(a)') '            '
-      write(inp,'(a)') ' if eol = 1 or 5, repeat for each J-block: '
-      write(inp,'(a)') '            '
-      write(inp,'(a)') ' levels = 1,1,2 - block, list of levels to be optimized' 
-      write(inp,'(a)') '            '
-      write(inp,'(a)') ' if eol = 9, repeat for each level to be optimized'
-      write(inp,'(a)') '            '
-      write(inp,'(a)') ' weights = 1,2,0.5 - block, level, weight' 
+      write(inp,'(a)') ' level      - level index, level weight' 
       write(inp,'(a)') '            '
       write(inp,'(a)') ' if level information is absent - program will optimized the first '
       write(inp,'(a)') ' level in each block'          
       write(inp,'(a)') '            '
-      write(inp,'(a)') ' ilzero = 0 means  l+1 zero B-splines in the beginning for large component'
+      write(inp,'(a)') ' ilzero = 0 means  l+1 zero B-splines in the beginning of expansion'
+      write(inp,'(a)') ' ibzero[2]  - number of zero B-splines in the end of expansion'
 
       write(inp,'(80("-"))')
 

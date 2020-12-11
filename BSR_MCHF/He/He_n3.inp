@@ -5,8 +5,6 @@ z       =  2.0                         - nuclear number
 
 varied  =  all
 
-eol     =  5                           - optimzation mode
-
 nlevels =  1                           - levels fo optimzation
 
 --------------------------------------------------------------------------------
@@ -14,9 +12,9 @@ nlevels =  1                           - levels fo optimzation
 Running parameters:
 
 scf_tol =  1.00E-09                    - tolerance for energy convergence
-orb_tol =  1.00E-05                    - tolerance for orbital convergence
-end_tol =  1.00E-06                    - tolerance for ending zeros
-max_it  =  25                          - max. number of iterations
+orb_tol =  1.00E-06                    - tolerance for orbital convergence
+end_tol =  1.00E-08                    - tolerance for ending zeros
+max_it  =  50                          - max. number of iterations
 
 ilzero  =  0                           - initial zeros for larger component
 ibzero  =  2                           - final zeros for larger component
@@ -55,25 +53,17 @@ name.l             l=...               - expansion coef.s in the DBSR format
 
  Additional information for input parameters:
             
- varied   - possible options -> all, none, list of nl, =last, n=..., n>...
+ varied     - possible options -> all, none, list of nl, =last, n=..., n>...
             
- eol      - indicates the mode for the state weights:
-            =1 - equally weighted
-            =5 - statistically weighed, default
-            =9 - defined by user
+ physical   - list of physical one-electron orbitals
             
- relevant level-block parameters:
+ nlevels[1] - number of levels to be optimized
             
- if eol = 1 or 5, repeat for each J-block: 
-            
- levels = 1,1,2 - block, list of levels to be optimized
-            
- if eol = 9, repeat for each level to be optimized
-            
- weights = 1,2,0.5 - block, level, weight
+ level      - level index, level weight
             
  if level information is absent - program will optimized the first 
  level in each block
             
- ilzero = 0 means  l+1 zero B-splines in the beginning for large component
+ ilzero = 0 means  l+1 zero B-splines in the beginning of expansion
+ ibzero[2]  - number of zero B-splines in the end of expansion
 --------------------------------------------------------------------------------

@@ -3,7 +3,7 @@
 !======================================================================
 !     main parameters for the DBSR_MCHF program
 !----------------------------------------------------------------------
-!      Use zconst
+
       Use spline_atomic
       Use spline_param
       Use spline_galerkin
@@ -50,8 +50,8 @@
 ! ... convergence:
 
       Real(8) :: scf_tol = 1.d-9,   scf_diff = 1.d0
-      Real(8) :: orb_tol = 1.d-5,   orb_diff = 1.d0
-      Real(8) :: end_tol = 1.d-6
+      Real(8) :: orb_tol = 1.d-6,   orb_diff = 1.d0
+      Real(8) :: end_tol = 1.d-8
       Real(8) :: eps_c   = 1.d-8    
       Real(8) :: eps_det = 1.d-8
       Real(8) :: eps_ovl = 1.d-6
@@ -60,9 +60,6 @@
 
       Integer :: max_it  = 50
       
-      Integer :: n_corr  = 1
-      Real(8) :: eps_corr= 1.d-1
-
 ! ... running options:
 
       Integer :: all     = 0
@@ -74,14 +71,12 @@
       Integer :: debug   = 0
       Integer :: icore   = 0
 
-      Integer :: ac = 0
+      Integer :: acc = 0
       Real(8) :: aweight = 0.7
       Real(8) :: bweight = 0.7
 
-! ... block parameters: 
+! ... optimization levels: 
 
-      Integer :: eol = 5                     !  = 1,5,9 - optimization mode 
-                                             
       Integer :: nlevels = 0                 !  number of levels chosen for optimization
                                              !  each level has attritutes:
       Integer, allocatable :: level(:)       !  level index 

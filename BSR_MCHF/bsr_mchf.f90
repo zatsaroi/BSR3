@@ -3,17 +3,14 @@
 !======================================================================
 !     MULTICONFIGURATION HARTREE-FOCK PROGRAM
 !----------------------------------------------------------------------
-!                   C O P Y R I G H T -- 2015
-!     Written by:   Oleg Zatsarinny and Charlotte Froese Fischer
+!                   C O P Y R I G H T -- 2020
+!     Written by:   Oleg Zatsarinny with help of Charlotte Froese Fischer
 !     email:        oleg_zoi@yahoo.com
 !----------------------------------------------------------------------
-!     This program is a part of the DBSR complex and computes 
+!     This program is a part of the BSR complex and computes 
 !     radial one-electron functions in B-spline basis for the 
-!     multi-configuration Dirac-Hartree-Fock problem. 
-!
-!     For short instructions, run dbsr_mchf atom and look in atom.inp,
-!     where 'atom' is any atomic symbol
-!----------------------------------------------------------------------
+!     multi-configuration Hartree-Fock problem. 
+!!----------------------------------------------------------------------
       Use bsr_mchf
 
       Implicit none
@@ -34,14 +31,13 @@
 
 ! ... B-spline parameters:
 
-      Call Get_spline_param
-
-! ... prepare radial-function arrays:
-
       write(log,'(/a,T20,a)') 'atom:',atom
       Call Def_term_BSR(nuc,ILT,IST,IPT)
       write(term,'(i1,a1)') IST,AL(ILT,2)
       write(log,'(/a,T20,a)') 'term:',term
+      Call Get_spline_param
+
+! ... prepare radial-function arrays:
 
       Call Def_orbitals
 

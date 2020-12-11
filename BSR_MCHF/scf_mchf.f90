@@ -44,12 +44,12 @@
 
         S = maxval(abs(p(1:ns,i)-v(1:ns)))/maxval(abs(p(:,i)))
         if(ip.eq.1) then
-         if(S.lt.orb_tol) iord(i)=0
+         if(S.lt.orb_tol) iord(ip)=0
         else
-         if(S.lt.orb_tol.and.iord(ip-1).eq.0) iord(i)=0
+         if(S.lt.orb_tol.and.iord(ip-1).eq.0) iord(ip)=0
         end if
 
-        if((it.gt.1.and.S.gt.dpm(i)).or.ac.eq.1) then
+        if((it.gt.1.and.S.gt.dpm(i)).or.acc.eq.1) then
          v(1:ns) = aweight * v(1:ns) + bweight * p(1:ns,i)
          S1 = BVMV (ns,ks,sb,'s',v,v); S2 = sqrt(S1)
          v = v / S2

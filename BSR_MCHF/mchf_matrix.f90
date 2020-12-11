@@ -65,7 +65,7 @@
        Call MRK_cell(0)
        dd = 0.d0
        Do ip = 1,ncore
-        C = -2.d0*(4*lbs(ip)+2)
+        C = -2.d0*(4*lbs(ip)+2)                      ! -2 ???  -1/2d^2/dr^2
         Call Density (ns,ks,d,p(1,ip),p(1,ip),'s')
         dd = dd + C*d
        End do
@@ -207,7 +207,6 @@ s = -2*s
        if(cid(j).eq.0.d0) Cycle 
        Call density(ns,ks,x,p(1,id3(j)),p(1,id4(j)),'x')
        xx = xx + cid(j)*x                    
-
        met=1
       End do
 

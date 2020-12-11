@@ -4,6 +4,10 @@
 
 Name of case:      He
 
+atom:              He
+
+term:              1S
+
 B-spline parameters:
 
 ns   =   71             -  number of splines
@@ -11,10 +15,6 @@ ks   =    8             -  order  of splines
 h    =    0.125         -  initial point
 hmax =    1.000         -  exponetial step size
 rmax =   40.000         -  maximum radius
-
-atom:              He
-
-term:                
 
 valence orbitals:      1s
 
@@ -24,11 +24,11 @@ varied orbitals:       1s
 
 Initial estimations for orbitals:
 
-  1s - read from file He.bsw                                                                                              
+  1s - hydrogenic orbital with screening  1.00
 
  Level     Energy      Leading CSFs
 
-   1     -2.86168000   1  1.0000
+   1     -2.37500000   1  1.0000
 
 --------------------------------------------------------------------------------
 Iteration    1
@@ -36,7 +36,143 @@ Iteration    1
 
    nl       e(nl)          qsum           dpm           ns
 
-   1s   -0.91796E+00    0.20000E+01    0.18924E-05      39
+   1s   -0.11942E+01    0.20000E+01    0.59917E+00      40
+
+ Level     Energy      Leading CSFs
+
+   1     -2.82446256   1  1.0000
+
+ Etotal =      -2.82446256
+
+Maximum orbital diff (relative):         5.99D-01  1.00D-08
+Energy difference (relative):            1.59D-01  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration    2
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.85874E+00    0.20000E+01    0.10697E+00      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.85851905   1  1.0000
+
+ Etotal =      -2.85851905
+
+Maximum orbital diff (relative):         1.07D-01  1.00D-08
+Energy difference (relative):            1.19D-02  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration    3
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.93695E+00    0.20000E+01    0.35116E-01      42
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86140676   1  1.0000
+
+ Etotal =      -2.86140676
+
+Maximum orbital diff (relative):         3.51D-02  1.00D-08
+Energy difference (relative):            1.01D-03  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration    4
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91252E+00    0.20000E+01    0.99399E-02      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86165643   1  1.0000
+
+ Etotal =      -2.86165643
+
+Maximum orbital diff (relative):         9.94D-03  1.00D-08
+Energy difference (relative):            8.72D-05  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration    5
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91957E+00    0.20000E+01    0.29500E-02      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86167796   1  1.0000
+
+ Etotal =      -2.86167796
+
+Maximum orbital diff (relative):         2.95D-03  1.00D-08
+Energy difference (relative):            7.52D-06  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration    6
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91748E+00    0.20000E+01    0.86405E-03      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86167982   1  1.0000
+
+ Etotal =      -2.86167982
+
+Maximum orbital diff (relative):         8.64D-04  1.00D-08
+Energy difference (relative):            6.50D-07  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration    7
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91809E+00    0.20000E+01    0.25407E-03      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86167998   1  1.0000
+
+ Etotal =      -2.86167998
+
+Maximum orbital diff (relative):         2.54D-04  1.00D-08
+Energy difference (relative):            5.61D-08  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration    8
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91791E+00    0.20000E+01    0.74624E-04      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86167999   1  1.0000
+
+ Etotal =      -2.86167999
+
+Maximum orbital diff (relative):         7.46D-05  1.00D-08
+Energy difference (relative):            4.84D-09  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration    9
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91797E+00    0.20000E+01    0.21925E-04      43
 
  Level     Energy      Leading CSFs
 
@@ -44,22 +180,144 @@ Iteration    1
 
  Etotal =      -2.86168000
 
-Maximum orbital diff (relative):         1.89D-06  1.00D-05
+Maximum orbital diff (relative):         2.19D-05  1.00D-08
+Energy difference (relative):            4.18D-10  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration   10
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91795E+00    0.20000E+01    0.64413E-05      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+ Etotal =      -2.86168000
+
+Maximum orbital diff (relative):         6.44D-06  1.00D-08
+Energy difference (relative):            3.60D-11  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration   11
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91796E+00    0.20000E+01    0.18924E-05      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+ Etotal =      -2.86168000
+
+Maximum orbital diff (relative):         1.89D-06  1.00D-08
 Energy difference (relative):            3.11D-12  1.00D-09
 
 --------------------------------------------------------------------------------
+Iteration   12
+--------------------------------------------------------------------------------
 
-ATOM:  He
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91796E+00    0.20000E+01    0.55596E-06      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+ Etotal =      -2.86168000
+
+Maximum orbital diff (relative):         5.56D-07  1.00D-08
+Energy difference (relative):            2.69D-13  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration   13
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91796E+00    0.20000E+01    0.16333E-06      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+ Etotal =      -2.86168000
+
+Maximum orbital diff (relative):         1.63D-07  1.00D-08
+Energy difference (relative):            2.30D-14  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration   14
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91796E+00    0.20000E+01    0.47986E-07      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+ Etotal =      -2.86168000
+
+Maximum orbital diff (relative):         4.80D-08  1.00D-08
+Energy difference (relative):            1.86D-15  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration   15
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91796E+00    0.20000E+01    0.14098E-07      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+ Etotal =      -2.86168000
+
+Maximum orbital diff (relative):         1.41D-08  1.00D-08
+Energy difference (relative):            3.10D-16  1.00D-09
+
+--------------------------------------------------------------------------------
+Iteration   16
+--------------------------------------------------------------------------------
+
+   nl       e(nl)          qsum           dpm           ns
+
+   1s   -0.91796E+00    0.20000E+01    0.41418E-08      43
+
+ Level     Energy      Leading CSFs
+
+   1     -2.86168000   1  1.0000
+
+ Etotal =      -2.86168000
+
+Maximum orbital diff (relative):         4.14D-09  1.00D-08
+Energy difference (relative):            1.55D-16  1.00D-09
+
+--------------------------------------------------------------------------------
+
+ATOM:  He     TERM:  1S
 
 Convergence (latest difference):
-Orbital diff. =                          1.89D-06
-SCF diff. =                              3.11D-12
+Orbital diff. =                          4.14D-09
+SCF diff. =                              1.55D-16
 
   nl       E(nl)        1/R       R       R**2       dmp       ns     max_R
 
-   1s    -0.91795660    1.687    0.927    1.185    1.89E-06    39     15.45
+   1s    -0.91795556    1.687    0.927    1.185    4.14E-09    43     19.45
 
-Average energy:                          -2.8616799956082097
+Total energy            -2.861679995612
+Kinetic                  2.861679989163
+Potential               -5.723359984775
+Ratio                   -2.000000002254
 
 Optimized states:
 
@@ -67,7 +325,7 @@ Optimized states:
 
    1     -2.86168000   1  1.0000
 
-time:                    0.11  sec
+time:      0.17 sec
 
 --------------------------------------------------------------------------------
 

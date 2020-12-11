@@ -9,7 +9,7 @@
       Implicit none
       Integer :: i
       Real(8), intent(in)  :: hfm(ns,ns), hx(ns,ns), rhs(ns)
-      Real(8), intent(out) :: v(ns)
+      Real(8) :: v(ns)
 
       Real(8), dimension(ns+nbf,ns+nbf) :: aa, ax
       Real(8), dimension(ns+nbf) :: res, xx,yy

@@ -55,8 +55,6 @@
        qsum(i) = 4*lbs(i)+2;  clsd(i) = .TRUE.
       End do
    
-write(log,'(a,20E15.5)') 'QSUM: ', qsum (1:nbf)
-
 ! ... define closed shells:   ???
 
       Do i=ncore+1,nbf

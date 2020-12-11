@@ -100,6 +100,7 @@
       Do ic = 1,ncfg
        Call Pri_conf (nuc,ip(ic),CP(ip(ic)))
       End do
+      write(nuc,'(a)') '*'
 
       End Subroutine Write_cc
 

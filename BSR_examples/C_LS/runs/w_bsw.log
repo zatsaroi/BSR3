@@ -1,0 +1,605 @@
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p2_1S.w                                                                        
+Output file: 2p2_1S.bsw                                                                      
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       40.000
+
+  1s   mdif =  0.000002   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3p   mdif =  0.000000   border = -0.000025
+  3d   mdif =  0.000000   border =  0.000775
+  3s   mdif =  0.000000   border =  0.000001
+  9s   mdif =  0.000000   border =  0.000000
+  9p   mdif =  0.000000   border = -0.000011
+  9d   mdif =  0.000000   border = -0.000105
+  9f   mdif =  0.000000   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p2_3P.w                                                                        
+Output file: 2p2_3P.bsw                                                                      
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       40.000
+
+  1s   mdif =  0.000002   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3p   mdif =  0.000000   border = -0.000025
+  3d   mdif =  0.000000   border =  0.000775
+  3s   mdif =  0.000000   border =  0.000001
+  9s   mdif =  0.000000   border =  0.000000
+  9p   mdif =  0.000000   border = -0.000011
+  9d   mdif =  0.000000   border = -0.000105
+  9f   mdif =  0.000000   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3s_1Po.w                                                                      
+Output file: 2p3s_1Po.bsw                                                                    
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       40.000
+
+  1s   mdif =  0.000002   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000813
+  3p   mdif =  0.000000   border = -0.000021
+  3s   mdif =  0.000000   border =  0.000001
+  4s   mdif =  0.000001   border = -0.001892
+  9s   mdif =  0.000001   border =  0.000514
+  9p   mdif =  0.000000   border = -0.000011
+  9d   mdif =  0.000000   border = -0.000141
+  9f   mdif =  0.000000   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3s_3Po.w                                                                      
+Output file: 2p3s_3Po.bsw                                                                    
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       40.000
+
+  1s   mdif =  0.000002   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000813
+  3p   mdif =  0.000000   border = -0.000021
+  3s   mdif =  0.000000   border =  0.000001
+  4s   mdif =  0.000001   border = -0.001892
+  9s   mdif =  0.000001   border =  0.000514
+  9p   mdif =  0.000000   border = -0.000011
+  9d   mdif =  0.000000   border = -0.000141
+  9f   mdif =  0.000000   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3_3Do.w                                                                       
+Output file: 2p3_3Do.bsw                                                                     
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       40.000
+
+  1s   mdif =  0.000002   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000813
+  3p   mdif =  0.000000   border = -0.000021
+  3s   mdif =  0.000000   border =  0.000001
+  4s   mdif =  0.000001   border = -0.001892
+  9s   mdif =  0.000001   border =  0.000514
+  9p   mdif =  0.000000   border = -0.000011
+  9d   mdif =  0.000000   border = -0.000141
+  9f   mdif =  0.000000   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3_5So.w                                                                       
+Output file: 2p3_5So.bsw                                                                     
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       40.000
+
+  1s   mdif =  0.000002   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000813
+  3p   mdif =  0.000000   border = -0.000021
+  3s   mdif =  0.000000   border =  0.000001
+  4s   mdif =  0.000001   border = -0.001892
+  9s   mdif =  0.000001   border =  0.000514
+  9p   mdif =  0.000000   border = -0.000011
+  9d   mdif =  0.000000   border = -0.000141
+  9f   mdif =  0.000000   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Conversion to B-spline reprisantation:
+
+
+Input file: p_2Po.w                                                                         
+Output file: p_2Po.bsw                                                                       
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       40.000
+
+  1s   mdif =  0.000002   border =  0.000000
+ 2s7   mdif =  0.000000   border =  0.000000
+ 2p7   mdif =  0.000000   border =  0.000020
+ 6p7   mdif =  0.000000   border =  0.000039
+ 6d7   mdif =  0.000000   border =  0.000000
+ 6s7   mdif =  0.000000   border =  0.000000
+ 6f7   mdif =  0.000000   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p2_1D.w                                                                        
+Output file: 2p2_1D.bsw                                                                      
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3p   mdif =  0.000000   border = -0.000001
+  3d   mdif =  0.000000   border =  0.000052
+  3s   mdif =  0.000000   border =  0.000000
+  9s   mdif =  0.000002   border =  0.000000
+  9p   mdif =  0.000002   border = -0.000000
+  9d   mdif =  0.000001   border = -0.000007
+  9f   mdif =  0.000004   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p2_1S.w                                                                        
+Output file: 2p2_1S.bsw                                                                      
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3p   mdif =  0.000000   border = -0.000001
+  3d   mdif =  0.000000   border =  0.000052
+  3s   mdif =  0.000000   border =  0.000000
+  9s   mdif =  0.000002   border =  0.000000
+  9p   mdif =  0.000002   border = -0.000000
+  9d   mdif =  0.000001   border = -0.000007
+  9f   mdif =  0.000004   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p2_3P.w                                                                        
+Output file: 2p2_3P.bsw                                                                      
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3p   mdif =  0.000000   border = -0.000001
+  3d   mdif =  0.000000   border =  0.000052
+  3s   mdif =  0.000000   border =  0.000000
+  9s   mdif =  0.000002   border =  0.000000
+  9p   mdif =  0.000002   border = -0.000000
+  9d   mdif =  0.000001   border = -0.000007
+  9f   mdif =  0.000004   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3s_1Po.w                                                                      
+Output file: 2p3s_1Po.bsw                                                                    
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000055
+  3p   mdif =  0.000000   border = -0.000001
+  3s   mdif =  0.000000   border =  0.000000
+  4s   mdif =  0.000000   border = -0.000132
+  9s   mdif =  0.000002   border =  0.000036
+  9p   mdif =  0.000001   border = -0.000000
+  9d   mdif =  0.000000   border = -0.000010
+  9f   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3s_3Po.w                                                                      
+Output file: 2p3s_3Po.bsw                                                                    
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000055
+  3p   mdif =  0.000000   border = -0.000001
+  3s   mdif =  0.000000   border =  0.000000
+  4s   mdif =  0.000000   border = -0.000132
+  9s   mdif =  0.000002   border =  0.000036
+  9p   mdif =  0.000001   border = -0.000000
+  9d   mdif =  0.000000   border = -0.000010
+  9f   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3_3Do.w                                                                       
+Output file: 2p3_3Do.bsw                                                                     
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000055
+  3p   mdif =  0.000000   border = -0.000001
+  3s   mdif =  0.000000   border =  0.000000
+  4s   mdif =  0.000000   border = -0.000132
+  9s   mdif =  0.000002   border =  0.000036
+  9p   mdif =  0.000001   border = -0.000000
+  9d   mdif =  0.000000   border = -0.000010
+  9f   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3_5So.w                                                                       
+Output file: 2p3_5So.bsw                                                                     
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000055
+  3p   mdif =  0.000000   border = -0.000001
+  3s   mdif =  0.000000   border =  0.000000
+  4s   mdif =  0.000000   border = -0.000132
+  9s   mdif =  0.000002   border =  0.000036
+  9p   mdif =  0.000001   border = -0.000000
+  9d   mdif =  0.000000   border = -0.000010
+  9f   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: p_2Do.w                                                                         
+Output file: p_2Do.bsw                                                                       
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+ 2s9   mdif =  0.000000   border =  0.000000
+ 2p9   mdif =  0.000000   border =  0.000000
+ 6p9   mdif =  0.000000   border =  0.000000
+ 6d9   mdif =  0.000001   border =  0.000000
+ 6s9   mdif =  0.000001   border =  0.000000
+ 6f9   mdif =  0.000001   border =  0.000000
+ 7p9   mdif =  0.000004   border =  0.000000
+ 7s9   mdif =  0.000014   border =  0.000000
+ 7d9   mdif =  0.000015   border =  0.000000
+ 7f9   mdif =  0.000031   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: p_2Po.w                                                                         
+Output file: p_2Po.bsw                                                                       
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+ 2s7   mdif =  0.000000   border =  0.000000
+ 2p7   mdif =  0.000000   border =  0.000002
+ 6p7   mdif =  0.000000   border =  0.000003
+ 6d7   mdif =  0.000001   border =  0.000000
+ 6s7   mdif =  0.000001   border =  0.000000
+ 6f7   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: p_4So.w                                                                         
+Output file: p_4So.bsw                                                                       
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+ 2s4   mdif =  0.000000   border =  0.000000
+ 2p4   mdif =  0.000000   border =  0.000000
+ 6d4   mdif =  0.000001   border =  0.000000
+ 6p4   mdif =  0.000001   border =  0.000000
+ 6s4   mdif =  0.000001   border =  0.000000
+ 7d4   mdif =  0.000006   border =  0.000000
+ 6f4   mdif =  0.000002   border =  0.000000
+ 7p4   mdif =  0.000003   border =  0.000000
+ 7s4   mdif =  0.000007   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p2_1D.w                                                                        
+Output file: 2p2_1D.bsw                                                                      
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3p   mdif =  0.000000   border = -0.000001
+  3d   mdif =  0.000000   border =  0.000052
+  3s   mdif =  0.000000   border =  0.000000
+  9s   mdif =  0.000002   border =  0.000000
+  9p   mdif =  0.000002   border = -0.000000
+  9d   mdif =  0.000001   border = -0.000007
+  9f   mdif =  0.000004   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p2_1S.w                                                                        
+Output file: 2p2_1S.bsw                                                                      
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3p   mdif =  0.000000   border = -0.000001
+  3d   mdif =  0.000000   border =  0.000052
+  3s   mdif =  0.000000   border =  0.000000
+  9s   mdif =  0.000002   border =  0.000000
+  9p   mdif =  0.000002   border = -0.000000
+  9d   mdif =  0.000001   border = -0.000007
+  9f   mdif =  0.000004   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p2_3P.w                                                                        
+Output file: 2p2_3P.bsw                                                                      
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3p   mdif =  0.000000   border = -0.000001
+  3d   mdif =  0.000000   border =  0.000052
+  3s   mdif =  0.000000   border =  0.000000
+  9s   mdif =  0.000002   border =  0.000000
+  9p   mdif =  0.000002   border = -0.000000
+  9d   mdif =  0.000001   border = -0.000007
+  9f   mdif =  0.000004   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3s_1Po.w                                                                      
+Output file: 2p3s_1Po.bsw                                                                    
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000055
+  3p   mdif =  0.000000   border = -0.000001
+  3s   mdif =  0.000000   border =  0.000000
+  4s   mdif =  0.000000   border = -0.000132
+  9s   mdif =  0.000002   border =  0.000036
+  9p   mdif =  0.000001   border = -0.000000
+  9d   mdif =  0.000000   border = -0.000010
+  9f   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3s_3Po.w                                                                      
+Output file: 2p3s_3Po.bsw                                                                    
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000055
+  3p   mdif =  0.000000   border = -0.000001
+  3s   mdif =  0.000000   border =  0.000000
+  4s   mdif =  0.000000   border = -0.000132
+  9s   mdif =  0.000002   border =  0.000036
+  9p   mdif =  0.000001   border = -0.000000
+  9d   mdif =  0.000000   border = -0.000010
+  9f   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3_3Do.w                                                                       
+Output file: 2p3_3Do.bsw                                                                     
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000055
+  3p   mdif =  0.000000   border = -0.000001
+  3s   mdif =  0.000000   border =  0.000000
+  4s   mdif =  0.000000   border = -0.000132
+  9s   mdif =  0.000002   border =  0.000036
+  9p   mdif =  0.000001   border = -0.000000
+  9d   mdif =  0.000000   border = -0.000010
+  9f   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: 2p3_5So.w                                                                       
+Output file: 2p3_5So.bsw                                                                     
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+  2s   mdif =  0.000000   border =  0.000000
+  2p   mdif =  0.000000   border =  0.000000
+  3d   mdif =  0.000000   border =  0.000055
+  3p   mdif =  0.000000   border = -0.000001
+  3s   mdif =  0.000000   border =  0.000000
+  4s   mdif =  0.000000   border = -0.000132
+  9s   mdif =  0.000002   border =  0.000036
+  9p   mdif =  0.000001   border = -0.000000
+  9d   mdif =  0.000000   border = -0.000010
+  9f   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: p_2Do.w                                                                         
+Output file: p_2Do.bsw                                                                       
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+ 2s9   mdif =  0.000000   border =  0.000000
+ 2p9   mdif =  0.000000   border =  0.000000
+ 6p9   mdif =  0.000000   border =  0.000000
+ 6d9   mdif =  0.000001   border =  0.000000
+ 6s9   mdif =  0.000001   border =  0.000000
+ 6f9   mdif =  0.000001   border =  0.000000
+ 7p9   mdif =  0.000004   border =  0.000000
+ 7s9   mdif =  0.000014   border =  0.000000
+ 7d9   mdif =  0.000015   border =  0.000000
+ 7f9   mdif =  0.000031   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: p_2Po.w                                                                         
+Output file: p_2Po.bsw                                                                       
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+ 2s7   mdif =  0.000000   border =  0.000000
+ 2p7   mdif =  0.000000   border =  0.000002
+ 6p7   mdif =  0.000000   border =  0.000003
+ 6d7   mdif =  0.000001   border =  0.000000
+ 6s7   mdif =  0.000001   border =  0.000000
+ 6f7   mdif =  0.000001   border =  0.000000
+
+Conversion to B-spline reprisantation:
+
+
+Input file: p_4So.w                                                                         
+Output file: p_4So.bsw                                                                       
+
+Eps_end tolerence:    0.100D-06
+Lagrange interpolation index:    20
+
+Border radius:       49.962
+
+  1s   mdif =  0.000001   border =  0.000000
+ 2s4   mdif =  0.000000   border =  0.000000
+ 2p4   mdif =  0.000000   border =  0.000000
+ 6d4   mdif =  0.000001   border =  0.000000
+ 6p4   mdif =  0.000001   border =  0.000000
+ 6s4   mdif =  0.000001   border =  0.000000
+ 7d4   mdif =  0.000006   border =  0.000000
+ 6f4   mdif =  0.000002   border =  0.000000
+ 7p4   mdif =  0.000003   border =  0.000000
+ 7s4   mdif =  0.000007   border =  0.000000

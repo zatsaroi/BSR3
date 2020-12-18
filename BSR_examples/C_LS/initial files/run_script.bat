@@ -38,7 +38,7 @@ bsr_breit3 klsp1=1 klsp2=12
 bsr_mat3 klsp1=1 klsp2=12
 bsr_hd3 klsp1=1 klsp2=12
 
-sum_hh 1 12
+sum_hh 
 
 #  Final result is the h.dat file.
 #  To check if the test run is correct
@@ -47,3 +47,13 @@ sum_hh 1 12
 
 # fc sum_hh.log sum_hh.test > diff
 diff sum_hh.log sum_hh.test > diff
+
+# H.DAT is used by stgf program  with input parameter file  dstgf:
+
+#  &STGF  IMESH=1 PERT='YES' LRGLAM=-1 IPRINT=-1 IPRKM=0 &END 
+#  &MESH1 MXE=100 E0=0.1 EINCR=0.1 ABVTHR=1.d-4 BELTHR=1.d-4 &END 
+
+
+
+
+

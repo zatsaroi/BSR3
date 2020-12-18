@@ -1,0 +1,39 @@
+BSR_MAT parameters:
+
+klsp1   =   1 - fist partial wave under consideration
+klsp2   =  12 - last partial wave under consideration
+
+iitar   =   0 - target states are supposed to be orthogonal
+                eigenfunctions of target Hamiltonian
+
+mk      =   7 - maximum multipole index 
+
+eps_c   =   0.10D-09  -  tolerance for integral coefficients
+eps_det =   0.10D-09  -  tolerance for total overlap factors
+eps_ovl =   0.10D-07  -  tolerance for one-elecytron overlaps
+
+s_ovl   =   0.75D+00  -  channel overlap limit for additional orthogonality conditions
+s_pert  =   0.50D+00  -  perturber overlap limit for additional orthogonality conditions
+
+mrel    =   0 - relativistic corrections is not included
+
+nb      =   2000 - number of blocks in module cmdata
+kb      =    100 - max. number of blocks for given type of integrals
+mb      =   5000 - size of block  =>   267.03 Mb
+
+eps_acf =   0.10D-04  -  tolerance for asympt. coefficients
+eps_tar =   0.10D-05  -  tolerance for target energies and overlaps
+
+ma      =  20 - limit for file-name length
+
+debug   =   0 - debug level
+
+maxnc   =   1000000 - size of buffer for coefficients =>    19.07 Mb
+
+nclosd  =   1 - common core shells
+
+Bcore   =   -32.36056782  -  calculated core energy
+
+Ecore   =   -32.36056782  -  Used core energy
+
+bsr_mat3:        0.89  min

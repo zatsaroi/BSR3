@@ -1,0 +1,62 @@
+BSR_MAT:   klsp =     5
+*************************
+
+c-file data: 
+
+ncfg   =    105  -  number of configurations
+nwf    =     26  -  number of orbitals: 
+
+
+Partial wave LSP (JP): 
+
+lpar   =      1  -  total L 
+ispar  =      2  -  total 2S+1
+ipar   =      1  -  parity
+
+Main dimensions in bsr_matrix module:
+
+kch    =      7  -  number of channels 
+kcp    =      0  -  number of perturbers 
+kns    =    121  -  number of splines 
+
+Interaction matrix dimension:        847
+
+Reqired memory for bsr-matrix:       2.7 Mb
+
+Reqired memory for cmdata:         267.2 Mb
+
+Reqired memory for bufer:           19.1 Mb
+
+ndet  =      132     263
+ndef  =     4424   13739
+
+Checking the overlap matrix for overlaps > S_ovl = 0.750
+
+Overlaps:           0.00 min 
+
+L-integrals:        0.01 min 
+
+R-integrals:        0.08 min 
+
+Orthogonal conditions:
+
+ks4  ->      1s  2s1
+kp3  ->     2p1
+kp4  ->     2p1
+
+BS_ORTH:            0.00 min 
+
+Asymptotic coefficients: mk =  7
+
+Target radiative data:  
+
+f-value, A-value, branching ratio, dipole reduced matrix elements
+
+    1    5   1.022E-01   2.441E+08   1.00000    0.12984E+01     2p2_3P              2p3s_3Po            
+    1    7   1.065E-01   1.752E+08   1.00000    0.12811E+01     2p2_3P              2p3_3Do             
+    2    6   7.257E-02   2.103E+08   1.00000    0.15296E+01     2p2_1D              2p3s_1Po            
+
+Polarizability of the ground state =     2.623
+
+
+Total time:         0.09 min

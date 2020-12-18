@@ -1,0 +1,141 @@
+BSR_CONF parameters:
+
+coupling = LS
+
+c_comp   = 1.100 - tolerance for compensation configurations
+
+max_ll   =    -1 - restiction on max. small l
+
+min_ll   =    -1 - restiction on min. small l
+
+max_LT   =    -1 - restiction on total L as (2L+1)
+
+max_ST   =    -1 - restiction on total S as (2S+1)
+
+max_it   =    -1 - restiction on number of target states 
+
+kort     =    -1 - if > 0, the orth.conditions from cfg-files are in play
+
+------------------------------------------------------------------------
+
+number of target orbital:             19
+
+number of substitution orbitals:       3
+
+  2s1  2p1  3s1
+
+number of phys. target config.s:       7
+
+number of target configurations:      96
+
+========================================================================
+Number of partial waves, nlsp = 12
+========================================================================
+
+Partial wave   1   LSP =   0   2   1
+
+
+Number of scattering configutarions:         60
+
+
+------------------------------------------------------------------------
+
+Partial wave   2   LSP =   0   4   1
+
+
+Number of scattering configutarions:         18
+
+
+------------------------------------------------------------------------
+
+Partial wave   3   LSP =   0   2  -1
+
+
+Number of scattering configutarions:         29
+
+
+------------------------------------------------------------------------
+
+Partial wave   4   LSP =   0   4  -1
+
+
+Number of scattering configutarions:         36
+
+Total number of configurations:              51
+
+Number of perturber configurations:          15
+Number of physical perturbers:               15
+
+------------------------------------------------------------------------
+
+Partial wave   5   LSP =   1   2   1
+
+
+Number of scattering configutarions:        105
+
+
+------------------------------------------------------------------------
+
+Partial wave   6   LSP =   1   4   1
+
+
+Number of scattering configutarions:         83
+
+
+------------------------------------------------------------------------
+
+Partial wave   7   LSP =   1   2  -1
+
+
+Number of scattering configutarions:        136
+
+Total number of configurations:             159
+
+Number of perturber configurations:          23
+Number of physical perturbers:               23
+
+------------------------------------------------------------------------
+
+Partial wave   8   LSP =   1   4  -1
+
+
+Number of scattering configutarions:         65
+
+
+------------------------------------------------------------------------
+
+Partial wave   9   LSP =   2   2   1
+
+
+Number of scattering configutarions:        166
+
+
+------------------------------------------------------------------------
+
+Partial wave  10   LSP =   2   4   1
+
+
+Number of scattering configutarions:         83
+
+
+------------------------------------------------------------------------
+
+Partial wave  11   LSP =   2   2  -1
+
+
+Number of scattering configutarions:        135
+
+Total number of configurations:             156
+
+Number of perturber configurations:          21
+Number of physical perturbers:               21
+
+------------------------------------------------------------------------
+
+Partial wave  12   LSP =   2   4  -1
+
+
+Number of scattering configutarions:        101
+
+
+------------------------------------------------------------------------

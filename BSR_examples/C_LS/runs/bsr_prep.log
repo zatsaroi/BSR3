@@ -1,0 +1,196 @@
+BSR_PREP:
+
+eps_ovl  =     0.10000D-05 - tolerance for orthogonality between orbitals
+
+eps_sub  =     0.50000D+00 - tolerance for substitution orbitals
+
+eps_phys =     0.50000D+00 - tolerance for physical orbitals
+
+ii_sub   =               0 - restriction for substitution orbitals
+
+eps_targ =     0.20000D-07 - restriction to target expansions
+
+
+------------------------------------------------------------------------
+
+CORE:    1s                                                                                                                                                                                                    
+
+------------------------------------------------------------------------
+
+ substitution orbitals are read from    target_sub.bsw      
+
+  1s -->   1s    the same
+ 2s1 -->  2s1    new orbitals and new set index     0.00000000
+ 2p1 -->  2p1    new orbitals and new set index     0.00000000
+ 3s3 -->  3s1    new orbitals but old set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target     1    2p2_3P              
+
+  1s -->   1s    the same
+  2s -->  2s1    the same
+  2p -->  2p1    the same
+  3p             excessive orbital
+  3d             excessive orbital
+  3s -->  3s2    new orbitals and new set index     0.99998959
+  9s -->  9s2    new orbitals but old set index     0.00000000
+  9p -->  9p1    new orbitals but old set index     0.00000002
+  9d -->  9d1    new orbitals and new set index     0.00000000
+  9f             excessive orbital
+
+------------------------------------------------------------------------
+
+ target     2    2p2_1D              
+
+  1s -->   1s    the same
+  2s -->  2s1    the same
+  2p -->  2p1    the same
+  3p -->  3p1    new orbitals but old set index     0.00000003
+  3d             excessive orbital
+  3s -->  3s2    the same
+  9s -->  9s2    the same
+  9p -->  9p1    the same
+  9d -->  9d1    the same
+  9f -->  9f1    new orbitals and new set index     0.00000000
+
+------------------------------------------------------------------------
+
+ target     3    2p2_1S              
+
+  1s -->   1s    the same
+  2s -->  2s1    the same
+  2p -->  2p1    the same
+  3p -->  3p1    the same
+  3d             excessive orbital
+  3s -->  3s2    the same
+  9s -->  9s2    the same
+  9p -->  9p1    the same
+  9d -->  9d1    the same
+  9f -->  9f1    the same
+
+------------------------------------------------------------------------
+
+ target     4    2p3_5So             
+
+  1s -->   1s    the same
+  2s -->  2s3    new orbitals and new set index     0.02356205
+  2p -->  2p2    new orbitals and new set index     0.99985625
+  3d             excessive orbital
+  3p -->  3p2    new orbitals but old set index     0.00000002
+  3s             excessive orbital
+  4s             excessive orbital
+  9s -->  9s3    new orbitals but old set index     0.00000001
+  9p -->  9p2    new orbitals but old set index     0.00000001
+  9d -->  9d2    new orbitals and new set index     0.98879127
+  9f             excessive orbital
+
+------------------------------------------------------------------------
+
+ target     5    2p3s_3Po            
+
+  1s -->   1s    the same
+  2s -->  2s3    the same
+  2p -->  2p2    the same
+  3d             excessive orbital
+  3p -->  3p2    the same
+  3s -->  3s3    new orbitals but old set index     0.00000003
+  4s             excessive orbital
+  9s -->  9s3    the same
+  9p -->  9p2    the same
+  9d -->  9d2    the same
+  9f             excessive orbital
+
+------------------------------------------------------------------------
+
+ target     6    2p3s_1Po            
+
+  1s -->   1s    the same
+  2s -->  2s3    the same
+  2p -->  2p2    the same
+  3d             excessive orbital
+  3p -->  3p2    the same
+  3s -->  3s3    the same
+  4s             excessive orbital
+  9s -->  9s3    the same
+  9p -->  9p2    the same
+  9d -->  9d2    the same
+  9f             excessive orbital
+
+------------------------------------------------------------------------
+
+ target     7    2p3_3Do             
+
+  1s -->   1s    the same
+  2s -->  2s3    the same
+  2p -->  2p2    the same
+  3d -->  3d2    new orbitals but old set index     0.00000000
+  3p -->  3p2    the same
+  3s             excessive orbital
+  4s             excessive orbital
+  9s -->  9s3    the same
+  9p -->  9p2    the same
+  9d -->  9d2    the same
+  9f -->  9f2    new orbitals and new set index     0.98339329
+
+------------------------------------------------------------------------
+
+
+ target orbitals, nbf =    19
+
+   1s  2s1  2p1  3s1  3s2  9s2  9p1  9d1  3p1  9f1  2s3  2p2  3p2  9s3
+  9p2  9d2  3s3  3d2  9f2
+
+------------------------------------------------------------------------
+
+
+ substitution orbitals for target states: nsub =     4
+
+   1s  2s1  2p1  3s1                                                                                                                                                                                    
+
+ all substitution orbitals are orthogonal
+
+
+------------------------------------------------------------------------
+
+
+perturber   4    p_4So.c
+
+  1s -->   1s    the same
+ 2s4 -->  2s4    new orbitals and new set index     0.99449174
+ 2p4 -->  2p3    new orbitals and new set index     0.98187247
+ 6d4 -->  6d3    new orbitals and new set index     0.97866431
+ 6p4 -->  6p3    new orbitals but old set index     0.00000000
+ 6s4 -->  6s4    new orbitals but old set index     0.00000000
+ 7d4 -->  7d3    new orbitals but old set index     0.00000000
+ 6f4             excessive orbital
+ 7p4             excessive orbital
+ 7s4             excessive orbital
+ 6p3 -->  6p4    new orbitals and new set index     0.98119453
+
+perturber   7    p_2Po.c
+
+  1s -->   1s    the same
+ 2s7 -->  2s4    new orbitals and new set index     0.99657000
+ 2p7 -->  2p3    new orbitals and new set index     0.96181236
+ 6p7 -->  6p3    new orbitals but old set index     0.00000000
+ 6d7 -->  6d3    new orbitals and new set index     0.98417292
+ 6s7 -->  6s4    new orbitals but old set index     0.00000000
+ 6f7             excessive orbital
+
+perturber  11    p_2Do.c
+
+  1s -->   1s    the same
+ 2s9 -->  2s4    new orbitals and new set index     0.99577807
+ 2p9 -->  2p3    new orbitals and new set index     0.97105311
+ 6p9 -->  6p3    new orbitals but old set index     0.00000000
+ 6d9 -->  6d3    new orbitals and new set index     0.98381973
+ 6s9 -->  6s4    new orbitals but old set index     0.00000000
+ 6f9 -->  6f3    new orbitals and new set index     0.99302961
+ 7p9             excessive orbital
+ 7s9             excessive orbital
+ 7d9             excessive orbital
+ 7f9             excessive orbital
+
+------------------------------------------------------------------------
+

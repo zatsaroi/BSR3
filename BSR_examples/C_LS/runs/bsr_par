@@ -1,0 +1,14 @@
+# bsr_conf
+
+< 2s1|  ks>=0
+
+#  bsr_mat:
+
+mrel = 0
+
+#  bsr_hd:
+
+itype = 0
+
+Emax = 1000
+ 

@@ -1,0 +1,38 @@
+
+                    =======================
+                     B R E I T - P A U L I 
+                    =======================
+
+
+ Operators included: 
+
+ OVERLAPS
+ KINATIC ENERGY
+ TWO-ELECTRON ELECTROSTATIC
+
+ Max.multipole index =  7
+
+--------------------------------------------------------------------------------
+
+ Partial wave:     0
+
+ It is new calculations 
+
+
+ c-fail (cfg.inp) contains: 
+
+ number of atomic states   =     3
+ number of configurations  =     3
+ number of ang. symmetries =     3
+ ic=     1/     3  nterm=     1  ndet=     2      0.00 sec.    s( 2) p( 5) s( 1)
+ ic=     2/     3  nterm=     1  ndet=     6      0.00 sec.    s( 2) p( 5) d( 1)
+ ic=     3/     3  nterm=     1  ndet=     2      0.00 sec.    s( 1) p( 6) p( 1)
+
+ Results for new angular symmetry calculations:
+
+ number of overlap determinants =         9       1.2
+ number of overlap factors      =        36       2.6
+ total number of coeff.s        =        80
+
+ Partial wave:        0.00 min
+ Total time:         0.00 min

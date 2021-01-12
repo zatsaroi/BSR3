@@ -1,5 +1,5 @@
 !======================================================================
-      MODULE L_core
+      Module L_core
 !======================================================================
 !     contain B-spline representation for L-integral
 !     including the interaction with common core
@@ -43,7 +43,7 @@
 
 ! ... auxiliary arrays:
 
-      Real(8), Allocatable :: x(:,:),xx(:,:)
+      Real(8), allocatable :: x(:,:),xx(:,:)
 
       End MODULE L_core
 
@@ -155,10 +155,6 @@
            L_vec(jj,i) = L_vec(jj,i) + vc(ii,m)*pbs(ii,i)     
           End do
          End do
-write(nud,*) 'L_vec:  ', ebs(i)
-write(nud,'(10E15.5)') L_vec(:,i)
- C = SUM(L_vec(:,i)*pbs(:,i)) 
-write(nud,'(10f15.10)')  L_int(i,i), C
         end if
 
        End do

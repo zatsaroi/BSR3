@@ -24,7 +24,7 @@ x:
 .SUFFIXES: .f .f90 .mod .o
  
 .f90.o:
-	$(FC) $(comp) -fbacktrace  -fcheck=bounds $<                                                    
+	$(FC) $(comp) $<                                                    
  
 det_exp.o: det_exp.f
 	$(FC) $(comp) det_exp.f

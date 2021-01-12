@@ -182,6 +182,7 @@ CONTAINS
 
       if(idif.ne.jdif) Stop 'me_det: problems with determinants'
       if(idif.gt.1) Return
+
       if(idif.eq.0.and.kpol.eq.0) Return
 
       if(idif.eq.1) then
@@ -221,7 +222,7 @@ CONTAINS
         Do j = 1,ne; if(detnl(i,j).eq.0.d0) Cycle; Exit; End do; i2 = ip2(j)
 
         Call Radi_matr(ktype,kpol,qpol,spol,ln1(i1),MLdet1(i,kd1),MSdet1(i,kd1), &
-                                            ln2(i2),MLdet2(j,kd2),MSdet1(j,kd2),C1,C2)
+                                            ln2(i2),MLdet2(j,kd2),MSdet2(j,kd2),C1,C2)
         if(abs(C1)+abs(C2).eq.0.d0) Cycle
         C1 =  C1 * CC_det * kz 
         C2 =  C2 * CC_det * kz

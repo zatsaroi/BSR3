@@ -7,7 +7,7 @@ NP = bsr_bmat4_mpi
  
 # Libraries to be searched:
  
-L  = $(BS) $(ZCONFLS) $(SHELLS) $(ZCOM)  $(BS)
+L  = $(BS) $(ZCONFLS) $(SHELLS) $(ZCOM)  $(BS) 
  
 MO =	MOD_bsr_breit.f90        MOD_bsr_mat.f90                                    
 
@@ -36,7 +36,7 @@ $(NS): $(OS)
 
 
 $(NP): $(OP)
-	$(FC) -o $(NP) $(OP) $(link) $(BSR_MPI) $(L) 
+	$(FC_mpi) -o $(NP) $(OP) $(link) $(BSR_MPI) $(L) $(LAPACK)
 	mv $(NP) $(BINDIR)
 	rm *.o *.mod 
 

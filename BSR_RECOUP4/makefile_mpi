@@ -2,6 +2,8 @@
 include ${HOME}/DEFS_04
  
 # make  PROGRAM with name:
+
+FC = mpif90
  
 N  = bsr_recoup4_mpi
  

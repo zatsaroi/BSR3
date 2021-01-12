@@ -1,0 +1,24 @@
+
+MULT - GENERATION OF DATA BANK FOR MULTIPOLE MATRIX ELEMENTS: 
+
+transition -> E0
+
+new calculation for mult_bnk                                                                        
+First set : 1.c  ncfg=         3         2         3
+Second set: 2.c  ncfg=         3         2         3
+
+First set : 1.c  ncfg=     3
+Second set: 2.c  ncfg=     3
+
+Number of conf. symmetries =     2
+Number of ang.  symmetries =     3
+
+ ic=     1/     2  nterm=     1  ndet=     1      0.00 sec.    p( 6)
+ ic=     2/     2  nterm=     2  ndet=    19      0.00 sec.    p( 4) p( 2)
+
+Results for new angular symmetry calculations:
+
+number of overlap determinants =         5         2
+number of overlap factors      =        17         3
+number of angular integrals    =        43
+time:        0.00 min

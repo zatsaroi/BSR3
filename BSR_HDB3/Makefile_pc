@@ -1,0 +1,37 @@
+include ${HOME}/DEFS_03
+
+#  make  PROGRAM with name:
+ 
+N  = bsr_hdb3
+ 
+# Libraries to be searched:
+ 
+L  =  $(BS)  $(ZCONFLS) $(ZCOM)
+ 
+
+S  =	mod_blacs.f90            mod_hd.f90               add_exp.f90              \
+	add_mvc.f90              bsr_hdb.f90              b_out.f90                \
+	diag_hd.f90              h_out.f90                pri_mainpar.f90          \
+	read_diag.f90            rsol_out.f90             r_arg.f90                \
+	sub1_hd.f90              transform_mat.f90        transform_ovl.f90        \
+	w_out.f90                find_channel_label.f90   find_channel_nodes.f90
+
+O = $(S:.f90=.o)
+ 
+$(N): $(O)
+	$(FC) -o $(N) $(O) $(link) $(L) $(LIB)
+	mv $(N) $(BINDIR)
+	rm *.o *.mod 
+ 
+clean:
+	rm -f *.o *.mod 
+ 
+x:
+	rm -f $(N)
+ 
+.SUFFIXES:
+.SUFFIXES: .f90 .mod .o
+ 
+.f90.o:
+	$(FC) $(comp) $<
+ 

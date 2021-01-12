@@ -23,7 +23,7 @@
 '          0  -  scattering calculations  (output - h.nnn, default mode)                  ',&
 '          1  -  photoionization          (output - h.nnn, rsol.nnn)                      ',&
 'iexp   = 0|1 -  theoretical | experimental target energies                               ',&
-'                (exp. energies should be given in file "thresholds"	                   ',&
+'                (exp. energies should be given in file "thresholds"	                    ',&
 'jmvc   =  0  -  number of channel orbitals for inclusion of mass-velocity correction     ',&
 'Edmin  =  0  -  all one-channel solutions with  E < Edmin, E > Edmax or abs(E) < Egap    ',&
 'Edmax  =  0  -  will be neglected  (0 means no restrictions)                             ',&

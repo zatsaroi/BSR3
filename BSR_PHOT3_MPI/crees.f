@@ -11,7 +11,7 @@ C-----------------------------------------------------------------------
 
       SUBROUTINE ASYMPT(info)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5,MXMFG=540)
+      PARAMETER (mchf=300,MLMX=5,MXMFG=540)
 C
 C     (SEE CPC SECTION 5.1)
 C
@@ -756,7 +756,7 @@ C
 CEND********************************************************************
       SUBROUTINE ASYPCK(JAUTO,F0,F0D,info)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C                           PROGRAM ASYPCK
 C                           **************
@@ -1232,7 +1232,7 @@ C
 CEND********************************************************************
       SUBROUTINE ASYSM(info)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     (SEE CPC SECTION 5.2)
 C
@@ -1838,7 +1838,7 @@ C
 CEND********************************************************************
       SUBROUTINE BOUNDC
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     (SEE CPC SECTION 7.3)
 C
@@ -2236,7 +2236,7 @@ C
 CEND********************************************************************
       SUBROUTINE DCHAIN(CHN,I,NP,NV,NAB,ND,C1,N1,C2,N2)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     CHAIN RULE DERIVATIVE OF GENERAL EXPRESSION
 C
@@ -2484,7 +2484,7 @@ C
 CEND********************************************************************
       SUBROUTINE EXPAN(IAS,EROR,RO,ISF,RF,IBUG,IOUT)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     PHASE FROM DIAGONAL CHANNEL AND AMPLITUDE BY ASYMPTOTIC EXPANSION
 C
@@ -2766,7 +2766,7 @@ C
 CEND********************************************************************
       SUBROUTINE FG
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     (SEE CPC SECTION 5.3 AND SECTION 10.3 OF PAPER III)
 C
@@ -3282,7 +3282,7 @@ C
 CEND********************************************************************
       SUBROUTINE INTERP(F,K)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C   INTERP INTERPOLATES SOLUTIONS AT THE INPUT AND INCREMENTED
 C   ENERGIES TO OBTAIN THE SOLUTIONS AT THE CONVERGED ENERGY
@@ -3367,7 +3367,7 @@ C
 CEND********************************************************************
       SUBROUTINE ITERA(NIT,EROR,RO,RF,IBUG,IOUT)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     PHASE BY WBK AND AMPLITUDE BY ITERATION OF DIFFERENTIAL EQUATION
 C
@@ -3568,7 +3568,7 @@ C
 CEND********************************************************************
       SUBROUTINE MTINV(A,N)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600)
+      PARAMETER (mchf=300)
 C
 C   MATRIX INVERSION ROUTINE WITH FULL PIVOTING
 C
@@ -3657,7 +3657,7 @@ C
 CEND********************************************************************
       SUBROUTINE OMEGA
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     (SEE CPC SECTION 7.2)
 C
@@ -3874,7 +3874,7 @@ C
 CEND********************************************************************
       SUBROUTINE POP(NDRV,NBA,NAP)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     ITERATION OPERATOR FOR DEGENERATE ENERGIES
 C
@@ -4023,7 +4023,7 @@ C
 CEND********************************************************************
       SUBROUTINE POTS(NDRV)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     POTENTIALS FOR USE IN ITERATION METHOD (SUBROUTINE ITERA)
 C     POTENTIAL AND DERIVATIVES UP TO NDRV-1 FOR ALL MESH POINTS
@@ -4086,7 +4086,7 @@ C
 CEND********************************************************************
       SUBROUTINE PPFS(NDRV)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     POINTS FOR SUBROUTINE ITERA
 C     CORRECTION TERM IN WBK AMPLITUDE DIFFERENTIAL EQUATION
@@ -4166,7 +4166,7 @@ C
 CEND********************************************************************
       SUBROUTINE PRTFNS(F)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C   PRTFNS WRITES THE VARIOUS SOLUTIONS ONTO UNIT MT6
 C
@@ -4241,7 +4241,7 @@ C
 CEND********************************************************************
       SUBROUTINE QROP(NDRV,NBA,NAR,NAQ)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     ITERATION OPERATOR FOR NON-DEGENARATE ENERGIES
 C     OPERATORS Q AND R ON A OR B FOR NAR OR NAQ 1 OR 2 RESP.
@@ -4302,7 +4302,7 @@ C
 CEND********************************************************************
       SUBROUTINE SECDRV(F,FDD,R,IC)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C   CALCULATES SECOND DERIVATIVES OF A FUNCTION,FDD(R),
 C   WHERE, GIVEN W AND F,
@@ -4390,7 +4390,7 @@ C
 CEND********************************************************************
       SUBROUTINE SOLNS(F0,F0D)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     (SEE CPC SECTION 6)
 C
@@ -4604,7 +4604,7 @@ C
 CEND********************************************************************
       SUBROUTINE SOLV(R,H,MD,WF,WF1)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     CALLED BY SUBROUTINES ASYMPT AND ASYSM
 C
@@ -4736,7 +4736,7 @@ C
 CEND********************************************************************
       SUBROUTINE WOUTER(R)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C   WOUTER CALCULATES THE MATRIX W(R) DEFINED BY CPC EQUATION 4.1
 C   IN THE FORM REQUIRED BY SUBROUTINE SOLV
@@ -4812,7 +4812,7 @@ C
 CEND********************************************************************
       SUBROUTINE WW(W,X)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C   WW CALCULATES THE MATRIX W(R) DEFINED BY CPC EQUATION 4.1 AT R = X,
 C   IN THE FORM REQUIRED BY SUBROUTINES SECDRV AND FG
@@ -4883,7 +4883,7 @@ C
 CEND********************************************************************
       SUBROUTINE ZETA(N)
       IMPLICIT DOUBLE PRECISION (A-H,O-Z)
-      PARAMETER (mchf=600,MLMX=5)
+      PARAMETER (mchf=300,MLMX=5)
 C
 C     WBK AMPLITUDE ZET AND ITS INVERSE FOR ALL MESH POINTS FOR ITERA
 C     COMPUTES AND STORES ZET(J) AND 1.0/ZET(J) AND DERIVS. UP TO N-1

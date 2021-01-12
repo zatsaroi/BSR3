@@ -1,0 +1,14 @@
+OI                                                                                
+  1s  2s  2p                                                                      
+   4   8   1   2   0   2   n_orbitals,  n_electrons, parity, n_ref, k_min, k_max  
+  3s  3p  4s  4p  4d  4f                                                          
+   0   5   0   0   0   0                                                          
+   2   6   2   2   2   2                                                          
+                                                                                  
+                                                                                  
+n_orbitals  - number of orbitals in following list (up to 50 in a row)            
+n_electrons - number of electrons above common core                               
+parity      - -/+ 1                                                               
+n_core      - reference orbitals for promotions                                   
+k_min       - minumum promotion, e.g,   1 - single                                
+k_max       - maximum promotion, e.g.,  2 - double                                

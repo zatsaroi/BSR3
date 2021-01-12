@@ -99,6 +99,7 @@
       i=LEN_TRIM(AF_log)
       write(AF,'(a,i4.4)') AF_log(1:i),myid
       Open(pri, file=AF) 
+      write(pri,*) 'ibug =',ibug
 !----------------------------------------------------------------------
       if(ibug.eq.-1) go to 100
 !----------------------------------------------------------------------
@@ -279,6 +280,7 @@
       Call MPI_BARRIER(MPI_COMM_WORLD, ierr)
 
   100 Continue
+      write(pri,*) '100: ibug = ',ibug
 
       if(myid.eq.0) then
 

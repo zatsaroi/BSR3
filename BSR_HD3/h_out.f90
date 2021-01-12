@@ -6,7 +6,7 @@
 !----------------------------------------------------------------------
       Use bsr_hd
       Use target
-      Use channel,  only: lch,iptar, lpar,ispar,ipar,jpar
+      Use channel,  only: lch,jkch, iptar, lpar,ispar,ipar,jpar
       
       Implicit none
       Integer :: NCONAT(ntarg)
@@ -60,7 +60,7 @@
 
 ! ... orbital angular momentum of continuum electron:
 
-      write(nuh) (lch(i),i=1,nchan)
+      write(nuh) (lch(i),i=1,nchan),(jkch(i),i=1,nchan)
 
 ! ... asymptotic coefficients:
 
@@ -157,7 +157,7 @@
 
 ! ... orbital angular momentum of continuum electron:
 
-      write(nuh) (lch(npch(i)),i=1,nchan)
+      write(nuh) (lch(npch(i)),i=1,nchan),(jkch(npch(i)),i=1,nchan)
 
 ! ... asymptotic coefficients:
 

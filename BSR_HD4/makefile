@@ -2,7 +2,7 @@ include ${HOME}/DEFS_04
  
 #  make  PROGRAM with name:
  
-N  = bsr_hd4a
+N  = bsr_hd4
  
 # Libraries to be searched:
  
@@ -16,7 +16,7 @@ S  =	mod_hd.f90               bsr_hd.f90              b_out.f90                \
 O = $(S:.f90=.o)
  
 $(N): $(O)
-	$(FC) -o $(N) $(O) $(link) -fbacktrace -fcheck=bounds $(L)
+	$(FC) -o $(N) $(O) $(link)  $(L)
 	mv $(N) $(BINDIR)
 	rm *.o *.mod 
  
@@ -31,6 +31,7 @@ x:
  
 .f90.o:
 	$(FC) $(comp) $<
- 
+
+#  -fbacktrace -fcheck=bounds 
 # -fbacktrace -fcheck=bounds 
 # -fbacktrace -fcheck=bounds 

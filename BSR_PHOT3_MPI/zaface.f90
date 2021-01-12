@@ -31,7 +31,7 @@
  
 ! ... here the parameters from ASYPCK:
 
-      PARAMETER (mchf=600, MLMX = 5, MXMFG=540)
+      PARAMETER (mchf=300, MLMX = 5, MXMFG=540)
  
       DIMENSION LCH(nch),CF(nch,nch,km),ECH(nch), &
                 F(nch,nch), G(nch,nch), FP(nch,nch), GP(nch,nch)

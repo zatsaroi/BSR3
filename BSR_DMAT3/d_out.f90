@@ -75,6 +75,7 @@
        JLT1 = JOT1-1; JLT2 = JOT2-1; JST1=0; JST2=0
       end if
       E2 = Etarg(1)
+
       write(nud) JLT2,JST2,IPT2,E2,nstate2                          
 
 ! ... read initial state:
@@ -98,6 +99,7 @@
       End do
 
       write(nud) JLT1,JST1,IPT1,E1                   
+
       write(nud) (cl(i),cv(i),i=nstate2,1,-1)        
 
       Deallocate(CL,CV)

@@ -153,7 +153,7 @@
       Do ich = 1,nch; i=ipch(ich); ii=(ich-1)*ns
        Do j=1,nbf; if(IBORT(i,j).ne.0) Cycle 
         if(lbs(i).ne.lbs(j)) Cycle
-        S = SUM(sol(ii+1:ns)*qbs(1:ns,j))
+        S = SUM( sol(ii+1:ii+ns) * qbs(1:ns,j) )
         write(pri,'(2a6,f10.5)') ebs(i),ebs(j),S
        End do
       End do

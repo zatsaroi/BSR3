@@ -108,7 +108,7 @@
 ! ... perturber radial functions:
 
       if(nwp.gt.0) then
-       i=Index(AFP,'.'); AFP(i+1:i+3)='bsw'
+       i=len_trim(AFP); AFP(i+1:i+4)='.bsw'
        Call Check_file(AFP)
        Open(nuw, file=AFP, form='UNFORMATTED')
        Call Read_bsw(nuw)

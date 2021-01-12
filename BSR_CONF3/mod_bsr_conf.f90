@@ -22,8 +22,8 @@
 ! ... default values for parameters:    
 
       Real(8) :: c_comp = 1.100  ! tolerance for compensation configurations          
-      Real(8) :: c_conf = 0.200  ! tolerance for physical configurations        
-      Real(8) :: c_phys = 0.750  ! sum of weights
+      Real(8) :: c_conf = 0.100  ! tolerance for physical configurations        
+      Real(8) :: c_phys = 0.500  ! sum of weights
 
       Integer :: max_ll = -1     ! upper limit for small "l"
       Integer :: min_ll = -1     ! lower limit for small "l"

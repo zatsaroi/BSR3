@@ -92,6 +92,7 @@
        CCL = CC * DJ(i,j); CCV = CC * DJM(i,j)
        if(abs(CCL)+abs(CCV).lt.Eps_C) Cycle
       end if 
+
       if(int_type.eq.2) CCV = 0.d0
       if(int_type.eq.3) CCL = 0.d0
 

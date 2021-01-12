@@ -132,6 +132,8 @@
 ! ...  initial allocations:
 
        Call Alloc_coef(-1)
+       Call Alloc_ndet(-1)
+       Call Alloc_ndef(-1)
 
 !----------------------------------------------------------------------
 ! ...  calculations:

@@ -142,6 +142,7 @@
        Call Record_def(nur)
        ntotc = 0
        if(new.eq.0) Call RW(nub,nur,ntotc)
+
        rewind(nui); Call RW(nui,nur,ntotc)
 
 ! ...  print the main dimensions:      

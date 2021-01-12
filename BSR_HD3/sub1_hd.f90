@@ -48,7 +48,7 @@
       if(iexp.eq.0) &
       write(pri,'(a)') 'iexp  =    0  -  theoretical target energies are used'
       if(iexp.ne.0) &
-      write(pri,'(a)') 'iexp  =    1  -  exp.target energies are read from file thrsholds'
+      write(pri,'(a)') 'iexp  =    1  -  exp.target energies are read from file thresholds'
 
       if(iexp.gt.0.and.debug.gt.0) then
       if(iiexp.eq.0) &
